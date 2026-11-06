@@ -1,0 +1,1324 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>David T. Giberti | Staff GPU & CPU Verification Engineer & Team Lead | Microarchitecture & C++ Co-Simulation</title>
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- Lucide Icons CDN -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+  <!-- Google Fonts: Inter & JetBrains Mono -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['Inter', 'system-ui', 'sans-serif'],
+            mono: ['JetBrains Mono', 'monospace'],
+          },
+          colors: {
+            cobalt: {
+              600: '#2563eb',
+              700: '#1d4ed8',
+              800: '#1e40af',
+              900: '#1e3a8a',
+            }
+          }
+        }
+      }
+    }
+  </script>
+
+  <style>
+    /* Subtle Executive Engineering Grid Background */
+    .exec-grid-bg {
+      background-size: 36px 36px;
+      background-image: 
+        linear-gradient(to right, rgba(15, 23, 42, 0.035) 1px, transparent 1px),
+        linear-gradient(to bottom, rgba(15, 23, 42, 0.035) 1px, transparent 1px);
+    }
+    html.dark .exec-grid-bg {
+      background-image: 
+        linear-gradient(to right, rgba(56, 189, 248, 0.05) 1px, transparent 1px),
+        linear-gradient(to bottom, rgba(56, 189, 248, 0.05) 1px, transparent 1px);
+    }
+
+    /* Executive Card Accent Top Border */
+    .exec-card {
+      position: relative;
+      transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .exec-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 3px;
+      border-top-left-radius: 0.75rem;
+      border-top-right-radius: 0.75rem;
+      background: linear-gradient(90deg, #1e40af, #0284c7, #0f766e);
+      opacity: 0.85;
+    }
+    html.dark .exec-card::before {
+      background: linear-gradient(90deg, #38bdf8, #818cf8, #2dd4bf);
+    }
+
+    /* Role Lens Highlight Ring */
+    .lens-highlight {
+      box-shadow: 0 0 0 2px #0284c7, 0 10px 25px -5px rgba(2, 132, 199, 0.18);
+    }
+    html.dark .lens-highlight {
+      box-shadow: 0 0 0 2px #38bdf8, 0 10px 25px -5px rgba(56, 189, 248, 0.22);
+    }
+
+    /* Print / Save PDF Optimization */
+    @media print {
+      body {
+        background: #ffffff !important;
+        color: #0f172a !important;
+        font-size: 10.5pt;
+      }
+      .no-print {
+        display: none !important;
+      }
+      .print-break-inside-avoid {
+        break-inside: avoid;
+      }
+      .exec-grid-bg {
+        background: none !important;
+      }
+      .exec-card {
+        border: 1px solid #cbd5e1 !important;
+        box-shadow: none !important;
+        background: #ffffff !important;
+        color: #0f172a !important;
+      }
+      .exp-details {
+        display: block !important;
+      }
+      a {
+        text-decoration: none !important;
+        color: inherit !important;
+      }
+    }
+  </style>
+</head>
+
+<!-- DEFAULT LIGHT MODE: Crisp #f8fafc slate-50 paper aesthetic, #0f172a slate-900 typography -->
+<body class="bg-[#f8fafc] text-[#0f172a] dark:bg-[#0b0f19] dark:text-[#f8fafc] font-sans antialiased selection:bg-sky-600 selection:text-white transition-colors duration-200 exec-grid-bg min-h-screen flex flex-col">
+
+  <!-- Top Utility & Deployment Bar -->
+  <div class="no-print bg-slate-900 text-slate-200 dark:bg-slate-950 border-b border-slate-800 px-4 py-2 text-xs font-mono">
+    <div class="max-w-7xl mx-auto flex flex-wrap items-center justify-between gap-2">
+      <div class="flex items-center space-x-3">
+        <span class="inline-flex items-center gap-1.5 text-sky-400 font-semibold">
+          <span class="w-2 h-2 rounded-full bg-emerald-400"></span>
+          EXECUTIVE ENGINEERING DOSSIER // NOV 2026
+        </span>
+        <span class="hidden sm:inline text-slate-600">|</span>
+        <span class="hidden sm:inline text-slate-300">LOCATION: <strong class="text-white">AUSTIN, TX</strong></span>
+        <span class="hidden lg:inline text-slate-600">|</span>
+        <span class="hidden lg:inline text-amber-300">HOST TARGET: <strong class="text-white">davveeeeeee.github.io</strong></span>
+      </div>
+      <div class="flex items-center space-x-3">
+        <button onclick="openGithubModal()" class="text-sky-300 hover:text-white underline decoration-sky-400/50 underline-offset-4 flex items-center gap-1.5 transition cursor-pointer font-semibold">
+          <i data-lucide="github" class="w-3.5 h-3.5"></i>
+          <span>GitHub Pages Setup Guide</span>
+        </button>
+        <span class="text-slate-700">|</span>
+        <button onclick="copyEmail()" class="hover:text-white transition flex items-center gap-1.5 cursor-pointer" title="Copy Email Address">
+          <i data-lucide="mail" class="w-3.5 h-3.5 text-sky-400"></i>
+          <span id="copyEmailLabel">davidgiberti@gmail.com</span>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Sticky Navigation Header -->
+  <header class="no-print sticky top-0 z-40 backdrop-blur-md bg-white/95 dark:bg-[#111827]/95 border-b border-[#e2e8f0] dark:border-slate-800 shadow-sm transition-colors">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between gap-4">
+      <!-- Brand Identity -->
+      <a href="#overview" class="flex items-center gap-3 group focus:outline-none">
+        <div class="w-10 h-10 rounded-lg bg-[#1e40af] dark:bg-sky-600 flex items-center justify-center font-mono font-bold text-white text-sm tracking-tight shadow-sm">
+          DTG
+        </div>
+        <div>
+          <span class="font-bold tracking-tight text-slate-900 dark:text-white block leading-none text-base">David T. Giberti, M.S. EE</span>
+          <span class="font-mono text-[11px] text-[#1e40af] dark:text-sky-400 font-semibold block mt-1">Staff DV Engineer &amp; Team Lead (GPU &amp; CPU)</span>
+        </div>
+      </a>
+
+      <!-- Desktop Navigation Links -->
+      <nav class="hidden xl:flex items-center gap-1 text-sm font-semibold">
+        <a href="#overview" class="px-3 py-2 rounded-lg text-slate-700 dark:text-slate-300 hover:text-[#1e40af] dark:hover:text-sky-400 hover:bg-slate-100 dark:hover:bg-slate-800/60 transition">Overview</a>
+        <a href="#experience" class="px-3 py-2 rounded-lg text-slate-700 dark:text-slate-300 hover:text-[#1e40af] dark:hover:text-sky-400 hover:bg-slate-100 dark:hover:bg-slate-800/60 transition">Experience (9)</a>
+        <a href="#education" class="px-3 py-2 rounded-lg text-slate-700 dark:text-slate-300 hover:text-[#1e40af] dark:hover:text-sky-400 hover:bg-slate-100 dark:hover:bg-slate-800/60 transition">Education &amp; GPAs</a>
+        <a href="#projects" class="px-3 py-2 rounded-lg text-slate-700 dark:text-slate-300 hover:text-[#1e40af] dark:hover:text-sky-400 hover:bg-slate-100 dark:hover:bg-slate-800/60 transition">Projects &amp; Simulators (17)</a>
+        <a href="#skills" class="px-3 py-2 rounded-lg text-slate-700 dark:text-slate-300 hover:text-[#1e40af] dark:hover:text-sky-400 hover:bg-slate-100 dark:hover:bg-slate-800/60 transition">Technical Matrix</a>
+      </nav>
+
+      <!-- Action Buttons: GitHub Pages Setup Guide, Theme Toggle & Print PDF -->
+      <div class="flex items-center gap-2">
+        <button onclick="openGithubModal()" class="hidden md:inline-flex items-center gap-1.5 px-3 py-2 rounded-lg border border-blue-200 dark:border-sky-800 bg-blue-50/80 hover:bg-blue-100 dark:bg-sky-950/60 dark:hover:bg-sky-900/60 text-[#1e40af] dark:text-sky-300 text-xs font-mono font-semibold transition cursor-pointer">
+          <i data-lucide="rocket" class="w-3.5 h-3.5"></i>
+          <span>GitHub Pages Setup Guide</span>
+        </button>
+
+        <button id="themeToggleBtn" onclick="toggleTheme()" class="inline-flex items-center gap-2 px-3 py-2 rounded-lg border border-[#e2e8f0] dark:border-slate-700 bg-slate-100 hover:bg-slate-200/80 dark:bg-slate-800 dark:hover:bg-slate-700 text-slate-800 dark:text-slate-200 text-xs font-mono font-semibold transition cursor-pointer">
+          <i id="themeIconMoon" data-lucide="moon" class="w-4 h-4 text-[#1e40af] block dark:hidden"></i>
+          <i id="themeIconSun" data-lucide="sun" class="w-4 h-4 text-amber-400 hidden dark:block"></i>
+          <span id="themeToggleText">Switch to Dark Mode</span>
+        </button>
+
+        <button onclick="handlePrintResume()" class="inline-flex items-center gap-2 px-3.5 py-2 rounded-lg font-mono text-xs font-semibold bg-[#1e40af] hover:bg-blue-800 dark:bg-sky-500 dark:hover:bg-sky-400 text-white dark:text-slate-950 shadow-sm transition cursor-pointer">
+          <i data-lucide="printer" class="w-4 h-4"></i>
+          <span class="hidden sm:inline">Print / Save PDF</span>
+        </button>
+
+        <!-- Mobile Menu Button -->
+        <button onclick="toggleMobileMenu()" class="xl:hidden p-2 rounded-lg border border-[#e2e8f0] dark:border-slate-700 text-slate-700 dark:text-slate-300">
+          <i data-lucide="menu" class="w-5 h-5"></i>
+        </button>
+      </div>
+    </div>
+
+    <!-- Mobile Navigation Drawer -->
+    <div id="mobileMenu" class="hidden xl:hidden border-t border-[#e2e8f0] dark:border-slate-800 bg-white dark:bg-[#111827] px-4 py-3 space-y-1 text-sm font-medium">
+      <a href="#overview" onclick="toggleMobileMenu()" class="block px-3 py-2 rounded-lg hover:bg-slate-100 dark:hover:bg-slate-800">Overview &amp; Silicon Pedigree</a>
+      <a href="#experience" onclick="toggleMobileMenu()" class="block px-3 py-2 rounded-lg hover:bg-slate-100 dark:hover:bg-slate-800">Professional Experience (9 Roles)</a>
+      <a href="#education" onclick="toggleMobileMenu()" class="block px-3 py-2 rounded-lg hover:bg-slate-100 dark:hover:bg-slate-800">Education, GPAs &amp; Coursework</a>
+      <a href="#projects" onclick="toggleMobileMenu()" class="block px-3 py-2 rounded-lg hover:bg-slate-100 dark:hover:bg-slate-800">Detailed Projects &amp; Simulators (17)</a>
+      <a href="#skills" onclick="toggleMobileMenu()" class="block px-3 py-2 rounded-lg hover:bg-slate-100 dark:hover:bg-slate-800">Hardware &amp; Verification Matrix</a>
+      <button onclick="toggleMobileMenu(); openGithubModal();" class="w-full text-left px-3 py-2 rounded-lg text-[#1e40af] dark:text-sky-400 font-mono text-xs font-bold hover:bg-slate-100 dark:hover:bg-slate-800">
+        🚀 Open GitHub Pages Setup Guide
+      </button>
+    </div>
+  </header>
+
+  <!-- Main Content -->
+  <main class="flex-grow max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-12 space-y-16">
+
+    <!-- ==========================================
+         1. EXECUTIVE HERO & SILICON PEDIGREE SUMMARY (WITH ALL GPAS)
+         ========================================== -->
+    <section id="overview" class="scroll-mt-24 space-y-8">
+      <div class="bg-white dark:bg-[#111827] border border-[#e2e8f0] dark:border-slate-800 rounded-2xl p-6 sm:p-10 shadow-sm exec-card">
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+          
+          <!-- Left 7 Cols: Core Identity, Career Target Banner & Role Lens Switcher -->
+          <div class="lg:col-span-7 space-y-5">
+            <!-- Career Target Banner -->
+            <div class="inline-flex flex-wrap items-center gap-2 px-3.5 py-1.5 rounded-full bg-blue-50 dark:bg-sky-950/60 border border-blue-200 dark:border-sky-800 text-[#1e40af] dark:text-sky-300 font-mono text-xs font-semibold">
+              <span class="w-2 h-2 rounded-full bg-[#1e40af] dark:bg-sky-400"></span>
+              <span>14+ Years of Silicon Execution Across GPU Shader/Matrix Subsystems &amp; CPU Cores • Targeting SoC Performance Architect, CPU/GPU Performance Engineer &amp; Microarchitecture Roles</span>
+            </div>
+
+            <!-- Name & Current Title Headline -->
+            <div class="space-y-2">
+              <h1 class="text-3xl sm:text-5xl font-extrabold tracking-tight text-[#0f172a] dark:text-white">
+                David T. Giberti, M.S. EE
+              </h1>
+              <p class="text-lg sm:text-xl font-bold text-[#1e40af] dark:text-sky-400 leading-snug">
+                Staff Design Verification Engineer &amp; Team Lead (GPU &amp; CPU) | Microarchitecture &amp; C++ Co-Simulation
+              </p>
+              <div class="flex flex-wrap items-center gap-3 text-xs font-mono text-[#334155] dark:text-slate-400 pt-1">
+                <span>📍 Austin, TX</span>
+                <span>•</span>
+                <a href="mailto:davidgiberti@gmail.com" class="text-[#1e40af] dark:text-sky-400 hover:underline font-semibold">davidgiberti@gmail.com</a>
+                <span>•</span>
+                <a href="https://github.com/davveeeeeee" target="_blank" rel="noopener noreferrer" class="text-[#1e40af] dark:text-sky-400 hover:underline font-semibold">github.com/davveeeeeee</a>
+                <span>•</span>
+                <a href="https://davveeeeeee.github.io" target="_blank" rel="noopener noreferrer" class="text-[#1e40af] dark:text-sky-400 hover:underline font-semibold">davveeeeeee.github.io</a>
+              </div>
+            </div>
+
+            <!-- Executive Bio -->
+            <p class="text-sm sm:text-base text-[#334155] dark:text-slate-300 leading-relaxed">
+              Hardware engineering leader with <strong class="font-semibold text-[#0f172a] dark:text-white">14+ years of pre-silicon and post-silicon execution</strong> across flagship GPU Shader, Ray-Tracing, and Matrix compute subsystems as well as superscalar x86 and ARM CPU cores. At <strong class="font-semibold text-[#0f172a] dark:text-white">Qualcomm</strong>, manages, guides, and mentors a team of verification engineers driving pre-silicon verification for Adreno GPU Ray Tracing (<strong class="font-mono text-xs">RTU, TTU, RTTU</strong>) and Matrix AI/compute (<strong class="font-mono text-xs">MALU</strong>) hardware while refactoring <strong class="font-mono text-xs">C++ DPI-C</strong> co-simulation infrastructure linking RTL environments with repository-based C++ functional and performance models. Combines post-silicon <strong class="font-semibold text-[#0f172a] dark:text-white">AMD EPYC &amp; Ryzen</strong> silicon bring-up, <strong class="font-semibold text-[#0f172a] dark:text-white">Cirrus Logic</strong> mixed-signal IP verification, <strong class="font-semibold text-[#0f172a] dark:text-white">Samsung SARC</strong> pre-silicon CPU Load/Store &amp; TLB verification, and <strong class="font-semibold text-[#0f172a] dark:text-white">ARM</strong> CPU frontend verification &amp; automated Jenkins synthesis/PnR timing flows with graduate computer architecture &amp; systems credentials from <strong class="font-semibold text-[#0f172a] dark:text-white">Georgia Tech, SJSU (3.92 GPA), UCSC Extension (3.93 GPA), and UT Austin (4.28 GPA)</strong>.
+            </p>
+
+            <!-- Interactive Hiring Manager View Lens -->
+            <div class="no-print pt-2">
+              <div class="p-3.5 rounded-xl bg-slate-50 dark:bg-slate-950/80 border border-[#e2e8f0] dark:border-slate-800 space-y-2.5">
+                <div class="flex flex-wrap items-center justify-between gap-2">
+                  <span class="font-mono text-xs font-bold uppercase tracking-wider text-[#334155] dark:text-slate-300 flex items-center gap-1.5">
+                    <i data-lucide="sliders" class="w-3.5 h-3.5 text-[#1e40af] dark:text-sky-400"></i>
+                    <span>Interactive Hiring Manager Lens:</span>
+                  </span>
+                  <span id="activeLensBadge" class="font-mono text-[11px] font-semibold text-[#1e40af] dark:text-sky-400">Showing Complete Executive Dossier</span>
+                </div>
+                <div class="flex flex-wrap gap-2">
+                  <button onclick="setRoleLens('all')" id="lens-btn-all" class="px-3.5 py-2 rounded-lg font-mono text-xs font-semibold bg-[#1e40af] text-white shadow-sm transition cursor-pointer">
+                    All Experience &amp; Projects
+                  </button>
+                  <button onclick="setRoleLens('perf')" id="lens-btn-perf" class="px-3.5 py-2 rounded-lg font-mono text-xs font-semibold bg-white dark:bg-slate-900 text-[#334155] dark:text-slate-300 border border-[#e2e8f0] dark:border-slate-700 hover:border-[#1e40af] transition cursor-pointer">
+                    🎯 SoC / CPU Performance &amp; Microarchitecture Lens
+                  </button>
+                  <button onclick="setRoleLens('dv')" id="lens-btn-dv" class="px-3.5 py-2 rounded-lg font-mono text-xs font-semibold bg-white dark:bg-slate-900 text-[#334155] dark:text-slate-300 border border-[#e2e8f0] dark:border-slate-700 hover:border-[#1e40af] transition cursor-pointer">
+                    🛡️ Staff DV, Formal &amp; Silicon Execution Lens
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Right 5 Cols: SILICON PEDIGREE SUMMARY BAR (4 Cards with ALL GPAs Explicitly Shown) -->
+          <div class="lg:col-span-5 bg-slate-50 dark:bg-slate-950/90 border border-[#e2e8f0] dark:border-slate-800 rounded-xl p-5 space-y-3.5">
+            <div class="flex items-center justify-between border-b border-[#e2e8f0] dark:border-slate-800 pb-3">
+              <span class="font-mono text-xs font-bold uppercase tracking-wider text-[#0f172a] dark:text-slate-200">Silicon Pedigree Summary</span>
+              <span class="font-mono text-[11px] px-2.5 py-0.5 rounded bg-blue-100 dark:bg-sky-950 text-[#1e40af] dark:text-sky-300 font-semibold">Austin, TX</span>
+            </div>
+
+            <div class="space-y-3 text-xs">
+              <!-- Card 1 -->
+              <div class="p-3.5 rounded-lg bg-white dark:bg-[#111827] border border-[#e2e8f0] dark:border-slate-800 shadow-2xs">
+                <div class="flex items-center justify-between">
+                  <span class="font-mono font-extrabold text-sm text-[#1e40af] dark:text-sky-400">14+ YEARS</span>
+                  <span class="font-mono text-[10px] font-semibold uppercase px-2 py-0.5 rounded bg-blue-50 dark:bg-sky-950 text-[#1e40af] dark:text-sky-300">Pre- &amp; Post-Silicon</span>
+                </div>
+                <div class="text-[#0f172a] dark:text-white font-semibold mt-1">
+                  Pre- &amp; Post-Silicon GPU &amp; CPU Execution
+                </div>
+                <div class="font-mono text-[11px] text-[#334155] dark:text-slate-400 mt-0.5">
+                  Qualcomm • AMD • Cirrus Logic • Samsung SARC • ARM
+                </div>
+              </div>
+
+              <!-- Card 2 -->
+              <div class="p-3.5 rounded-lg bg-white dark:bg-[#111827] border border-[#e2e8f0] dark:border-slate-800 shadow-2xs">
+                <div class="flex items-center justify-between">
+                  <span class="font-mono font-extrabold text-sm text-[#1e40af] dark:text-sky-400">GPU, MATRIX &amp; CPU</span>
+                  <span class="font-mono text-[10px] font-semibold uppercase px-2 py-0.5 rounded bg-blue-50 dark:bg-sky-950 text-[#1e40af] dark:text-sky-300">Microarchitecture</span>
+                </div>
+                <div class="text-[#0f172a] dark:text-white font-semibold mt-1">
+                  Heterogeneous Microarchitecture
+                </div>
+                <div class="font-mono text-[11px] text-[#334155] dark:text-slate-400 mt-0.5">
+                  RTU / TTU / RTTU / MALU • x86 EPYC/Ryzen • ARM Cortex
+                </div>
+              </div>
+
+              <!-- Card 3 -->
+              <div class="p-3.5 rounded-lg bg-white dark:bg-[#111827] border border-[#e2e8f0] dark:border-slate-800 shadow-2xs">
+                <div class="flex items-center justify-between">
+                  <span class="font-mono font-extrabold text-sm text-[#1e40af] dark:text-sky-400">C++ / DPI-C / SESC</span>
+                  <span class="font-mono text-[10px] font-semibold uppercase px-2 py-0.5 rounded bg-blue-50 dark:bg-sky-950 text-[#1e40af] dark:text-sky-300">Modeling &amp; RTL</span>
+                </div>
+                <div class="text-[#0f172a] dark:text-white font-semibold mt-1">
+                  Performance &amp; Co-Sim Modeling
+                </div>
+                <div class="font-mono text-[11px] text-[#334155] dark:text-slate-400 mt-0.5">
+                  C++ DPI-C Co-Sim • SESC OoO Simulator • SystemVerilog RTL
+                </div>
+              </div>
+
+              <!-- Card 4: ALL GPAs Explicitly Listed -->
+              <div class="p-3.5 rounded-lg bg-white dark:bg-[#111827] border border-[#e2e8f0] dark:border-slate-800 shadow-2xs">
+                <div class="flex items-center justify-between mb-1.5">
+                  <span class="font-mono font-extrabold text-sm text-[#1e40af] dark:text-sky-400">ACADEMIC PEDIGREE &amp; GPAs</span>
+                  <span class="font-mono text-[10px] font-semibold uppercase px-2 py-0.5 rounded bg-emerald-50 dark:bg-emerald-950 text-emerald-800 dark:text-emerald-300">Verified GPAs</span>
+                </div>
+                <ul class="space-y-1 text-xs text-[#334155] dark:text-slate-300">
+                  <li class="flex items-center justify-between gap-2">
+                    <span>• <strong>Georgia Tech M.S. CS:</strong> Computing Systems</span>
+                    <span class="font-mono text-[11px] font-bold text-[#1e40af] dark:text-sky-400 shrink-0">Exp. Fall 2028</span>
+                  </li>
+                  <li class="flex items-center justify-between gap-2">
+                    <span>• <strong>SJSU M.S. EE:</strong> Electrical Engineering</span>
+                    <span class="font-mono text-[11px] font-extrabold text-emerald-700 dark:text-emerald-400 shrink-0">3.92 GPA</span>
+                  </li>
+                  <li class="flex items-center justify-between gap-2">
+                    <span>• <strong>UCSC Chip Design Certificate:</strong> (*Exp. Dec 2026*)</span>
+                    <span class="font-mono text-[11px] font-extrabold text-emerald-700 dark:text-emerald-400 shrink-0">3.93 GPA</span>
+                  </li>
+                  <li class="flex items-center justify-between gap-2">
+                    <span>• <strong>UT Austin AI/ML Certificate:</strong> (*Completed 2026*)</span>
+                    <span class="font-mono text-[11px] font-extrabold text-emerald-700 dark:text-emerald-400 shrink-0">4.28 GPA</span>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ==========================================
+         2. PROFESSIONAL HARDWARE & ACADEMIC ENGINEERING EXPERIENCE
+            (9 ROLES IN STRICT REVERSE-CHRONOLOGICAL ORDER, EXACT TIMELINES)
+         ========================================== -->
+    <section id="experience" class="scroll-mt-24 space-y-6">
+      <div class="flex flex-col lg:flex-row lg:items-end justify-between gap-4 border-b border-[#e2e8f0] dark:border-slate-800 pb-4">
+        <div>
+          <div class="font-mono text-xs font-bold uppercase tracking-widest text-[#1e40af] dark:text-sky-400 mb-1">
+            // SECTION 01 : STRICT REVERSE-CHRONOLOGICAL WORK HISTORY (9 ROLES WITH EXACT TIMELINES)
+          </div>
+          <h2 class="text-2xl sm:text-3xl font-extrabold text-[#0f172a] dark:text-white">
+            Professional Hardware &amp; Academic Engineering Experience
+          </h2>
+        </div>
+
+        <!-- Interactive Domain Filter Buttons -->
+        <div class="no-print flex flex-wrap items-center gap-2">
+          <button onclick="filterExperience('all')" data-exp-filter="all" class="exp-filter-btn px-3 py-1.5 rounded-lg font-mono text-xs font-semibold bg-[#1e40af] text-white transition cursor-pointer">
+            All Roles (9)
+          </button>
+          <button onclick="filterExperience('gpu')" data-exp-filter="gpu" class="exp-filter-btn px-3 py-1.5 rounded-lg font-mono text-xs font-medium bg-white dark:bg-[#111827] text-[#334155] dark:text-slate-300 border border-[#e2e8f0] dark:border-slate-700 hover:border-[#1e40af] transition cursor-pointer">
+            GPU &amp; Matrix (Qualcomm)
+          </button>
+          <button onclick="filterExperience('cpu')" data-exp-filter="cpu" class="exp-filter-btn px-3 py-1.5 rounded-lg font-mono text-xs font-medium bg-white dark:bg-[#111827] text-[#334155] dark:text-slate-300 border border-[#e2e8f0] dark:border-slate-700 hover:border-[#1e40af] transition cursor-pointer">
+            CPU Microarchitecture (AMD / Samsung / ARM)
+          </button>
+          <button onclick="filterExperience('mixed')" data-exp-filter="mixed" class="exp-filter-btn px-3 py-1.5 rounded-lg font-mono text-xs font-medium bg-white dark:bg-[#111827] text-[#334155] dark:text-slate-300 border border-[#e2e8f0] dark:border-slate-700 hover:border-[#1e40af] transition cursor-pointer">
+            Mixed-Signal &amp; IP (Cirrus)
+          </button>
+          <button onclick="filterExperience('teaching')" data-exp-filter="teaching" class="exp-filter-btn px-3 py-1.5 rounded-lg font-mono text-xs font-medium bg-white dark:bg-[#111827] text-[#334155] dark:text-slate-300 border border-[#e2e8f0] dark:border-slate-700 hover:border-[#1e40af] transition cursor-pointer">
+            Academic Teaching (SJSU)
+          </button>
+        </div>
+      </div>
+
+      <!-- Timeline Container -->
+      <div id="experienceContainer" class="relative border-l-2 border-[#1e40af]/40 dark:border-sky-500/40 ml-3 sm:ml-6 pl-5 sm:pl-8 space-y-6">
+        <!-- Populated dynamically by JS -->
+      </div>
+    </section>
+
+    <!-- ==========================================
+         3. GRADUATE DEGREES & SPECIALIZED ENGINEERING CERTIFICATES
+            (WITH ALL COURSES & GPAs EXPLICITLY DISPLAYED)
+         ========================================== -->
+    <section id="education" class="scroll-mt-24 space-y-6">
+      <div class="border-b border-[#e2e8f0] dark:border-slate-800 pb-4">
+        <div class="font-mono text-xs font-bold uppercase tracking-widest text-[#1e40af] dark:text-sky-400 mb-1">
+          // SECTION 02 : ACADEMIC CREDENTIALS, VERIFIED GPAS &amp; COMPLETE GRADUATE COURSEWORK
+        </div>
+        <h2 class="text-2xl sm:text-3xl font-extrabold text-[#0f172a] dark:text-white">
+          Graduate Degrees &amp; Specialized Engineering Certificates
+        </h2>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <!-- Card 1: Georgia Institute of Technology -->
+        <div class="exec-card print-break-inside-avoid rounded-xl bg-white dark:bg-[#111827] border border-[#e2e8f0] dark:border-slate-800 p-6 shadow-sm flex flex-col justify-between">
+          <div class="space-y-3">
+            <div class="flex flex-wrap items-center justify-between gap-2">
+              <span class="px-2.5 py-1 rounded-md font-mono text-xs font-bold bg-blue-50 dark:bg-sky-950 text-[#1e40af] dark:text-sky-300 border border-blue-200 dark:border-sky-800">
+                M.S. IN COMPUTER SCIENCE
+              </span>
+              <span class="font-mono text-xs font-bold text-[#1e40af] dark:text-sky-400">
+                Enrolled (Expected Fall 2028)
+              </span>
+            </div>
+            <div>
+              <h3 class="text-xl font-bold text-[#0f172a] dark:text-white">
+                Georgia Institute of Technology
+              </h3>
+              <p class="text-sm font-semibold text-[#1e40af] dark:text-sky-400">
+                M.S. in Computer Science (Computing Systems Specialization)
+              </p>
+            </div>
+            <div class="pt-2 border-t border-slate-100 dark:border-slate-800">
+              <div class="font-mono text-[11px] font-bold uppercase tracking-wider text-slate-500 dark:text-slate-400 mb-2">
+                Graduate Coursework:
+              </div>
+              <ul class="space-y-1.5 text-xs sm:text-sm text-[#334155] dark:text-slate-300">
+                <li>• <strong class="text-[#0f172a] dark:text-white">CS 6290:</strong> High-Performance Computer Architecture (HPCA)</li>
+                <li>• <strong class="text-[#0f172a] dark:text-white">CS 6200:</strong> Graduate Introduction to Operating Systems (GIOS)</li>
+                <li>• <strong class="text-[#0f172a] dark:text-white">CS 8001:</strong> Optimization Algorithms in Hardware (OAH)</li>
+              </ul>
+            </div>
+          </div>
+          <div class="mt-4 pt-3 border-t border-slate-100 dark:border-slate-800 flex items-center justify-between text-xs font-mono text-slate-500 dark:text-slate-400">
+            <span>ATLANTA, GA</span>
+            <span class="font-semibold text-[#1e40af] dark:text-sky-400">COMPUTING SYSTEMS SPECIALIZATION</span>
+          </div>
+        </div>
+
+        <!-- Card 2: San José State University (With 3.92 GPA & All 10 Courses) -->
+        <div class="exec-card print-break-inside-avoid rounded-xl bg-white dark:bg-[#111827] border border-[#e2e8f0] dark:border-slate-800 p-6 shadow-sm flex flex-col justify-between">
+          <div class="space-y-3">
+            <div class="flex flex-wrap items-center justify-between gap-2">
+              <span class="px-2.5 py-1 rounded-md font-mono text-xs font-bold bg-emerald-50 dark:bg-emerald-950 text-emerald-800 dark:text-emerald-300 border border-emerald-200 dark:border-emerald-800">
+                M.S. IN ELECTRICAL ENGINEERING
+              </span>
+              <span class="font-mono text-xs font-extrabold text-emerald-700 dark:text-emerald-400">
+                2012 – 2014 • GPA: 3.92 / 4.0
+              </span>
+            </div>
+            <div>
+              <h3 class="text-xl font-bold text-[#0f172a] dark:text-white">
+                San José State University
+              </h3>
+              <p class="text-sm font-semibold text-emerald-800 dark:text-emerald-400">
+                M.S. in Electrical Engineering — GPA: 3.92 / 4.0
+              </p>
+            </div>
+            <div class="pt-2 border-t border-slate-100 dark:border-slate-800">
+              <div class="font-mono text-[11px] font-bold uppercase tracking-wider text-slate-500 dark:text-slate-400 mb-2">
+                Complete Graduate Coursework (10 Courses):
+              </div>
+              <div class="grid grid-cols-1 sm:grid-cols-2 gap-x-4 gap-y-1 text-xs text-[#334155] dark:text-slate-300">
+                <div>• <strong class="text-[#0f172a] dark:text-white">EE 275:</strong> Advanced Computer Architectures</div>
+                <div>• <strong class="text-[#0f172a] dark:text-white">EE 271:</strong> Digital System Design and Synthesis</div>
+                <div>• <strong class="text-[#0f172a] dark:text-white">EE 272:</strong> SoC Design and Verification with SystemVerilog</div>
+                <div>• <strong class="text-[#0f172a] dark:text-white">EE 273:</strong> Parallel Computer Systems</div>
+                <div>• <strong class="text-[#0f172a] dark:text-white">EE 287:</strong> ASIC CMOS Design</div>
+                <div>• <strong class="text-[#0f172a] dark:text-white">EE 224:</strong> High-Speed CMOS Circuits</div>
+                <div>• <strong class="text-[#0f172a] dark:text-white">EE 274:</strong> Quantum Computing</div>
+                <div>• <strong class="text-[#0f172a] dark:text-white">EE 221:</strong> Semiconductor Devices</div>
+                <div>• <strong class="text-[#0f172a] dark:text-white">EE 210:</strong> Linear System Theory</div>
+                <div>• <strong class="text-[#0f172a] dark:text-white">EE 250:</strong> Probability and Random Processes for Engineers</div>
+              </div>
+            </div>
+          </div>
+          <div class="mt-4 pt-3 border-t border-slate-100 dark:border-slate-800 flex items-center justify-between text-xs font-mono text-slate-500 dark:text-slate-400">
+            <span>SAN JOSE, CA</span>
+            <span class="font-bold text-emerald-700 dark:text-emerald-400">GPA: 3.92 / 4.0</span>
+          </div>
+        </div>
+
+        <!-- Card 3: UC Santa Cruz Silicon Valley Extension (With Expected Dec 2026, 3.93 GPA & All 5 Courses) -->
+        <div class="exec-card print-break-inside-avoid rounded-xl bg-white dark:bg-[#111827] border border-[#e2e8f0] dark:border-slate-800 p-6 shadow-sm flex flex-col justify-between">
+          <div class="space-y-3">
+            <div class="flex flex-wrap items-center justify-between gap-2">
+              <span class="px-2.5 py-1 rounded-md font-mono text-xs font-bold bg-amber-50 dark:bg-amber-950 text-amber-800 dark:text-amber-300 border border-amber-200 dark:border-amber-800">
+                PROFESSIONAL CERTIFICATE
+              </span>
+              <span class="font-mono text-xs font-extrabold text-emerald-700 dark:text-emerald-400">
+                Expected Completion: December 2026 • GPA: 3.93 / 4.0
+              </span>
+            </div>
+            <div>
+              <h3 class="text-xl font-bold text-[#0f172a] dark:text-white">
+                UC Santa Cruz Silicon Valley Extension
+              </h3>
+              <p class="text-sm font-semibold text-amber-800 dark:text-amber-400">
+                Professional Certificate in Silicon Chip Design &amp; Semiconductor Engineering — GPA: 3.93 / 4.0
+              </p>
+            </div>
+            <div class="pt-2 border-t border-slate-100 dark:border-slate-800">
+              <div class="font-mono text-[11px] font-bold uppercase tracking-wider text-slate-500 dark:text-slate-400 mb-2">
+                Complete Certificate Coursework (All 5 Courses):
+              </div>
+              <ul class="space-y-1.5 text-xs text-[#334155] dark:text-slate-300">
+                <li>• <strong class="text-[#0f172a] dark:text-white">VLSI.X415:</strong> High-Performance Computer Architecture</li>
+                <li>• <strong class="text-[#0f172a] dark:text-white">VLSI.X411:</strong> SystemVerilog Assertions and Formal Verification</li>
+                <li>• <strong class="text-[#0f172a] dark:text-white">VLSI.X410:</strong> System and Functional Verification Using UVM (Universal Verification Methodology)</li>
+                <li>• <strong class="text-[#0f172a] dark:text-white">VLSI.X400:</strong> Advanced Verification with SystemVerilog OOP Testbench</li>
+                <li>• <strong class="text-[#0f172a] dark:text-white">VLSI.X404:</strong> Digital Logic Design Using Verilog</li>
+              </ul>
+            </div>
+          </div>
+          <div class="mt-4 pt-3 border-t border-slate-100 dark:border-slate-800 flex items-center justify-between text-xs font-mono text-slate-500 dark:text-slate-400">
+            <span>SANTA CLARA, CA</span>
+            <span class="font-bold text-emerald-700 dark:text-emerald-400">GPA: 3.93 / 4.0 • EXPECTED DEC 2026</span>
+          </div>
+        </div>
+
+        <!-- Card 4: The University of Texas at Austin (With 4.28 GPA & All 10 Courses) -->
+        <div class="exec-card print-break-inside-avoid rounded-xl bg-white dark:bg-[#111827] border border-[#e2e8f0] dark:border-slate-800 p-6 shadow-sm flex flex-col justify-between">
+          <div class="space-y-3">
+            <div class="flex flex-wrap items-center justify-between gap-2">
+              <span class="px-2.5 py-1 rounded-md font-mono text-xs font-bold bg-purple-50 dark:bg-purple-950 text-purple-800 dark:text-purple-300 border border-purple-200 dark:border-purple-800">
+                GRADUATE CERTIFICATE
+              </span>
+              <span class="font-mono text-xs font-extrabold text-emerald-700 dark:text-emerald-400">
+                Completed 2026 • GPA: 4.28 / 4.0
+              </span>
+            </div>
+            <div>
+              <h3 class="text-xl font-bold text-[#0f172a] dark:text-white">
+                The University of Texas at Austin
+              </h3>
+              <p class="text-sm font-semibold text-purple-800 dark:text-purple-400">
+                Graduate Certificate in Artificial Intelligence &amp; Machine Learning — GPA: 4.28 / 4.0
+              </p>
+            </div>
+            <div class="pt-2 border-t border-slate-100 dark:border-slate-800">
+              <div class="font-mono text-[11px] font-bold uppercase tracking-wider text-slate-500 dark:text-slate-400 mb-2">
+                Complete Certificate Coursework (10 Courses):
+              </div>
+              <div class="grid grid-cols-1 sm:grid-cols-2 gap-x-4 gap-y-1 text-xs text-[#334155] dark:text-slate-300">
+                <div>• Python Foundations for AI &amp; Data Science</div>
+                <div>• Supervised &amp; Unsupervised Machine Learning</div>
+                <div>• Ensemble Techniques &amp; Model Tuning / Optimization</div>
+                <div>• Deep Learning &amp; Neural Network Architectures</div>
+                <div>• Natural Language Processing (NLP) &amp; Generative AI / Large Language Models (LLMs)</div>
+                <div>• Computer Vision &amp; Convolutional Neural Networks (CNNs)</div>
+                <div>• Model Deployment &amp; Containerization (Docker &amp; Kubernetes)</div>
+                <div>• Statistical Learning &amp; Hypothesis Testing</div>
+                <div>• Recommendation Systems</div>
+                <div>• Introduction to SQL &amp; Data Engineering Foundations</div>
+              </div>
+            </div>
+          </div>
+          <div class="mt-4 pt-3 border-t border-slate-100 dark:border-slate-800 flex items-center justify-between text-xs font-mono text-slate-500 dark:text-slate-400">
+            <span>AUSTIN, TX</span>
+            <span class="font-bold text-emerald-700 dark:text-emerald-400">GPA: 4.28 / 4.0 • COMPLETED 2026</span>
+          </div>
+        </div>
+
+        <!-- Undergraduate Degree: UCLA B.S. EE -->
+        <div class="md:col-span-2 exec-card print-break-inside-avoid rounded-xl bg-white dark:bg-[#111827] border border-[#e2e8f0] dark:border-slate-800 p-6 shadow-sm flex flex-col justify-between">
+          <div class="flex flex-col md:flex-row md:items-center justify-between gap-4">
+            <div class="space-y-1.5">
+              <div class="flex flex-wrap items-center gap-2.5">
+                <span class="px-2.5 py-1 rounded-md font-mono text-xs font-bold bg-slate-100 dark:bg-slate-800 text-[#0f172a] dark:text-slate-200 border border-[#e2e8f0] dark:border-slate-700">
+                  B.S. IN ELECTRICAL ENGINEERING
+                </span>
+                <span class="font-mono text-xs font-bold text-[#1e40af] dark:text-sky-400">
+                  Graduated 2012
+                </span>
+              </div>
+              <h3 class="text-lg sm:text-xl font-bold text-[#0f172a] dark:text-white">
+                University of California, Los Angeles (UCLA) <span class="text-sm font-normal text-[#334155] dark:text-slate-400">— Lower-division Electrical Engineering completed at UC Santa Barbara (UCSB)</span>
+              </h3>
+              <p class="text-xs sm:text-sm text-[#334155] dark:text-slate-300">
+                <strong class="text-[#0f172a] dark:text-white">Undergraduate Foundation:</strong> Digital &amp; Analog IC Design • CMOS VLSI Design • Semiconductor Device Physics • Solid-State Electronics • Signals &amp; Systems • Computer Systems Architecture • C/C++ Programming.
+              </p>
+            </div>
+            <div class="font-mono text-xs text-slate-500 dark:text-slate-400 shrink-0">
+              LOS ANGELES, CA
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==========================================
+         4. DETAILED TECHNICAL PROJECTS & SIMULATORS (17 STRICTLY ACCURATE PROJECTS)
+         ========================================== -->
+    <section id="projects" class="scroll-mt-24 space-y-6">
+      <div class="flex flex-col lg:flex-row lg:items-end justify-between gap-4 border-b border-[#e2e8f0] dark:border-slate-800 pb-4">
+        <div>
+          <div class="font-mono text-xs font-bold uppercase tracking-widest text-[#1e40af] dark:text-sky-400 mb-1">
+            // SECTION 03 : DETAILED TECHNICAL PROJECTS &amp; SIMULATORS (17 VERIFIED DELIVERABLES)
+          </div>
+          <h2 class="text-2xl sm:text-3xl font-extrabold text-[#0f172a] dark:text-white">
+            Detailed Technical Projects &amp; Simulators
+          </h2>
+          <p class="text-sm text-[#334155] dark:text-slate-400 mt-1">
+            Filterable across Computer Architecture (Georgia Tech C++/SESC &amp; UCSC SystemVerilog RTL), RTL Synthesis &amp; Formal/UVM Verification (UCSC), Operating Systems (Georgia Tech GIOS), and AI/ML &amp; Data Science (UT Austin).
+          </p>
+        </div>
+
+        <!-- Category Filter Tabs -->
+        <div class="no-print flex flex-wrap items-center gap-2">
+          <button onclick="filterProjects('All')" data-proj-filter="All" class="proj-filter-btn px-3 py-1.5 rounded-lg font-mono text-xs font-semibold bg-[#1e40af] text-white transition cursor-pointer">
+            All Projects (17)
+          </button>
+          <button onclick="filterProjects('Computer Architecture (GT & UCSC)')" data-proj-filter="Computer Architecture (GT & UCSC)" class="proj-filter-btn px-3 py-1.5 rounded-lg font-mono text-xs font-medium bg-white dark:bg-[#111827] text-[#334155] dark:text-slate-300 border border-[#e2e8f0] dark:border-slate-700 hover:border-[#1e40af] transition cursor-pointer">
+            Computer Architecture (GT &amp; UCSC) (5)
+          </button>
+          <button onclick="filterProjects('RTL, Synthesis & Formal/UVM (UCSC)')" data-proj-filter="RTL, Synthesis & Formal/UVM (UCSC)" class="proj-filter-btn px-3 py-1.5 rounded-lg font-mono text-xs font-medium bg-white dark:bg-[#111827] text-[#334155] dark:text-slate-300 border border-[#e2e8f0] dark:border-slate-700 hover:border-[#1e40af] transition cursor-pointer">
+            RTL, Synthesis &amp; Formal/UVM (UCSC) (5)
+          </button>
+          <button onclick="filterProjects('Operating Systems (GT)')" data-proj-filter="Operating Systems (GT)" class="proj-filter-btn px-3 py-1.5 rounded-lg font-mono text-xs font-medium bg-white dark:bg-[#111827] text-[#334155] dark:text-slate-300 border border-[#e2e8f0] dark:border-slate-700 hover:border-[#1e40af] transition cursor-pointer">
+            Operating Systems (GT) (1)
+          </button>
+          <button onclick="filterProjects('AI/ML & Data Science (UT Austin)')" data-proj-filter="AI/ML & Data Science (UT Austin)" class="proj-filter-btn px-3 py-1.5 rounded-lg font-mono text-xs font-medium bg-white dark:bg-[#111827] text-[#334155] dark:text-slate-300 border border-[#e2e8f0] dark:border-slate-700 hover:border-[#1e40af] transition cursor-pointer">
+            AI/ML &amp; Data Science (UT Austin) (6)
+          </button>
+        </div>
+      </div>
+
+      <!-- Projects Grid -->
+      <div id="projectsGrid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <!-- Populated dynamically by JS -->
+      </div>
+    </section>
+
+    <!-- ==========================================
+         5. EXPANDED HARDWARE ARCHITECTURE, VERIFICATION & SYSTEMS MATRIX (4 RICH COLUMNS)
+         ========================================== -->
+    <section id="skills" class="scroll-mt-24 space-y-6">
+      <div class="border-b border-[#e2e8f0] dark:border-slate-800 pb-4">
+        <div class="font-mono text-xs font-bold uppercase tracking-widest text-[#1e40af] dark:text-sky-400 mb-1">
+          // SECTION 04 : COMPREHENSIVE HARDWARE ARCHITECTURE, EDA, VERIFICATION &amp; SYSTEMS MATRIX
+        </div>
+        <h2 class="text-2xl sm:text-3xl font-extrabold text-[#0f172a] dark:text-white">
+          Hardware Architecture, Verification &amp; Systems Matrix
+        </h2>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+        <!-- Column 1: Processor & SoC Architecture -->
+        <div class="exec-card print-break-inside-avoid rounded-xl bg-white dark:bg-[#111827] border border-[#e2e8f0] dark:border-slate-800 p-6 shadow-sm space-y-4">
+          <div class="flex items-center justify-between border-b border-slate-100 dark:border-slate-800 pb-3">
+            <h3 class="font-bold text-sm sm:text-base text-[#0f172a] dark:text-white">1. Processor &amp; SoC Architecture</h3>
+            <span class="font-mono text-[11px] font-bold text-[#1e40af] dark:text-sky-400">uARCH</span>
+          </div>
+          <ul class="space-y-2 text-xs text-[#334155] dark:text-slate-300">
+            <li>• <strong class="text-[#0f172a] dark:text-white">GPU Ray Tracing Subsystems:</strong> RTU (Ray Tracing Unit), TTU (Tree Traversal Unit), RTTU (Ray Tracing Tree Traversal Unit), BVH Tree Traversal</li>
+            <li>• <strong class="text-[#0f172a] dark:text-white">GPU Matrix / AI Compute:</strong> MALU (Matrix Arithmetic Logic Unit / GPU NPU Equivalent)</li>
+            <li>• <strong class="text-[#0f172a] dark:text-white">Superscalar Out-of-Order Execution:</strong> Dynamic Scheduling (Tomasulo's Algorithm), Reorder Buffer (ROB), Reservation Stations, Common Data Bus (CDB)</li>
+            <li>• <strong class="text-[#0f172a] dark:text-white">CPU Core Frontend &amp; Execution:</strong> Instruction Fetch, Decode, Register Rename, ALU Execution, Commit</li>
+            <li>• <strong class="text-[#0f172a] dark:text-white">Memory &amp; Cache Subsystem:</strong> Load/Store Unit (LSU), Translation Lookaside Buffer (TLB), Page-Table Walks, L1/L2 Cache Geometry, NXLRU &amp; LRU Replacement, MESI Coherence</li>
+            <li>• <strong class="text-[#0f172a] dark:text-white">Branch Prediction:</strong> 2-Bit Saturating Moore FSM Counter, Branch History Table (BHT), Pipeline Depth Penalty Analysis</li>
+            <li>• <strong class="text-[#0f172a] dark:text-white">Instruction Set Architectures (ISAs):</strong> x86-64 (AMD EPYC &amp; Ryzen), ARMv7 / ARMv8 Cortex-A/R/M, MIPS, RISC-V</li>
+          </ul>
+        </div>
+
+        <!-- Column 2: EDA Simulators, Debuggers & Formal/Synthesis -->
+        <div class="exec-card print-break-inside-avoid rounded-xl bg-white dark:bg-[#111827] border border-[#e2e8f0] dark:border-slate-800 p-6 shadow-sm space-y-4">
+          <div class="flex items-center justify-between border-b border-slate-100 dark:border-slate-800 pb-3">
+            <h3 class="font-bold text-sm sm:text-base text-[#0f172a] dark:text-white">2. EDA Simulators, Debuggers &amp; Synthesis</h3>
+            <span class="font-mono text-[11px] font-bold text-[#1e40af] dark:text-sky-400">EDA / CAD</span>
+          </div>
+          <div class="flex flex-wrap gap-1.5">
+            <span class="px-2.5 py-1 rounded-md font-mono text-xs font-semibold bg-blue-50 dark:bg-sky-950/80 text-[#1e40af] dark:text-sky-300 border border-blue-200 dark:border-sky-800">Synopsys VCS</span>
+            <span class="px-2.5 py-1 rounded-md font-mono text-xs font-semibold bg-blue-50 dark:bg-sky-950/80 text-[#1e40af] dark:text-sky-300 border border-blue-200 dark:border-sky-800">Synopsys Verdi</span>
+            <span class="px-2.5 py-1 rounded-md font-mono text-xs font-semibold bg-blue-50 dark:bg-sky-950/80 text-[#1e40af] dark:text-sky-300 border border-blue-200 dark:border-sky-800">Mentor/Siemens QuestaSim &amp; ModelSim (MTI)</span>
+            <span class="px-2.5 py-1 rounded-md font-mono text-xs font-semibold bg-blue-50 dark:bg-sky-950/80 text-[#1e40af] dark:text-sky-300 border border-blue-200 dark:border-sky-800">Synopsys VC-Formal</span>
+            <span class="px-2.5 py-1 rounded-md font-mono text-xs font-semibold bg-blue-50 dark:bg-sky-950/80 text-[#1e40af] dark:text-sky-300 border border-blue-200 dark:border-sky-800">Cadence JasperGold</span>
+            <span class="px-2.5 py-1 rounded-md font-mono text-xs font-semibold bg-blue-50 dark:bg-sky-950/80 text-[#1e40af] dark:text-sky-300 border border-blue-200 dark:border-sky-800">Cadence Xcelium</span>
+            <span class="px-2.5 py-1 rounded-md font-mono text-xs font-semibold bg-slate-100 dark:bg-slate-800 text-[#0f172a] dark:text-slate-200 border border-[#e2e8f0] dark:border-slate-700">Synopsys Design Compiler (DC)</span>
+            <span class="px-2.5 py-1 rounded-md font-mono text-xs font-semibold bg-slate-100 dark:bg-slate-800 text-[#0f172a] dark:text-slate-200 border border-[#e2e8f0] dark:border-slate-700">Place-and-Route (PnR) Timing Analysis</span>
+            <span class="px-2.5 py-1 rounded-md font-mono text-xs font-semibold bg-slate-100 dark:bg-slate-800 text-[#0f172a] dark:text-slate-200 border border-[#e2e8f0] dark:border-slate-700">Static Timing Analysis (STA)</span>
+            <span class="px-2.5 py-1 rounded-md font-mono text-xs font-semibold bg-slate-100 dark:bg-slate-800 text-[#0f172a] dark:text-slate-200 border border-[#e2e8f0] dark:border-slate-700">Verilator</span>
+            <span class="px-2.5 py-1 rounded-md font-mono text-xs font-semibold bg-slate-100 dark:bg-slate-800 text-[#0f172a] dark:text-slate-200 border border-[#e2e8f0] dark:border-slate-700">AMD Internal x86 Assembly Stepper</span>
+            <span class="px-2.5 py-1 rounded-md font-mono text-xs font-semibold bg-slate-100 dark:bg-slate-800 text-[#0f172a] dark:text-slate-200 border border-[#e2e8f0] dark:border-slate-700">GTKWave</span>
+          </div>
+        </div>
+
+        <!-- Column 3: RTL, Verification & Co-Simulation Languages -->
+        <div class="exec-card print-break-inside-avoid rounded-xl bg-white dark:bg-[#111827] border border-[#e2e8f0] dark:border-slate-800 p-6 shadow-sm space-y-4">
+          <div class="flex items-center justify-between border-b border-slate-100 dark:border-slate-800 pb-3">
+            <h3 class="font-bold text-sm sm:text-base text-[#0f172a] dark:text-white">3. RTL, Verification &amp; Co-Simulation</h3>
+            <span class="font-mono text-[11px] font-bold text-[#1e40af] dark:text-sky-400">RTL / DV</span>
+          </div>
+          <div class="flex flex-wrap gap-1.5">
+            <span class="px-2.5 py-1 rounded-md font-mono text-xs font-semibold bg-emerald-50 dark:bg-emerald-950/70 text-emerald-800 dark:text-emerald-300 border border-emerald-200 dark:border-emerald-800">SystemVerilog (IEEE 1800)</span>
+            <span class="px-2.5 py-1 rounded-md font-mono text-xs font-semibold bg-emerald-50 dark:bg-emerald-950/70 text-emerald-800 dark:text-emerald-300 border border-emerald-200 dark:border-emerald-800">UVM (Universal Verification Methodology)</span>
+            <span class="px-2.5 py-1 rounded-md font-mono text-xs font-semibold bg-emerald-50 dark:bg-emerald-950/70 text-emerald-800 dark:text-emerald-300 border border-emerald-200 dark:border-emerald-800">SystemVerilog Assertions (SVA)</span>
+            <span class="px-2.5 py-1 rounded-md font-mono text-xs font-semibold bg-emerald-50 dark:bg-emerald-950/70 text-emerald-800 dark:text-emerald-300 border border-emerald-200 dark:border-emerald-800">SystemVerilog OOP Testbenches</span>
+            <span class="px-2.5 py-1 rounded-md font-mono text-xs font-semibold bg-slate-100 dark:bg-slate-800 text-[#0f172a] dark:text-slate-200 border border-[#e2e8f0] dark:border-slate-700">Verilog-2001</span>
+            <span class="px-2.5 py-1 rounded-md font-mono text-xs font-semibold bg-slate-100 dark:bg-slate-800 text-[#0f172a] dark:text-slate-200 border border-[#e2e8f0] dark:border-slate-700">DPI-C (Direct Programming Interface)</span>
+            <span class="px-2.5 py-1 rounded-md font-mono text-xs font-semibold bg-slate-100 dark:bg-slate-800 text-[#0f172a] dark:text-slate-200 border border-[#e2e8f0] dark:border-slate-700">SystemC &amp; TLM-2.0</span>
+            <span class="px-2.5 py-1 rounded-md font-mono text-xs font-semibold bg-slate-100 dark:bg-slate-800 text-[#0f172a] dark:text-slate-200 border border-[#e2e8f0] dark:border-slate-700">Formal Constraints &amp; Assumes Modeling</span>
+            <span class="px-2.5 py-1 rounded-md font-mono text-xs font-semibold bg-slate-100 dark:bg-slate-800 text-[#0f172a] dark:text-slate-200 border border-[#e2e8f0] dark:border-slate-700">Constrained-Random Stimulus</span>
+            <span class="px-2.5 py-1 rounded-md font-mono text-xs font-semibold bg-slate-100 dark:bg-slate-800 text-[#0f172a] dark:text-slate-200 border border-[#e2e8f0] dark:border-slate-700">Functional &amp; Code Coverage Closure</span>
+          </div>
+        </div>
+
+        <!-- Column 4: Performance Modeling, Software & Infrastructure -->
+        <div class="exec-card print-break-inside-avoid rounded-xl bg-white dark:bg-[#111827] border border-[#e2e8f0] dark:border-slate-800 p-6 shadow-sm space-y-4">
+          <div class="flex items-center justify-between border-b border-slate-100 dark:border-slate-800 pb-3">
+            <h3 class="font-bold text-sm sm:text-base text-[#0f172a] dark:text-white">4. Modeling, Software &amp; Infrastructure</h3>
+            <span class="font-mono text-[11px] font-bold text-[#1e40af] dark:text-sky-400">SW / SYS</span>
+          </div>
+          <div class="flex flex-wrap gap-1.5">
+            <span class="px-2.5 py-1 rounded-md font-mono text-xs font-semibold bg-purple-50 dark:bg-purple-950/70 text-purple-800 dark:text-purple-300 border border-purple-200 dark:border-purple-800">C++ (C++14/17/20)</span>
+            <span class="px-2.5 py-1 rounded-md font-mono text-xs font-semibold bg-purple-50 dark:bg-purple-950/70 text-purple-800 dark:text-purple-300 border border-purple-200 dark:border-purple-800">C</span>
+            <span class="px-2.5 py-1 rounded-md font-mono text-xs font-semibold bg-purple-50 dark:bg-purple-950/70 text-purple-800 dark:text-purple-300 border border-purple-200 dark:border-purple-800">SESC Architectural Simulator</span>
+            <span class="px-2.5 py-1 rounded-md font-mono text-xs font-semibold bg-purple-50 dark:bg-purple-950/70 text-purple-800 dark:text-purple-300 border border-purple-200 dark:border-purple-800">Gem5</span>
+            <span class="px-2.5 py-1 rounded-md font-mono text-xs font-semibold bg-slate-100 dark:bg-slate-800 text-[#0f172a] dark:text-slate-200 border border-[#e2e8f0] dark:border-slate-700">x86 / ARM / MIPS Assembly</span>
+            <span class="px-2.5 py-1 rounded-md font-mono text-xs font-semibold bg-slate-100 dark:bg-slate-800 text-[#0f172a] dark:text-slate-200 border border-[#e2e8f0] dark:border-slate-700">Python (NumPy, Pandas, PyTorch, TensorFlow, Scikit-Learn)</span>
+            <span class="px-2.5 py-1 rounded-md font-mono text-xs font-semibold bg-slate-100 dark:bg-slate-800 text-[#0f172a] dark:text-slate-200 border border-[#e2e8f0] dark:border-slate-700">POSIX Threads (pthreads) &amp; Shared Memory IPC</span>
+            <span class="px-2.5 py-1 rounded-md font-mono text-xs font-semibold bg-slate-100 dark:bg-slate-800 text-[#0f172a] dark:text-slate-200 border border-[#e2e8f0] dark:border-slate-700">gRPC &amp; Protobuf</span>
+            <span class="px-2.5 py-1 rounded-md font-mono text-xs font-semibold bg-slate-100 dark:bg-slate-800 text-[#0f172a] dark:text-slate-200 border border-[#e2e8f0] dark:border-slate-700">Jenkins CI/CD Automation</span>
+            <span class="px-2.5 py-1 rounded-md font-mono text-xs font-semibold bg-slate-100 dark:bg-slate-800 text-[#0f172a] dark:text-slate-200 border border-[#e2e8f0] dark:border-slate-700">Docker &amp; Kubernetes</span>
+            <span class="px-2.5 py-1 rounded-md font-mono text-xs font-semibold bg-slate-100 dark:bg-slate-800 text-[#0f172a] dark:text-slate-200 border border-[#e2e8f0] dark:border-slate-700">Linux (NixOS, Pop!_OS, RHEL)</span>
+            <span class="px-2.5 py-1 rounded-md font-mono text-xs font-semibold bg-slate-100 dark:bg-slate-800 text-[#0f172a] dark:text-slate-200 border border-[#e2e8f0] dark:border-slate-700">Git / Perforce</span>
+            <span class="px-2.5 py-1 rounded-md font-mono text-xs font-semibold bg-slate-100 dark:bg-slate-800 text-[#0f172a] dark:text-slate-200 border border-[#e2e8f0] dark:border-slate-700">Vim / Neovim</span>
+            <span class="px-2.5 py-1 rounded-md font-mono text-xs font-semibold bg-slate-100 dark:bg-slate-800 text-[#0f172a] dark:text-slate-200 border border-[#e2e8f0] dark:border-slate-700">Bash / Tcl / Perl / Make / CMake</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Footer -->
+  <footer class="no-print border-t border-[#e2e8f0] dark:border-slate-800 bg-white dark:bg-[#111827] py-8 mt-16">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-[#334155] dark:text-slate-400 font-mono">
+      <div>
+        <strong>David T. Giberti, M.S. EE</strong> • Staff Design Verification Engineer &amp; Team Lead (GPU &amp; CPU) • Austin, TX
+      </div>
+      <div class="flex items-center gap-4">
+        <button onclick="openGithubModal()" class="text-[#1e40af] dark:text-sky-400 hover:underline cursor-pointer">GitHub Pages Setup Guide</button>
+        <span>•</span>
+        <button onclick="handlePrintResume()" class="text-[#1e40af] dark:text-sky-400 hover:underline cursor-pointer">Print / Export PDF</button>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ==========================================
+       GITHUB PAGES DEPLOYMENT GUIDE MODAL
+       ========================================== -->
+  <div id="githubModal" class="no-print fixed inset-0 z-50 hidden items-center justify-center bg-slate-900/70 backdrop-blur-xs p-4">
+    <div class="bg-white dark:bg-[#111827] border border-[#e2e8f0] dark:border-slate-700 rounded-2xl max-w-2xl w-full p-6 sm:p-8 shadow-2xl space-y-5 max-h-[90vh] overflow-y-auto">
+      <div class="flex items-start justify-between gap-4 border-b border-[#e2e8f0] dark:border-slate-800 pb-4">
+        <div>
+          <span class="font-mono text-xs font-bold uppercase tracking-wider text-[#1e40af] dark:text-sky-400">LIVE DEPLOYMENT WALKTHROUGH</span>
+          <h3 class="text-xl font-extrabold text-[#0f172a] dark:text-white mt-0.5">
+            How to Host at https://davveeeeeee.github.io/
+          </h3>
+        </div>
+        <button onclick="closeGithubModal()" class="p-1.5 rounded-lg border border-[#e2e8f0] dark:border-slate-700 text-slate-500 hover:text-slate-900 dark:hover:text-white cursor-pointer">
+          <i data-lucide="x" class="w-5 h-5"></i>
+        </button>
+      </div>
+
+      <div class="space-y-4 text-xs sm:text-sm text-[#334155] dark:text-slate-300 leading-relaxed">
+        <div class="p-3.5 rounded-xl bg-amber-50 dark:bg-amber-950/60 border border-amber-300 dark:border-amber-800 text-amber-900 dark:text-amber-200">
+          <strong class="font-bold block mb-1">⚠️ Crucial Fix on Your GitHub "Create a new repository" Screen:</strong>
+          In the <strong>Repository name *</strong> box, remove <code class="font-mono bg-amber-100 dark:bg-amber-900 px-1.5 py-0.5 rounded">https://</code>! Type <strong>only</strong>:
+          <div class="mt-1.5 font-mono font-bold text-sm bg-white dark:bg-slate-900 px-3 py-1.5 rounded border border-amber-300 dark:border-amber-700 text-[#0f172a] dark:text-white">
+            davveeeeeee.github.io
+          </div>
+          <span class="block mt-1 text-xs">If you leave <code class="font-mono">https://</code> in the box, GitHub renames it to <code class="font-mono">https-davveeeeeee.github.io</code>, which prevents your root URL from working.</span>
+        </div>
+
+        <ol class="space-y-3 list-decimal list-inside">
+          <li>
+            <strong class="text-[#0f172a] dark:text-white">Create the Repository:</strong>
+            Set Repository name to <code class="font-mono font-bold text-[#1e40af] dark:text-sky-400">davveeeeeee.github.io</code>, keep visibility set to <strong>Public</strong>, toggle <strong>Add README</strong> to <strong>On</strong>, and click the green <strong>Create repository</strong> button.
+          </li>
+          <li>
+            <strong class="text-[#0f172a] dark:text-white">Save This File as <code class="font-mono">index.html</code>:</strong>
+            Copy or download the code from this editor and save it on your MacBook / Linux workstation as <code class="font-mono font-bold">index.html</code>.
+          </li>
+          <li>
+            <strong class="text-[#0f172a] dark:text-white">Upload via Browser (Fastest — 15 Seconds) OR Terminal:</strong>
+            <ul class="mt-1.5 ml-5 space-y-1 list-disc text-xs">
+              <li><strong>Browser Upload:</strong> Inside your new <code class="font-mono">davveeeeeee.github.io</code> repo, click <strong>Add file &rarr; Upload files</strong>, drag and drop <code class="font-mono">index.html</code>, and click <strong>Commit changes</strong>.</li>
+              <li><strong>Terminal Push:</strong></li>
+            </ul>
+            <pre class="mt-2 p-3 rounded-lg bg-slate-900 text-slate-100 font-mono text-xs overflow-x-auto">git clone git@github.com:davveeeeeee/davveeeeeee.github.io.git
+cd davveeeeeee.github.io
+# Place index.html in this directory
+git add index.html
+git commit -m "Deploy executive hardware engineering portfolio"
+git push origin main</pre>
+          </li>
+          <li>
+            <strong class="text-[#0f172a] dark:text-white">Verify Live Site:</strong>
+            Wait ~45–60 seconds for GitHub Actions `pages-build-deployment` to finish, then open <a href="https://davveeeeeee.github.io/" target="_blank" class="font-mono font-bold text-[#1e40af] dark:text-sky-400 underline">https://davveeeeeee.github.io/</a>.
+          </li>
+        </ol>
+      </div>
+
+      <div class="pt-3 border-t border-[#e2e8f0] dark:border-slate-800 flex justify-end">
+        <button onclick="closeGithubModal()" class="px-4 py-2 rounded-lg bg-[#1e40af] text-white font-mono text-xs font-semibold hover:bg-blue-800 transition cursor-pointer">
+          Got It, Close Guide
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ==========================================
+       APPLICATION LOGIC & VERIFIED DATA STORE
+       ========================================== -->
+  <script>
+    // 1. STRICT REVERSE-CHRONOLOGICAL WORK EXPERIENCE (ALL 9 ROLES, 100% SOURCE FIDELITY)
+    const experienceData = [
+      {
+        id: 'qualcomm',
+        company: 'Qualcomm',
+        role: 'Staff Design Verification Engineer & Team Lead (GPU Shader Processor)',
+        timeline: 'July 2022 – Present',
+        location: 'Austin, TX',
+        domain: 'gpu',
+        lens: ['perf', 'dv'],
+        badge: 'PRE-SILICON GPU RAY TRACING, MATRIX (MALU) & C++ DPI-C CO-SIM',
+        bullets: [
+          '<strong>Team Leadership &amp; Mentorship:</strong> Managed, guided, and mentored a small team of verification engineers driving pre-silicon verification execution, testplan architecture, and coverage sign-off for next-generation Adreno GPU Shader Processor subsystems.',
+          '<strong>Pre-Silicon GPU Ray Tracing &amp; Matrix Subsystems (RTU, TTU, RTTU &amp; MALU):</strong> Led pre-silicon design verification across the <strong>Ray Tracing Unit (RTU)</strong>, <strong>Tree Traversal Unit (TTU)</strong>, <strong>Ray Tracing Tree Traversal Unit (RTTU)</strong>, and contributed to the <strong>Matrix Arithmetic Logic Unit (MALU)</strong> (Qualcomm\'s GPU matrix/AI compute acceleration unit).',
+          '<strong>C++ DPI-C Co-Simulation Refactoring:</strong> Architected and refactored <strong>C++ DPI-C co-simulation infrastructure</strong> and SystemVerilog wrapper testbenches to link live pre-silicon Shader Processor RTL verification environments directly with repository-based C++ functional and performance models.',
+          '<strong>Microarchitectural Corner-Case Closure:</strong> Closed complex pre-silicon pipeline hazards, BVH tree-traversal memory latency stalls, and multi-thread shader arbitration corner cases using constrained-random UVM, SystemVerilog Assertions (SVA), Synopsys VCS, and Verdi.'
+        ],
+        tags: ['Adreno GPU Shader Processor', 'RTU / TTU / RTTU', 'MALU (Matrix ALU)', 'C++ DPI-C Co-Simulation', 'Pre-Silicon UVM & SVA', 'Team Lead & Mentorship']
+      },
+      {
+        id: 'amd',
+        company: 'AMD',
+        role: 'CPU Post-Silicon Verification Engineer (EPYC & Ryzen Server/Client)',
+        timeline: 'January 2021 – July 2022',
+        location: 'Austin, TX',
+        domain: 'cpu',
+        lens: ['perf', 'dv'],
+        badge: 'POST-SILICON x86 EPYC & RYZEN BRING-UP & C/C++ DIAGNOSTICS',
+        bullets: [
+          '<strong>Post-Silicon x86 CPU Bring-Up &amp; Validation:</strong> Executed post-silicon functional verification, emulation validation, and System-Level Manufacturing Test (SLT) diagnostics for flagship <strong>AMD EPYC</strong> and <strong>Ryzen</strong> microprocessor families.',
+          '<strong>C/C++ Diagnostic Frameworks &amp; Assembly Stimulus:</strong> Designed and coded high-level <strong>C/C++ test frameworks</strong> (stimulus generators, drivers, monitors, and profilers) alongside directed and random <strong>x86 assembly-level tests</strong> to stress microprocessor blocks and verify ISA conformance on emulator and silicon.',
+          '<strong>Silicon Failure Root-Cause via Internal Assembly Instruction Stepper:</strong> Debugged complex silicon and emulation FAILs across x86 design, physical design, and verification teams using AMD\'s internal <strong>EPYC/Ryzen assembly instruction stepper</strong>, inspecting internal register states, pipeline stages, and microarchitectural state transitions cycle-by-cycle.'
+        ],
+        tags: ['AMD EPYC & Ryzen x86-64', 'Post-Silicon Validation & SLT', 'C/C++ Diagnostic Frameworks', 'x86 Assembly Tests', 'Internal Assembly Instruction Stepper']
+      },
+      {
+        id: 'cirrus',
+        company: 'Cirrus Logic',
+        role: 'Design Verification Engineer',
+        timeline: 'December 2019 – January 2021',
+        location: 'Austin, TX',
+        domain: 'mixed',
+        lens: ['dv'],
+        badge: 'PRE-SILICON MIXED-SIGNAL & DIGITAL IP VERIFICATION',
+        bullets: [
+          '<strong>Pre-Silicon Mixed-Signal &amp; Digital IP Verification:</strong> Executed pre-silicon functional verification for complex digital and mixed-signal audio/power-management integrated circuits using SystemVerilog and Universal Verification Methodology (UVM).',
+          '<strong>Testbench Architecture &amp; Coverage Sign-Off:</strong> Built self-checking UVM testbench components, scoreboards, and SystemVerilog Assertions (SVA) to validate datapath accuracy, register interfaces, and low-power state transitions across Synopsys VCS / Cadence simulation flows.'
+        ],
+        tags: ['Pre-Silicon UVM', 'SystemVerilog Assertions (SVA)', 'Mixed-Signal & Digital IP', 'Coverage Closure']
+      },
+      {
+        id: 'samsung',
+        company: 'Samsung SARC (Samsung Austin R&D Center)',
+        role: 'CPU Design Verification Engineer',
+        timeline: 'June 2019 – October 2019',
+        location: 'Austin, TX',
+        domain: 'cpu',
+        lens: ['perf', 'dv'],
+        badge: 'PRE-SILICON CPU LOAD/STORE UNIT (LSU) & TLB VERIFICATION',
+        bullets: [
+          '<strong>Pre-Silicon CPU Load/Store Unit (LSU) &amp; TLB Verification:</strong> Performed pre-silicon SystemVerilog/UVM design verification exclusively focused on custom high-performance <strong>CPU Load/Store (LSU)</strong> and <strong>Translation Lookaside Buffer (TLB)</strong> subsystems.',
+          '<strong>Memory Ordering &amp; Virtual-to-Physical Translation Validation:</strong> Developed constrained-random stimulus, functional coverage models, and protocol monitors to verify TLB page-table walks, virtual-to-physical address translation hits/misses, store-to-load forwarding, and memory ordering corner cases.'
+        ],
+        tags: ['Pre-Silicon CPU DV', 'Load/Store Unit (LSU)', 'Translation Lookaside Buffer (TLB)', 'SystemVerilog & UVM', 'Store-to-Load Forwarding']
+      },
+      {
+        id: 'arm-ft',
+        company: 'ARM',
+        role: 'CPU Design Verification Engineer & Graduate Rotation Engineer',
+        timeline: 'May 2014 – September 2018',
+        location: 'Austin, TX',
+        domain: 'cpu',
+        lens: ['perf', 'dv'],
+        badge: 'CPU CORE FRONTEND PIPELINE DV & AUTOMATED JENKINS SYNTHESIS/PnR FLOW',
+        bullets: [
+          '<strong>CPU Core Frontend Pipeline Verification:</strong> Following the Graduate Rotation, served on the <strong>CPU Core Frontend Verification</strong> team validating the complete microarchitectural pipeline from <strong>Instruction Fetch, Decode, and Register Rename through ALU Execution to Commit</strong>, interfacing with an architectural <strong>Load/Store Model</strong>.',
+          '<strong>Graduate Rotation (RTL, Physical Design &amp; DV) — Automated Jenkins Synthesis &amp; PnR Timing Pipeline:</strong> Completed ARM\'s cross-disciplinary rotation across RTL Design, Physical Design, and Design Verification; engineered an automated <strong>Jenkins CI/CD pipeline</strong> that scanned daily and weekly RTL check-ins, executed full unit synthesis (Decode, Rename, ALU, etc.) and Place-and-Route (PnR), and reported critical timing paths and broken long-path violations to RTL owners.'
+        ],
+        tags: ['ARM Cortex CPU Frontend', 'Fetch / Decode / Rename / ALU / Commit', 'Load/Store Model Interface', 'Jenkins CI/CD Synthesis & PnR Pipeline', 'Static Timing Path Analysis']
+      },
+      {
+        id: 'arm-intern',
+        company: 'ARM',
+        role: 'Engineering Intern (CPU Formal Verification)',
+        timeline: 'May 2013 – August 2013',
+        location: 'Austin, TX',
+        domain: 'cpu',
+        lens: ['dv'],
+        badge: 'CORTEX-A32 FORMAL VERIFICATION, CONSTRAINTS & ASSUMES',
+        bullets: [
+          '<strong>Cortex-A32 Formal Verification &amp; Dead-Code Analysis:</strong> Performed formal verification and unreachable/dead-code analysis on the <strong>ARM Cortex-A32</strong> processor across single-core and constrained <strong>quad-core SMP</strong> configurations.',
+          '<strong>Formal Constraints &amp; Assumes Modeling:</strong> Authored and refined formal <strong><code>constraints</code> and <code>assumes</code></strong> (configuring legal input stimulus and multi-core configuration invariants) to bound formal state-space exploration and prove reachability without writing standalone assertion properties.'
+        ],
+        tags: ['ARM Cortex-A32', 'Formal Verification', 'Formal Constraints & Assumes', 'Quad-Core SMP Reachability']
+      },
+      {
+        id: 'sjsu-ee120',
+        company: 'San José State University',
+        role: 'Laboratory Instructor: Microprocessor-Based System Design (EE 120)',
+        timeline: 'September 2012 – May 2014',
+        location: 'San Jose, CA',
+        domain: 'teaching',
+        lens: ['perf'],
+        badge: 'MICROPROCESSOR ARCHITECTURE & EMBEDDED INTERFACING LAB INSTRUCTOR',
+        bullets: [
+          'Led hardware engineering laboratory sections for <strong>EE 120 (Microprocessor-Based System Design)</strong>, instructing students on microprocessor architecture, assembly/embedded C programming, memory-mapped I/O interfacing, interrupt handling, and bus timing analysis.'
+        ],
+        tags: ['EE 120 Laboratory Instructor', 'Microprocessor Architecture', 'Assembly & Embedded C', 'Memory-Mapped I/O & Bus Timing']
+      },
+      {
+        id: 'sjsu-ee98-110',
+        company: 'San José State University',
+        role: 'Teaching Assistant: Circuits & Systems (EE 98 / EE 110)',
+        timeline: 'September 2012 – May 2014',
+        location: 'San Jose, CA',
+        domain: 'teaching',
+        lens: ['dv'],
+        badge: 'CIRCUITS & SYSTEMS TEACHING ASSISTANT',
+        bullets: [
+          'Served as Teaching Assistant for <strong>EE 98 (Introduction to Circuit Analysis)</strong> and <strong>EE 110 (Circuits and Systems)</strong>, leading problem-solving recitations and grading across linear circuit analysis, transient response, Laplace/Fourier transforms, and frequency-domain system modeling.'
+        ],
+        tags: ['EE 98 & EE 110 Teaching Assistant', 'Linear Circuit Analysis', 'Laplace & Fourier Transforms', 'Frequency-Domain Modeling']
+      },
+      {
+        id: 'sjsu-engr100w-200w',
+        company: 'San José State University',
+        role: 'Instructional Student Assistant (ISA): Technical Engineering Writing (ENGR 100W / ENGR 200W)',
+        timeline: 'September 2012 – May 2014',
+        location: 'San Jose, CA',
+        domain: 'teaching',
+        lens: ['dv'],
+        badge: 'UNDERGRADUATE & GRADUATE TECHNICAL ENGINEERING WRITING ISA',
+        bullets: [
+          'Served as Instructional Student Assistant for undergraduate (<strong>ENGR 100W</strong>) and graduate (<strong>ENGR 200W</strong>) engineering writing courses, evaluating formal technical reports, IEEE research papers, experimental data presentation, and engineering design proposals.'
+        ],
+        tags: ['ENGR 100W / ENGR 200W ISA', 'IEEE Technical Reporting', 'Engineering Design Proposals']
+      }
+    ];
+
+    // 2. ALL 17 STRICTLY ACCURATE PROJECTS & SIMULATORS
+    const projectsData = [
+      // Georgia Tech CS 6290 — 3 Separate C++ SESC Simulator Projects (Not labeled Project 0, 1, or 2)
+      {
+        title: 'SESC Superscalar Simulator Instrumentation & SPLASH-2 Parallel Benchmark Profiling',
+        subtitle: 'Georgia Tech • CS 6290 • C++ / MIPS / SESC',
+        category: 'Computer Architecture (GT & UCSC)',
+        lens: ['perf'],
+        description: 'Configured and compiled the cycle-accurate C++ SESC architectural simulator, cross-compiled MIPS benchmark binaries, and executed multi-threaded SPLASH-2 workloads to evaluate baseline IPC, instruction mix, and execution bottlenecks.',
+        tags: ['C++', 'SESC Simulator', 'SPLASH-2 Benchmarks', 'MIPS Cross-Compilation', 'IPC Profiling']
+      },
+      {
+        title: 'Architectural Branch Predictor Configuration Mapping & Pipeline Depth Sensitivity Analysis',
+        subtitle: 'Georgia Tech • CS 6290 • C++ / SESC',
+        category: 'Computer Architecture (GT & UCSC)',
+        lens: ['perf'],
+        description: 'Extended the C++ SESC simulator configuration subsystem to map architectural configuration strings directly to C++ branch predictor class implementations and quantified IPC trade-offs across varying processor pipeline depths and misprediction penalties.',
+        tags: ['C++', 'SESC Simulator', 'Branch Predictor Mapping', 'Pipeline Depth Sensitivity', 'Misprediction Penalty Analysis']
+      },
+      {
+        title: 'Out-of-Order Cache Hierarchy Modeling, NXLRU Replacement Policy & Miss Classification',
+        subtitle: 'Georgia Tech • CS 6290 • C++ / SESC',
+        category: 'Computer Architecture (GT & UCSC)',
+        lens: ['perf'],
+        description: 'Implemented the NXLRU cache replacement policy in C++ within SESC\'s Out-of-Order memory hierarchy and built deterministic instrumentation to classify compulsory, capacity, and conflict misses across L1/L2 cache geometries.',
+        tags: ['C++', 'NXLRU Replacement Policy', 'Out-of-Order Cache Hierarchy', 'Compulsory/Capacity/Conflict Misses', 'L1/L2 Cache Geometry']
+      },
+
+      // UCSC VLSI.X415 — 2 Separate SystemVerilog RTL Projects
+      {
+        title: 'Dynamic Out-of-Order Mini-Tomasulo Processor RTL in SystemVerilog',
+        subtitle: 'UCSC • VLSI.X415 • SystemVerilog RTL',
+        category: 'Computer Architecture (GT & UCSC)',
+        lens: ['perf', 'dv'],
+        description: 'Designed and verified a synthesizable Mini-Tomasulo Out-of-Order processor in SystemVerilog featuring dynamic instruction scheduling, register renaming with an 8-entry Reorder Buffer (ROB), functional unit reservation stations, and a priority-arbitrated Common Data Bus (CDB) broadcast bus.',
+        tags: ['SystemVerilog RTL', 'Mini-Tomasulo OoO', '8-Entry Reorder Buffer (ROB)', 'Reservation Stations', 'Common Data Bus (CDB)']
+      },
+      {
+        title: '2-Bit Saturating Moore FSM Dynamic Branch Predictor & BHT in SystemVerilog',
+        subtitle: 'UCSC • VLSI.X415 • SystemVerilog RTL',
+        category: 'Computer Architecture (GT & UCSC)',
+        lens: ['perf', 'dv'],
+        description: 'Designed and verified a hardware 2-bit saturating counter Moore FSM branch predictor and Branch History Table (BHT) in SystemVerilog, validating state transitions (Strongly Not Taken, Weakly Not Taken, Weakly Taken, Strongly Taken) and branch recovery behavior.',
+        tags: ['SystemVerilog RTL', '2-Bit Saturating Moore FSM', 'Branch History Table (BHT)', 'Dynamic Branch Prediction']
+      },
+
+      // UCSC VLSI.X411, VLSI.X410, VLSI.X400 & VLSI.X404 — 5 RTL, Synthesis & Formal/UVM Projects
+      {
+        title: 'H2A Protocol Pipeline Formal Verification & Deadlock Proof in Synopsys VC-Formal',
+        subtitle: 'UCSC • VLSI.X411 • SVA / Synopsys VC-Formal',
+        category: 'RTL, Synthesis & Formal/UVM (UCSC)',
+        lens: ['dv'],
+        description: 'Authored a formal verification testplan and concurrent SystemVerilog Assertions (assert, assume, cover) for an H2A protocol pipeline, achieving 100% formal proof convergence in Synopsys VC-Formal without cone-cutting and resolving priority-inversion deadlocks.',
+        tags: ['Synopsys VC-Formal', 'SystemVerilog Assertions (SVA)', '100% Proof Convergence', 'Deadlock Resolution']
+      },
+      {
+        title: '10G Ethernet MAC Core Verification Environment & Coverage Report in UVM',
+        subtitle: 'UCSC • VLSI.X410 • SystemVerilog / UVM / DPI-C',
+        category: 'RTL, Synthesis & Formal/UVM (UCSC)',
+        lens: ['dv'],
+        description: 'Developed a comprehensive UVM verification architecture and technical verification report for a 10 Gigabit Ethernet MAC (10G MAC) core, incorporating TX/RX UVM agents, scoreboards, functional coverage collectors, and DPI-C reference checking.',
+        tags: ['SystemVerilog UVM', '10G Ethernet MAC', 'DPI-C Reference Checking', 'TX/RX Agents & Scoreboard']
+      },
+      {
+        title: 'Layered SystemVerilog OOP Verification Testbench (Generator, Driver, Monitor, Scoreboard)',
+        subtitle: 'UCSC • VLSI.X400 • SystemVerilog OOP',
+        category: 'RTL, Synthesis & Formal/UVM (UCSC)',
+        lens: ['dv'],
+        description: 'Engineered a modular, class-based SystemVerilog OOP verification environment from scratch featuring randomized stimulus generators, mailbox IPC channels, virtual interface drivers/monitors, self-checking scoreboards, and functional coverage callbacks.',
+        tags: ['SystemVerilog OOP', 'Mailbox IPC', 'Virtual Interfaces', 'Self-Checking Scoreboard', 'Functional Coverage']
+      },
+      {
+        title: 'Traffic Light Controller Moore/Mealy FSM RTL & Synopsys Design Compiler Gate-Level Synthesis',
+        subtitle: 'UCSC • VLSI.X404 • Verilog / Synopsys Design Compiler',
+        category: 'RTL, Synthesis & Formal/UVM (UCSC)',
+        lens: ['perf', 'dv'],
+        description: 'Designed both Moore and Mealy Finite State Machine (FSM) controllers in Verilog, performed logic synthesis to gate-level netlists using Synopsys Design Compiler (DC) with timing/area analysis, and debugged gate-level netlist simulation mismatches.',
+        tags: ['Verilog RTL', 'Synopsys Design Compiler (DC)', 'Moore & Mealy FSMs', 'Gate-Level Synthesis & Timing']
+      },
+      {
+        title: 'True Dual-Port SRAM & Parametrizable Synchronous FIFO RTL Design & Verification',
+        subtitle: 'UCSC • VLSI.X404 • Verilog-2001',
+        category: 'RTL, Synthesis & Formal/UVM (UCSC)',
+        lens: ['perf', 'dv'],
+        description: 'Designed and exhaustively verified a True Dual-Port SRAM and a parametrizable Synchronous FIFO in Verilog-2001, testing concurrent same-address read/write contention, asynchronous clock drift, and full/empty pointer wrap-around corner cases.',
+        tags: ['Verilog-2001 RTL', 'True Dual-Port SRAM', 'Parametrizable Synchronous FIFO', 'Memory Contention Verification']
+      },
+
+      // Georgia Tech CS 6200 — 1 Operating Systems Project
+      {
+        title: 'Multi-Threaded C/C++ File Server, POSIX Shared-Memory IPC Proxy & Distributed gRPC Cache Consistency',
+        subtitle: 'Georgia Tech • CS 6200 • C / C++ / Pthreads / gRPC',
+        category: 'Operating Systems (GT)',
+        lens: ['perf'],
+        description: 'Built a multi-threaded Boss-Worker socket file server (GETFILE), a zero-copy POSIX shared-memory (shm_open/mmap) IPC proxy cache, and a distributed gRPC/Protobuf file system with writer-lock cache invalidation.',
+        tags: ['C / C++', 'Pthreads Boss-Worker', 'POSIX Shared Memory (shm_open/mmap)', 'gRPC & Protobuf', 'Distributed Cache Consistency']
+      },
+
+      // UT Austin AI/ML Graduate Certificate — All 6 Individual Projects
+      {
+        title: 'Stock News Financial Sentiment Analysis with LLMs & Retrieval-Augmented Generation (RAG)',
+        subtitle: 'UT Austin • AI/ML • Python / LLMs / RAG',
+        category: 'AI/ML & Data Science (UT Austin)',
+        lens: ['perf'],
+        description: 'Engineered a financial NLP and Retrieval-Augmented Generation (RAG) pipeline utilizing Large Language Models and vector embeddings to classify market-moving news sentiment and synthesize grounded executive summaries.',
+        tags: ['Python', 'LLMs & Generative AI', 'Retrieval-Augmented Generation (RAG)', 'Financial NLP']
+      },
+      {
+        title: 'Plant Seedling Computer Vision Classification with Deep Convolutional Neural Networks (CNNs)',
+        subtitle: 'UT Austin • AI/ML • Python / TensorFlow / CNNs',
+        category: 'AI/ML & Data Science (UT Austin)',
+        lens: ['perf'],
+        description: 'Designed and trained multi-layer Convolutional Neural Networks (CNNs) with image augmentation, batch normalization, and dropout regularization to classify multi-class high-resolution plant seedling imagery.',
+        tags: ['Python', 'TensorFlow / Keras', 'Deep CNNs', 'Computer Vision']
+      },
+      {
+        title: 'Industrial Predictive Maintenance with Deep Neural Networks',
+        subtitle: 'UT Austin • AI/ML • Python / Deep Learning',
+        category: 'AI/ML & Data Science (UT Austin)',
+        lens: ['perf'],
+        description: 'Developed deep feedforward neural networks trained on multi-sensor telemetry data to predict industrial equipment failures before breakdown, optimizing recall and precision across imbalanced failure classes.',
+        tags: ['Python', 'Deep Neural Networks', 'Sensor Telemetry', 'Predictive Maintenance']
+      },
+      {
+        title: 'Customer Churn Ensemble Pipeline & Containerized Deployment (Docker & Kubernetes)',
+        subtitle: 'UT Austin • AI/ML • Python / XGBoost / Docker / K8s',
+        category: 'AI/ML & Data Science (UT Austin)',
+        lens: ['perf'],
+        description: 'Built an end-to-end gradient-boosted ensemble (XGBoost / Random Forest) churn prediction pipeline and packaged the inference service into reproducible Docker containers orchestrated for scalable Kubernetes deployment.',
+        tags: ['Python', 'XGBoost & Ensembles', 'Docker', 'Kubernetes', 'MLOps Deployment']
+      },
+      {
+        title: 'E-News Express Landing Page A/B Testing & Statistical Hypothesis Analysis',
+        subtitle: 'UT Austin • AI/ML • Python / Statistical Inference',
+        category: 'AI/ML & Data Science (UT Austin)',
+        lens: ['perf'],
+        description: 'Conducted parametric and non-parametric statistical hypothesis testing (two-sample t-tests, chi-square tests of independence, and ANOVA) to evaluate user conversion lift and engagement across A/B landing page variants.',
+        tags: ['Python', 'A/B Testing', 'Hypothesis Testing (t-test / ANOVA / Chi-Square)', 'Statistical Inference']
+      },
+      {
+        title: 'Personalized Recommendation Engine via Collaborative & Matrix Factorization Filtering',
+        subtitle: 'UT Austin • AI/ML • Python / Recommender Systems',
+        category: 'AI/ML & Data Science (UT Austin)',
+        lens: ['perf'],
+        description: 'Implemented user-user/item-item collaborative filtering, content-based filtering, and Singular Value Decomposition (SVD) matrix factorization models to generate ranked personalized recommendations.',
+        tags: ['Python', 'Matrix Factorization (SVD)', 'Collaborative Filtering', 'Recommender Systems']
+      }
+    ];
+
+    let currentExpFilter = 'all';
+    let currentProjFilter = 'All';
+    let currentRoleLens = 'all';
+
+    // Render Professional Experience Timeline
+    function renderExperience() {
+      const container = document.getElementById('experienceContainer');
+      const filtered = experienceData.filter(item => {
+        if (currentExpFilter === 'all') return true;
+        return item.domain === currentExpFilter;
+      });
+
+      container.innerHTML = filtered.map((exp, idx) => {
+        const isLensMatch = currentRoleLens !== 'all' && exp.lens.includes(currentRoleLens);
+        const lensClass = isLensMatch ? 'lens-highlight' : '';
+
+        return `
+          <div class="relative group print-break-inside-avoid">
+            <!-- Timeline Node Dot -->
+            <div class="absolute -left-[27px] sm:-left-[39px] top-6 w-4 h-4 rounded-full bg-white dark:bg-[#0b0f19] border-4 border-[#1e40af] dark:border-sky-400 shadow-xs"></div>
+
+            <div class="exec-card ${lensClass} rounded-xl bg-white dark:bg-[#111827] border border-[#e2e8f0] dark:border-slate-800 p-5 sm:p-6 shadow-sm">
+              <div class="flex flex-col md:flex-row md:items-start justify-between gap-2 border-b border-slate-100 dark:border-slate-800 pb-3.5">
+                <div>
+                  <div class="flex flex-wrap items-center gap-2">
+                    <span class="font-mono text-[11px] font-bold uppercase px-2.5 py-0.5 rounded bg-blue-50 dark:bg-sky-950 text-[#1e40af] dark:text-sky-300 border border-blue-200 dark:border-sky-800">
+                      ${exp.badge}
+                    </span>
+                    <span class="font-mono text-xs text-slate-500 dark:text-slate-400">📍 ${exp.location}</span>
+                  </div>
+                  <h3 class="text-lg sm:text-xl font-extrabold text-[#0f172a] dark:text-white mt-2">
+                    ${exp.company} <span class="text-[#1e40af] dark:text-sky-400 font-bold">— ${exp.role}</span>
+                  </h3>
+                </div>
+
+                <!-- Exact Timeline Badge -->
+                <div class="shrink-0">
+                  <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-lg font-mono text-xs font-bold bg-slate-100 dark:bg-slate-800 text-[#0f172a] dark:text-white border border-[#e2e8f0] dark:border-slate-700">
+                    📅 ${exp.timeline}
+                  </span>
+                </div>
+              </div>
+
+              <!-- Bullet Points -->
+              <ul class="mt-4 space-y-2.5 text-xs sm:text-sm text-[#334155] dark:text-slate-300 leading-relaxed list-disc list-inside">
+                ${exp.bullets.map(b => `<li class="leading-relaxed">${b}</li>`).join('')}
+              </ul>
+
+              <!-- Technical Tags -->
+              <div class="mt-4 pt-3 border-t border-slate-100 dark:border-slate-800/80 flex flex-wrap gap-1.5">
+                ${exp.tags.map(t => `
+                  <span class="px-2.5 py-0.5 rounded font-mono text-[11px] font-medium bg-slate-50 dark:bg-slate-900 text-[#334155] dark:text-slate-300 border border-[#e2e8f0] dark:border-slate-800">
+                    ${t}
+                  </span>
+                `).join('')}
+              </div>
+            </div>
+          </div>
+        `;
+      }).join('');
+    }
+
+    // Render 17 Detailed Projects
+    function renderProjects() {
+      const grid = document.getElementById('projectsGrid');
+      const filtered = projectsData.filter(proj => {
+        if (currentProjFilter === 'All') return true;
+        return proj.category === currentProjFilter;
+      });
+
+      grid.innerHTML = filtered.map(proj => {
+        const isLensMatch = currentRoleLens !== 'all' && proj.lens.includes(currentRoleLens);
+        const lensClass = isLensMatch ? 'lens-highlight' : '';
+
+        return `
+          <div class="exec-card ${lensClass} print-break-inside-avoid rounded-xl bg-white dark:bg-[#111827] border border-[#e2e8f0] dark:border-slate-800 p-5 sm:p-6 shadow-sm flex flex-col justify-between">
+            <div class="space-y-3">
+              <div class="flex items-center justify-between gap-2">
+                <span class="px-2.5 py-1 rounded-md font-mono text-[11px] font-bold bg-blue-50 dark:bg-sky-950 text-[#1e40af] dark:text-sky-300 border border-blue-200 dark:border-sky-800">
+                  ${proj.subtitle}
+                </span>
+              </div>
+              <h3 class="text-base sm:text-lg font-extrabold text-[#0f172a] dark:text-white leading-snug">
+                ${proj.title}
+              </h3>
+              <p class="text-xs sm:text-sm text-[#334155] dark:text-slate-300 leading-relaxed">
+                ${proj.description}
+              </p>
+            </div>
+
+            <div class="mt-4 pt-3 border-t border-slate-100 dark:border-slate-800 flex flex-wrap gap-1.5">
+              ${proj.tags.map(t => `
+                <span class="px-2 py-0.5 rounded font-mono text-[10px] font-semibold bg-slate-100 dark:bg-slate-900 text-[#334155] dark:text-slate-300 border border-[#e2e8f0] dark:border-slate-800">
+                  ${t}
+                </span>
+              `).join('')}
+            </div>
+          </div>
+        `;
+      }).join('');
+    }
+
+    // Filter Experience Handler
+    function filterExperience(domain) {
+      currentExpFilter = domain;
+      document.querySelectorAll('.exp-filter-btn').forEach(btn => {
+        const isActive = btn.getAttribute('data-exp-filter') === domain;
+        btn.className = isActive
+          ? 'exp-filter-btn px-3 py-1.5 rounded-lg font-mono text-xs font-semibold bg-[#1e40af] text-white transition cursor-pointer'
+          : 'exp-filter-btn px-3 py-1.5 rounded-lg font-mono text-xs font-medium bg-white dark:bg-[#111827] text-[#334155] dark:text-slate-300 border border-[#e2e8f0] dark:border-slate-700 hover:border-[#1e40af] transition cursor-pointer';
+      });
+      renderExperience();
+    }
+
+    // Filter Projects Handler
+    function filterProjects(category) {
+      currentProjFilter = category;
+      document.querySelectorAll('.proj-filter-btn').forEach(btn => {
+        const isActive = btn.getAttribute('data-proj-filter') === category;
+        btn.className = isActive
+          ? 'proj-filter-btn px-3 py-1.5 rounded-lg font-mono text-xs font-semibold bg-[#1e40af] text-white transition cursor-pointer'
+          : 'proj-filter-btn px-3 py-1.5 rounded-lg font-mono text-xs font-medium bg-white dark:bg-[#111827] text-[#334155] dark:text-slate-300 border border-[#e2e8f0] dark:border-slate-700 hover:border-[#1e40af] transition cursor-pointer';
+      });
+      renderProjects();
+    }
+
+    // Role Lens Switcher Handler
+    function setRoleLens(lens) {
+      currentRoleLens = lens;
+      const badge = document.getElementById('activeLensBadge');
+      const labels = {
+        all: 'Showing Complete Executive Dossier',
+        perf: 'Highlighting SoC/CPU Performance & Microarchitecture',
+        dv: 'Highlighting Staff DV, Formal & Silicon Execution'
+      };
+      badge.textContent = labels[lens] || labels.all;
+
+      ['all', 'perf', 'dv'].forEach(key => {
+        const btn = document.getElementById(`lens-btn-${key}`);
+        if (key === lens) {
+          btn.className = 'px-3.5 py-2 rounded-lg font-mono text-xs font-semibold bg-[#1e40af] text-white shadow-sm transition cursor-pointer';
+        } else {
+          btn.className = 'px-3.5 py-2 rounded-lg font-mono text-xs font-semibold bg-white dark:bg-slate-900 text-[#334155] dark:text-slate-300 border border-[#e2e8f0] dark:border-slate-700 hover:border-[#1e40af] transition cursor-pointer';
+        }
+      });
+
+      renderExperience();
+      renderProjects();
+    }
+
+    // Light / Dark Mode Toggle (Defaults strictly to Light Mode)
+    function toggleTheme() {
+      const htmlEl = document.documentElement;
+      const isDark = htmlEl.classList.toggle('dark');
+      htmlEl.classList.toggle('dark-mode', isDark);
+      const label = document.getElementById('themeToggleText');
+      label.textContent = isDark ? 'Switch to Light Mode' : 'Switch to Dark Mode';
+    }
+
+    // GitHub Modal Controls
+    function openGithubModal() {
+      const modal = document.getElementById('githubModal');
+      modal.classList.remove('hidden');
+      modal.classList.add('flex');
+    }
+    function closeGithubModal() {
+      const modal = document.getElementById('githubModal');
+      modal.classList.add('hidden');
+      modal.classList.remove('flex');
+    }
+
+    // Mobile Menu Toggle
+    function toggleMobileMenu() {
+      const menu = document.getElementById('mobileMenu');
+      menu.classList.toggle('hidden');
+    }
+
+    // Copy Email Helper
+    function copyEmail() {
+      const tempInput = document.createElement('input');
+      tempInput.value = 'davidgiberti@gmail.com';
+      document.body.appendChild(tempInput);
+      tempInput.select();
+      document.execCommand('copy');
+      document.body.removeChild(tempInput);
+      const label = document.getElementById('copyEmailLabel');
+      label.textContent = 'Copied davidgiberti@gmail.com!';
+      setTimeout(() => {
+        label.textContent = 'davidgiberti@gmail.com';
+      }, 2000);
+    }
+
+    // Print / Save PDF Handler
+    function handlePrintResume() {
+      currentExpFilter = 'all';
+      currentProjFilter = 'All';
+      renderExperience();
+      renderProjects();
+      window.print();
+    }
+
+    // Initialize on Window Load
+    window.onload = function () {
+      // Ensure Light Mode is active by default
+      document.documentElement.classList.remove('dark', 'dark-mode');
+      renderExperience();
+      renderProjects();
+      if (window.lucide) {
+        lucide.createIcons();
+      }
+    };
+  </script>
+</body>
+</html>
