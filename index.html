@@ -4,6 +4,11 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>David Terrence Giberti, M.S. — Curriculum Vitae &amp; Engineering Portfolio</title>
+  <meta name="description" content="Curriculum Vitae and Engineering Portfolio of David Terrence Giberti, M.S. — 12+ years of semiconductor industry experience across Qualcomm, AMD, Cirrus Logic, Samsung SARC, and Arm. Targeting SoC Performance Architect, SoC Architect, CPU Core Performance Architect, and Microarchitecture roles." />
+  <meta property="og:title" content="David Terrence Giberti, M.S. — Curriculum Vitae &amp; Engineering Portfolio" />
+  <meta property="og:description" content="Staff GPU &amp; CPU Engineer &amp; Team Lead (12+ Years Industry Experience) • M.S. EE (SJSU) • M.S. CS Candidate (Georgia Tech) • Targeting SoC &amp; CPU Performance Architecture and Microarchitecture." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://davveeeeeee.github.io/" />
 
   <!-- Tailwind CSS -->
   <script src="https://cdn.tailwindcss.com"></script>
@@ -68,9 +73,11 @@
       .no-print {
         display: none !important;
       }
-      .print-break-avoid {
-        break-inside: avoid;
-        page-break-inside: avoid;
+      .print-break-avoid,
+      article,
+      .cv-surface {
+        break-inside: avoid !important;
+        page-break-inside: avoid !important;
       }
       .cv-surface {
         border: 1px solid #cbd5e1 !important;
@@ -89,14 +96,14 @@
   </style>
 </head>
 
-<!-- Default Light Mode: Warm Ivory Paper (#fafaf9) & Deep Slate Ink (#0f172a) -->
-<body class="bg-[#fafaf9] text-[#0f172a] dark:bg-[#0f172a] dark:text-[#f1f5f9] font-sans antialiased transition-colors duration-200 min-h-screen flex flex-col">
+<!-- Default Light Mode: Warm Ivory Paper (#fafaf9) & Deep Slate Ink (#0f172a) | Dark Mode: (#0b0f19) -->
+<body class="bg-[#fafaf9] text-[#0f172a] dark:bg-[#0b0f19] dark:text-[#f8fafc] font-sans antialiased transition-colors duration-200 min-h-screen flex flex-col">
 
   <!-- =====================================================================
-       STICKY ACADEMIC NAVIGATION BAR
+       STICKY ACADEMIC NAVIGATION BAR (ALL 6 SECTIONS, UNCROWDED FOR 14" SCREENS)
        ===================================================================== -->
-  <header class="no-print sticky top-0 z-40 bg-white/95 dark:bg-[#0f172a]/95 backdrop-blur-sm border-b border-[#cbd5e1] dark:border-slate-800">
-    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 h-14 flex items-center justify-between gap-3">
+  <header class="no-print sticky top-0 z-40 bg-white/95 dark:bg-[#111827]/95 backdrop-blur-sm border-b border-[#cbd5e1] dark:border-slate-800">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 h-14 flex items-center justify-between gap-2">
       <!-- Left: Name & Document Title -->
       <a href="#top" class="font-serif font-bold text-sm sm:text-base text-[#0f172a] dark:text-white tracking-tight hover:text-[#1e3a8a] dark:hover:text-sky-400 transition shrink-0">
         David Terrence Giberti, M.S. <span class="hidden xl:inline font-sans font-normal text-xs text-slate-500 dark:text-slate-400 ml-1">— Curriculum Vitae</span>
@@ -107,17 +114,17 @@
         <a href="#section-i" class="px-2 py-1.5 rounded hover:bg-slate-100 dark:hover:bg-slate-800 hover:text-[#1e3a8a] dark:hover:text-sky-400 transition">I. Overview</a>
         <a href="#section-ii" class="px-2 py-1.5 rounded hover:bg-slate-100 dark:hover:bg-slate-800 hover:text-[#1e3a8a] dark:hover:text-sky-400 transition">II. Education</a>
         <a href="#section-iii" class="px-2 py-1.5 rounded hover:bg-slate-100 dark:hover:bg-slate-800 hover:text-[#1e3a8a] dark:hover:text-sky-400 transition">III. Experience</a>
-        <a href="#section-iv" class="px-2 py-1.5 rounded hover:bg-slate-100 dark:hover:bg-slate-800 hover:text-[#1e3a8a] dark:hover:text-sky-400 transition">IV. Research &amp; Projects</a>
-        <a href="#section-v" class="px-2 py-1.5 rounded hover:bg-slate-100 dark:hover:bg-slate-800 hover:text-[#1e3a8a] dark:hover:text-sky-400 transition">V. Expertise &amp; Tools</a>
-        <a href="#section-vi" class="px-2 py-1.5 rounded hover:bg-slate-100 dark:hover:bg-slate-800 hover:text-[#1e3a8a] dark:hover:text-sky-400 transition">VI. Affiliations &amp; Languages</a>
+        <a href="#section-iv" class="px-2 py-1.5 rounded hover:bg-slate-100 dark:hover:bg-slate-800 hover:text-[#1e3a8a] dark:hover:text-sky-400 transition">IV. Expertise</a>
+        <a href="#section-v" class="px-2 py-1.5 rounded hover:bg-slate-100 dark:hover:bg-slate-800 hover:text-[#1e3a8a] dark:hover:text-sky-400 transition">V. Projects</a>
+        <a href="#section-vi" class="px-2 py-1.5 rounded hover:bg-slate-100 dark:hover:bg-slate-800 hover:text-[#1e3a8a] dark:hover:text-sky-400 transition">VI. Affiliations</a>
       </nav>
 
       <!-- Right: Theme Toggle & Print/Save PDF -->
       <div class="flex items-center space-x-2 shrink-0">
         <button id="themeToggleBtn" onclick="toggleTheme()" class="px-3 py-1.5 rounded border border-[#cbd5e1] dark:border-slate-700 bg-[#fafaf9] dark:bg-slate-800 hover:bg-slate-100 dark:hover:bg-slate-700 text-xs font-semibold text-slate-700 dark:text-slate-200 transition cursor-pointer">
-          <span id="themeToggleLabel">Switch to Dark Mode</span>
+          <span id="themeToggleLabel">Dark Mode</span>
         </button>
-        <button onclick="exportCV()" class="px-3 py-1.5 rounded bg-[#1e3a8a] hover:bg-blue-900 dark:bg-sky-600 dark:hover:bg-sky-500 text-white text-xs font-semibold transition cursor-pointer">
+        <button onclick="exportCV()" class="px-3 py-1.5 rounded bg-[#1e3a8a] hover:bg-blue-900 dark:bg-[#60a5fa] dark:hover:bg-blue-400 dark:text-slate-950 text-white text-xs font-semibold transition cursor-pointer">
           Print / Save PDF
         </button>
       </div>
@@ -132,10 +139,10 @@
     <!-- ===================================================================
          MASTHEAD & CONTACT BLOCK + SECTION I: OVERVIEW
          =================================================================== -->
-    <section class="cv-surface bg-white dark:bg-slate-900 border border-[#cbd5e1] dark:border-slate-800 rounded-lg p-6 sm:p-10 shadow-2xs">
-      <div class="border-b-2 border-[#1e3a8a] dark:border-sky-400 pb-6 flex flex-col lg:flex-row lg:items-end justify-between gap-6">
-        <div class="space-y-2 max-w-3xl">
-          <p class="font-mono text-xs uppercase tracking-widest text-[#1e3a8a] dark:text-sky-400 font-semibold">
+    <section class="cv-surface bg-white dark:bg-[#111827] border border-[#cbd5e1] dark:border-slate-800 rounded-lg p-6 sm:p-10 shadow-2xs">
+      <div class="border-b-2 border-[#1e3a8a] dark:border-[#60a5fa] pb-6 flex flex-col lg:flex-row lg:items-end justify-between gap-6">
+        <div class="space-y-2.5 max-w-3xl">
+          <p class="font-mono text-xs uppercase tracking-widest text-[#1e3a8a] dark:text-[#60a5fa] font-semibold">
             CURRICULUM VITAE &amp; ENGINEERING PORTFOLIO
           </p>
           <h1 class="font-serif text-3xl sm:text-4xl lg:text-5xl font-bold text-[#0f172a] dark:text-white tracking-tight">
@@ -145,32 +152,32 @@
             Staff Design Verification Engineer &amp; Team Lead — Qualcomm Incorporated
           </p>
           <p class="text-sm text-slate-600 dark:text-slate-400 leading-relaxed">
-            M.S. in Electrical Engineering (San José State University) &bull; M.S. in Computer Science Candidate, Computing Systems (Georgia Institute of Technology) &bull; B.S. in Electrical Engineering (UCLA)
+            M.S. in Electrical Engineering (San José State University, 3.91 GPA) &bull; M.S. in Computer Science Candidate, Computing Systems (Georgia Institute of Technology) &bull; B.S. in Electrical Engineering (UCLA)
           </p>
         </div>
 
         <!-- Right-Hand Contact Card (All Clickable Links) -->
-        <div class="text-xs sm:text-sm font-mono space-y-1 text-slate-700 dark:text-slate-300 lg:text-right shrink-0 bg-[#fafaf9] dark:bg-slate-950/60 p-4 rounded border border-[#cbd5e1] dark:border-slate-800">
-          <div><strong>Location:</strong> Austin, Texas (615 Rocky Spot Dr., Austin, TX 78737)</div>
+        <div class="text-xs sm:text-sm font-mono space-y-1 text-slate-700 dark:text-slate-300 lg:text-right shrink-0 bg-[#fafaf9] dark:bg-slate-950/70 p-4 rounded border border-[#cbd5e1] dark:border-slate-800">
+          <div><strong>Location:</strong> 615 Rocky Spot Dr., Austin, TX 78737</div>
           <div>
             <strong>Telephone:</strong>
-            <a href="tel:+19847660000" class="text-[#1e3a8a] dark:text-sky-400 hover:underline">(984) 766-0000</a>
+            <a href="tel:+19847660000" class="text-[#1e3a8a] dark:text-[#60a5fa] hover:underline">(984) 766-0000</a>
           </div>
           <div>
             <strong>Electronic Mail:</strong>
-            <a href="mailto:davidgiberti@gmail.com" class="text-[#1e3a8a] dark:text-sky-400 hover:underline">davidgiberti@gmail.com</a>
+            <a href="mailto:davidgiberti@gmail.com" class="text-[#1e3a8a] dark:text-[#60a5fa] hover:underline">davidgiberti@gmail.com</a>
           </div>
           <div>
             <strong>LinkedIn:</strong>
-            <a href="https://www.linkedin.com/in/davidgiberti" target="_blank" rel="noopener noreferrer" class="text-[#1e3a8a] dark:text-sky-400 hover:underline">linkedin.com/in/davidgiberti</a>
+            <a href="https://www.linkedin.com/in/davidgiberti" target="_blank" rel="noopener noreferrer" class="text-[#1e3a8a] dark:text-[#60a5fa] hover:underline">linkedin.com/in/davidgiberti</a>
           </div>
           <div>
             <strong>CV Website:</strong>
-            <a href="https://davveeeeeee.github.io/" target="_blank" rel="noopener noreferrer" class="text-[#1e3a8a] dark:text-sky-400 hover:underline">davveeeeeee.github.io</a>
+            <a href="https://davveeeeeee.github.io/" target="_blank" rel="noopener noreferrer" class="text-[#1e3a8a] dark:text-[#60a5fa] hover:underline">davveeeeeee.github.io</a>
           </div>
           <div>
             <strong>GitHub Portfolio:</strong>
-            <a href="https://github.com/davveeeeeee" target="_blank" rel="noopener noreferrer" class="text-[#1e3a8a] dark:text-sky-400 hover:underline">github.com/davveeeeeee</a>
+            <a href="https://github.com/davveeeeeee" target="_blank" rel="noopener noreferrer" class="text-[#1e3a8a] dark:text-[#60a5fa] hover:underline">github.com/davveeeeeee</a>
           </div>
         </div>
       </div>
@@ -179,33 +186,48 @@
            SECTION I: ACADEMIC & PROFESSIONAL OVERVIEW
            =================================================================== -->
       <div id="section-i" class="scroll-mt-20 pt-8 space-y-6">
-        <div class="academic-rule pb-2">
+        <div class="academic-rule pb-2 flex flex-col sm:flex-row sm:items-baseline justify-between gap-2">
           <h2 class="font-serif text-xl sm:text-2xl font-bold text-[#0f172a] dark:text-white">
             I. Academic &amp; Professional Overview
           </h2>
+          <span class="font-mono text-xs font-semibold text-[#1e3a8a] dark:text-sky-400">
+            12+ Years Semiconductor Industry Experience &bull; Austin, Texas
+          </span>
+        </div>
+
+        <!-- Explicit Architectural Career Focus Callout Banner -->
+        <div class="p-4 rounded border-l-4 border-[#1e3a8a] dark:border-sky-400 bg-[#fafaf9] dark:bg-slate-950/70 border border-[#cbd5e1] dark:border-slate-800">
+          <div class="font-mono text-xs uppercase tracking-wider font-semibold text-[#1e3a8a] dark:text-sky-400">
+            Architectural &amp; Performance Engineering Focus
+          </div>
+          <p class="text-sm sm:text-base text-slate-800 dark:text-slate-200 mt-1 leading-relaxed">
+            Leveraging <strong>12+ years of pre- and post-silicon CPU/GPU microarchitecture execution</strong>, <strong>C++ cycle-accurate simulation &amp; DPI-C co-simulation</strong>, and <strong>advanced graduate training in Computer Architecture and Machine Learning</strong> to transition into <strong>SoC Performance Architect</strong>, <strong>SoC Architect</strong>, <strong>SoC Performance Engineer</strong>, <strong>CPU / Core Performance Architect</strong>, and <strong>Processor Microarchitect</strong> roles.
+          </p>
         </div>
 
         <div class="space-y-4 text-base text-slate-800 dark:text-slate-200 leading-relaxed text-justify">
           <p>
-            Staff Design Verification Engineer and Team Lead at <strong>Qualcomm Incorporated</strong> in Austin, Texas, with <strong>12+ years of semiconductor industry experience</strong> spanning processor microarchitecture, pre-silicon design verification, C++ co-simulation infrastructure, and post-silicon microprocessor bring-up. Directs, manages, guides, and mentors a team of verification engineers across four GPU products in the Qualcomm Snapdragon lineup (operating at Senior Staff scope), responsible for pre-silicon verification of hardware-accelerated ray tracing, cache, and matrix compute subsystems—specifically the <strong>Multi-Hop Raytracer / Ray Tracing Tree Traversal Unit (RTTU)</strong>, <strong>Ray Tracing Unit (RTU)</strong>, <strong>Tree Traversal Unit (TTU)</strong>, <strong>L0 Cache</strong>, and <strong>Matrix Arithmetic Logic Unit (MALU)</strong>—while architecting the SystemVerilog testbench infrastructure, <strong>C++ Direct Programming Interface (DPI-C)</strong> calls, and cycle-accurate DPI-C++ glue logic that bridge RTL simulation environments with repository-based C++ functional and high-performance reference models.
+            Staff Design Verification Engineer and Team Lead at <strong>Qualcomm Incorporated</strong> in Austin, Texas, with <strong>12+ years of semiconductor industry experience</strong> spanning processor microarchitecture, pre-silicon design verification, C++ co-simulation infrastructure, and post-silicon microprocessor bring-up. Directs, manages, guides, and mentors a team of verification engineers across four GPU products in the Qualcomm Snapdragon lineup (operating at Senior Staff scope), responsible for pre-silicon verification of hardware-accelerated ray tracing, cache, and matrix compute subsystems—specifically the <strong>Multi-Hop Raytracer Unit / Ray Tracing Tree Traversal Unit (RTTU)</strong>, <strong>Ray Tracing Unit (RTU)</strong>, <strong>Tree Traversal Unit (TTU)</strong>, <strong>L0 Cache</strong>, and <strong>Matrix Arithmetic Logic Unit (MALU)</strong>—while architecting the SystemVerilog testbench infrastructure, <strong>C++ Direct Programming Interface (DPI-C)</strong> calls, and cycle-accurate DPI-C++ glue logic that bridge RTL simulation environments with repository-based C++ functional and high-performance reference models.
           </p>
           <p>
-            Prior industrial engineering experience includes appointments as Member of Technical Staff at <strong>Advanced Micro Devices (AMD)</strong> conducting x86-64 post-silicon validation, hardware emulation, and C++/assembly diagnostic development for flagship EPYC server and Ryzen client processors; Audio Design Verification Engineer at <strong>Cirrus Logic</strong> serving as primary verification owner across 11 mixed-signal and digital IC design blocks; CPU Design Verification Engineer at the <strong>Samsung Austin Research Center (SARC | ACL)</strong> verifying custom Exynos CPU Load-Store Units (LSU), Page Table-Walkers, and L1/TLB Memory Management Units (MMU); and CPU Design Engineer at <strong>Arm Ltd.</strong> verifying Cortex-A57, A72, A76, Ares, Zeus, Hera, and Hercules CPU frontend pipelines and engineering automated Jenkins CI/CD synthesis and physical place-and-route timing analysis pipelines. Industrial practice is complemented by graduate research and coursework in computer architecture simulation (C++ SESC), out-of-order hardware design (SystemVerilog Tomasulo RTL), formal verification (Synopsys VC-Formal), distributed operating systems, and machine learning across the <strong>Georgia Institute of Technology</strong>, <strong>San José State University</strong>, the <strong>University of California, Los Angeles (UCLA)</strong>, the <strong>University of California, Santa Cruz</strong>, and <strong>The University of Texas at Austin</strong>.
+            Prior industrial engineering experience includes service as Member of Technical Staff at <strong>Advanced Micro Devices (AMD)</strong> conducting x86-64 post-silicon validation, hardware emulation, and C++/assembly diagnostic development for flagship EPYC server and Ryzen client Core Complex (CCX) microprocessors; Audio Design Verification Engineer at <strong>Cirrus Logic</strong> serving as primary verification owner across 11 mixed-signal and digital IC design blocks; CPU Design Verification Engineer at the <strong>Samsung Austin R&amp;D Center (SARC | ACL)</strong> verifying custom Exynos CPU Load-Store Units (LSU), Page Table-Walkers, and L1/TLB Memory Management Units (MMU); and CPU Design Engineer at <strong>Arm Ltd.</strong> verifying Cortex-A57, A72, A76, Ares, Zeus, Hera, and Hercules CPU frontend pipelines and engineering automated Jenkins CI/CD synthesis and physical place-and-route timing analysis pipelines. Industrial practice is complemented by graduate research and coursework in cycle-accurate computer architecture simulation (C++ SESC), dynamic out-of-order hardware design (SystemVerilog Tomasulo RTL), formal verification (Synopsys VC-Formal), distributed operating systems, and machine learning across the <strong>Georgia Institute of Technology</strong>, <strong>San José State University</strong>, the <strong>University of California, Los Angeles (UCLA)</strong>, the <strong>University of California, Santa Cruz</strong>, and <strong>The University of Texas at Austin</strong>, providing a rigorous foundation for <strong>SoC Performance Architecture, CPU/GPU Performance Modeling, and Microarchitecture</strong>.
           </p>
         </div>
 
-        <!-- Summary of Academic Standing & Grade Point Averages (5 Cards Ordered by Degree Importance matching Section II) -->
-        <div class="pt-2">
-          <h3 class="font-mono text-xs uppercase tracking-wider font-semibold text-slate-500 dark:text-slate-400 mb-3">
+        <!-- Summary of Academic Standing & Grade Point Averages (3 Degrees + 2 Graduate Certificates Layout) -->
+        <div class="pt-2 space-y-3.5">
+          <h3 class="font-mono text-xs uppercase tracking-wider font-semibold text-slate-500 dark:text-slate-400">
             Summary of Academic Standing &amp; Cumulative Grade Point Averages (Ordered by Degree Hierarchy)
           </h3>
-          <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-3.5">
+
+          <!-- Row 1: 3 Academic Degrees (MS CS, MS EE, BS EE) -->
+          <div class="grid grid-cols-1 md:grid-cols-3 gap-3.5">
             <!-- 1. Georgia Tech MS CS -->
             <div class="p-4 rounded border border-[#cbd5e1] dark:border-slate-800 bg-[#fafaf9] dark:bg-slate-950/60 flex flex-col justify-between">
               <div>
-                <div class="font-mono text-[11px] text-[#1e3a8a] dark:text-sky-400 font-semibold">In Progress (Exp. Fall 2028)</div>
+                <div class="font-mono text-[11px] text-[#1e3a8a] dark:text-sky-400 font-semibold">In Progress (Expected Fall 2028)</div>
                 <div class="font-serif font-bold text-sm text-[#0f172a] dark:text-white mt-1">Georgia Institute of Technology</div>
-                <div class="text-xs text-slate-600 dark:text-slate-300 mt-0.5">M.S. in Computer Science (Computing Systems)</div>
+                <div class="text-xs text-slate-600 dark:text-slate-300 mt-0.5">M.S. in Computer Science (Computing Systems Specialization)</div>
               </div>
               <div class="mt-3 pt-2 border-t border-[#cbd5e1] dark:border-slate-800 font-mono text-xs font-bold text-[#1e3a8a] dark:text-sky-400">
                 Active Graduate Standing
@@ -217,10 +239,10 @@
               <div>
                 <div class="font-mono text-[11px] text-[#1e3a8a] dark:text-sky-400 font-semibold">2012 – 2014</div>
                 <div class="font-serif font-bold text-sm text-[#0f172a] dark:text-white mt-1">San José State University</div>
-                <div class="text-xs text-slate-600 dark:text-slate-300 mt-0.5">M.S. in Electrical Engineering</div>
+                <div class="text-xs text-slate-600 dark:text-slate-300 mt-0.5">M.S. in Electrical Engineering (Logic/Digital &amp; Embedded Systems)</div>
               </div>
               <div class="mt-3 pt-2 border-t border-[#cbd5e1] dark:border-slate-800 font-mono text-xs font-bold text-[#0f172a] dark:text-white">
-                GPA: 3.92 / 4.00
+                Cumulative GPA: 3.91 / 4.00
               </div>
             </div>
 
@@ -231,17 +253,20 @@
                 <div class="font-serif font-bold text-sm text-[#0f172a] dark:text-white mt-1">University of California, Los Angeles (UCLA)</div>
                 <div class="text-xs text-slate-600 dark:text-slate-300 mt-0.5">B.S. in Electrical Engineering</div>
               </div>
-              <div class="mt-3 pt-2 border-t border-[#cbd5e1] dark:border-slate-800 font-mono text-[11px] font-bold text-[#0f172a] dark:text-white">
-                IC Design &amp; Computer Science
+              <div class="mt-3 pt-2 border-t border-[#cbd5e1] dark:border-slate-800 font-mono text-xs font-bold text-[#0f172a] dark:text-white">
+                Concentration: IC Design &bull; Breadth: CS
               </div>
             </div>
+          </div>
 
+          <!-- Row 2: 2 Specialized Graduate Engineering Certificates (UCSC & UT Austin) -->
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-3.5">
             <!-- 4. UC Santa Cruz Extension -->
             <div class="p-4 rounded border border-[#cbd5e1] dark:border-slate-800 bg-[#fafaf9] dark:bg-slate-950/60 flex flex-col justify-between">
               <div>
-                <div class="font-mono text-[11px] text-[#1e3a8a] dark:text-sky-400 font-semibold">Expected Dec 2026</div>
-                <div class="font-serif font-bold text-sm text-[#0f172a] dark:text-white mt-1">UC Santa Cruz Extension</div>
-                <div class="text-xs text-slate-600 dark:text-slate-300 mt-0.5">Certificate in Silicon Chip Design &amp; Semiconductor Engineering</div>
+                <div class="font-mono text-[11px] text-[#1e3a8a] dark:text-sky-400 font-semibold">Expected Completion: December 2026</div>
+                <div class="font-serif font-bold text-sm text-[#0f172a] dark:text-white mt-1">University of California, Santa Cruz — Silicon Valley Extension</div>
+                <div class="text-xs text-slate-600 dark:text-slate-300 mt-0.5">Professional Certificate in Silicon Chip Design &amp; Semiconductor Engineering</div>
               </div>
               <div class="mt-3 pt-2 border-t border-[#cbd5e1] dark:border-slate-800 font-mono text-xs font-bold text-[#0f172a] dark:text-white">
                 Cumulative GPA: 3.93 / 4.00
@@ -255,8 +280,8 @@
                 <div class="font-serif font-bold text-sm text-[#0f172a] dark:text-white mt-1">The University of Texas at Austin</div>
                 <div class="text-xs text-slate-600 dark:text-slate-300 mt-0.5">Graduate Certificate in Artificial Intelligence &amp; Machine Learning</div>
               </div>
-              <div class="mt-3 pt-2 border-t border-[#cbd5e1] dark:border-slate-800 font-mono text-[11px] font-bold text-[#0f172a] dark:text-white leading-tight">
-                GPA: 4.28 / 4.33 <span class="font-normal text-slate-600 dark:text-slate-400 block">(A+ Weighted; 4.00 Unscaled)</span>
+              <div class="mt-3 pt-2 border-t border-[#cbd5e1] dark:border-slate-800 font-mono text-xs font-bold text-[#0f172a] dark:text-white">
+                Cumulative GPA: 4.28 / 4.33 <span class="font-normal text-slate-600 dark:text-slate-400">(A+ Weighted Scale; 4.00 / 4.00 Unscaled)</span>
               </div>
             </div>
           </div>
@@ -265,13 +290,13 @@
     </section>
 
     <!-- ===================================================================
-         SECTION II: EDUCATION & GRADUATE ACADEMIC CREDENTIALS
+         SECTION II: EDUCATION & ACADEMIC CREDENTIALS
          (Ordered by Degree Hierarchy: MS CS -> MS EE -> BS EE -> UCSC -> UT Austin)
          =================================================================== -->
     <section id="section-ii" class="scroll-mt-20 space-y-6">
       <div class="academic-rule pb-2 flex flex-col sm:flex-row sm:items-baseline justify-between gap-2">
         <h2 class="font-serif text-xl sm:text-2xl font-bold text-[#0f172a] dark:text-white">
-          II. Education &amp; Graduate Academic Credentials
+          II. Education &amp; Academic Credentials
         </h2>
         <span class="font-mono text-xs text-slate-500 dark:text-slate-400">
           Ordered by Academic Degree Hierarchy
@@ -327,7 +352,7 @@
               </p>
             </div>
             <div class="font-mono text-xs font-semibold text-slate-700 dark:text-slate-300 shrink-0">
-              2012 – 2014 &bull; <strong class="text-[#0f172a] dark:text-white">GPA: 3.92 / 4.00</strong>
+              2012 – 2014 &bull; <strong class="text-[#0f172a] dark:text-white">GPA: 3.91 / 4.00</strong>
             </div>
           </div>
           <div class="mt-4">
@@ -418,7 +443,7 @@
           </div>
         </div>
 
-        <!-- 5. The University of Texas at Austin -->
+        <!-- 5. The University of Texas at Austin (Prefix-Free Course Names) -->
         <div class="cv-surface print-break-avoid bg-white dark:bg-slate-900 border border-[#cbd5e1] dark:border-slate-800 rounded-lg p-6 shadow-2xs">
           <div class="flex flex-col md:flex-row md:items-baseline justify-between gap-2 sub-rule pb-3">
             <div>
@@ -438,16 +463,16 @@
               Graduate Certificate Coursework:
             </div>
             <ul class="grid grid-cols-1 sm:grid-cols-2 gap-x-6 gap-y-1.5 text-sm text-slate-800 dark:text-slate-200 list-disc pl-5">
-              <li><span class="font-mono text-xs font-semibold text-[#1e3a8a] dark:text-sky-400">AI/ML 01:</span> <span>Python Foundations for Artificial Intelligence</span></li>
-              <li><span class="font-mono text-xs font-semibold text-[#1e3a8a] dark:text-sky-400">AI/ML 02:</span> <span>Supervised &amp; Unsupervised Machine Learning</span></li>
-              <li><span class="font-mono text-xs font-semibold text-[#1e3a8a] dark:text-sky-400">AI/ML 03:</span> <span>Ensemble Techniques &amp; Model Optimization</span></li>
-              <li><span class="font-mono text-xs font-semibold text-[#1e3a8a] dark:text-sky-400">AI/ML 04:</span> <span>Deep Learning &amp; Neural Network Architectures</span></li>
-              <li><span class="font-mono text-xs font-semibold text-[#1e3a8a] dark:text-sky-400">AI/ML 05:</span> <span>Computer Vision &amp; Convolutional Neural Networks (CNNs)</span></li>
-              <li><span class="font-mono text-xs font-semibold text-[#1e3a8a] dark:text-sky-400">AI/ML 06:</span> <span>Natural Language Processing &amp; Generative AI (LLMs &amp; RAG)</span></li>
-              <li><span class="font-mono text-xs font-semibold text-[#1e3a8a] dark:text-sky-400">AI/ML 07:</span> <span>Statistical Learning &amp; Hypothesis Testing</span></li>
-              <li><span class="font-mono text-xs font-semibold text-[#1e3a8a] dark:text-sky-400">AI/ML 08:</span> <span>Recommendation Systems</span></li>
-              <li><span class="font-mono text-xs font-semibold text-[#1e3a8a] dark:text-sky-400">AI/ML 09:</span> <span>Model Deployment &amp; Containerization (Docker &amp; Kubernetes)</span></li>
-              <li><span class="font-mono text-xs font-semibold text-[#1e3a8a] dark:text-sky-400">AI/ML 10:</span> <span>Introduction to SQL &amp; Relational Data Querying</span></li>
+              <li>Python Foundations for Artificial Intelligence</li>
+              <li>Supervised &amp; Unsupervised Machine Learning</li>
+              <li>Ensemble Techniques &amp; Model Optimization</li>
+              <li>Deep Learning &amp; Neural Network Architectures</li>
+              <li>Computer Vision &amp; Convolutional Neural Networks (CNNs)</li>
+              <li>Natural Language Processing &amp; Generative AI (LLMs &amp; RAG)</li>
+              <li>Statistical Learning &amp; Hypothesis Testing</li>
+              <li>Recommendation Systems</li>
+              <li>Model Deployment &amp; Containerization (Docker &amp; Kubernetes)</li>
+              <li>Introduction to SQL &amp; Relational Data Querying</li>
             </ul>
           </div>
         </div>
@@ -456,26 +481,34 @@
 
     <!-- ===================================================================
          SECTION III: PROFESSIONAL INDUSTRY & ACADEMIC EXPERIENCE
-         (Strict Reverse-Chronological Order — Zero Inline Code Boxes in Headings)
+         (Split into A. Semiconductor Industry & B. University Teaching)
          =================================================================== -->
-    <section id="section-iii" class="scroll-mt-20 space-y-6">
+    <section id="section-iii" class="scroll-mt-20 space-y-8">
       <div class="academic-rule pb-2 flex flex-col sm:flex-row sm:items-baseline justify-between gap-2">
         <h2 class="font-serif text-xl sm:text-2xl font-bold text-[#0f172a] dark:text-white">
           III. Professional Industry &amp; Academic Experience
         </h2>
         <span class="font-mono text-xs text-slate-500 dark:text-slate-400">
-          Ordered in Strict Reverse-Chronological Sequence
+          Categorized by Industry &amp; Academic Instruction in Reverse-Chronological Order
         </span>
       </div>
 
+      <!-- SUBSECTION A: SEMICONDUCTOR INDUSTRY EXPERIENCE -->
       <div class="space-y-5">
+        <div class="sub-rule pb-1.5 flex items-baseline justify-between">
+          <h3 class="font-serif text-lg font-bold text-[#1e3a8a] dark:text-sky-400">
+            A. Semiconductor Industry Experience
+          </h3>
+          <span class="font-mono text-xs text-slate-500 dark:text-slate-400">2013 – Present</span>
+        </div>
+
         <!-- 1. Qualcomm Incorporated -->
         <article class="cv-surface print-break-avoid bg-white dark:bg-slate-900 border border-[#cbd5e1] dark:border-slate-800 rounded-lg p-6 shadow-2xs">
           <div class="flex flex-col md:flex-row md:items-baseline justify-between gap-1 sub-rule pb-3">
             <div>
-              <h3 class="font-serif text-lg font-bold text-[#0f172a] dark:text-white">
+              <h4 class="font-serif text-lg font-bold text-[#0f172a] dark:text-white">
                 Qualcomm Incorporated <span class="font-sans font-normal text-sm text-slate-500 dark:text-slate-400">— Austin, TX</span>
-              </h3>
+              </h4>
               <p class="text-sm font-semibold text-[#1e3a8a] dark:text-sky-400">
                 Staff Design Verification Engineer &amp; Team Lead
               </p>
@@ -489,7 +522,7 @@
               <strong>Technical Leadership Across 4 GPU Products:</strong> Serve as Technical Lead directing, managing, guiding, and mentoring a team of verification engineers across 4 GPU Shader Processor products in the Qualcomm Snapdragon lineup (operating at Senior Staff scope).
             </li>
             <li>
-              <strong>Pre-Silicon GPU Microarchitecture Verification (RTTU, RTU, TTU, L0 Cache &amp; MALU):</strong> Designed multiple GPU microarchitecture verification testbenches from scratch in SystemVerilog and UVM for the Multi-Hop Raytracer / Ray Tracing Tree Traversal Unit (RTTU), Ray Tracing Unit (RTU), Tree Traversal Unit (TTU), L0 Cache, and Matrix Arithmetic Logic Unit (MALU — Qualcomm's GPU-integrated AI/ML matrix compute processor).
+              <strong>Pre-Silicon GPU Microarchitecture Verification (Multi-Hop Raytracer Unit / RTTU, RTU, TTU, L0 Cache &amp; MALU):</strong> Designed multiple GPU microarchitecture verification testbenches from scratch in SystemVerilog and UVM for the Multi-Hop Raytracer Unit / Ray Tracing Tree Traversal Unit (RTTU), Ray Tracing Unit (RTU), Tree Traversal Unit (TTU), L0 Cache, and Matrix Arithmetic Logic Unit (MALU — Qualcomm's GPU-integrated AI/ML matrix compute processor).
             </li>
             <li>
               <strong>SystemVerilog TB Infrastructure, DPI-C++ Calls &amp; Cycle-Accurate Glue Logic:</strong> Architected and refactored the SystemVerilog wrapper testbench infrastructure, DPI-C++ interface calls, and DPI-C++ glue logic that transform untimed/random calculation outputs from repository-based C++ reference models (covering Ray Intersection, Ray Traversal, and Matrix Results) into cycle-accurate transactions used to check directly against live Shader Processor RTL.
@@ -504,9 +537,9 @@
         <article class="cv-surface print-break-avoid bg-white dark:bg-slate-900 border border-[#cbd5e1] dark:border-slate-800 rounded-lg p-6 shadow-2xs">
           <div class="flex flex-col md:flex-row md:items-baseline justify-between gap-1 sub-rule pb-3">
             <div>
-              <h3 class="font-serif text-lg font-bold text-[#0f172a] dark:text-white">
+              <h4 class="font-serif text-lg font-bold text-[#0f172a] dark:text-white">
                 Advanced Micro Devices (AMD) <span class="font-sans font-normal text-sm text-slate-500 dark:text-slate-400">— Austin, TX</span>
-              </h3>
+              </h4>
               <p class="text-sm font-semibold text-[#1e3a8a] dark:text-sky-400">
                 Member of Technical Staff — CPU Post-Silicon Verification Engineer
               </p>
@@ -535,9 +568,9 @@
         <article class="cv-surface print-break-avoid bg-white dark:bg-slate-900 border border-[#cbd5e1] dark:border-slate-800 rounded-lg p-6 shadow-2xs">
           <div class="flex flex-col md:flex-row md:items-baseline justify-between gap-1 sub-rule pb-3">
             <div>
-              <h3 class="font-serif text-lg font-bold text-[#0f172a] dark:text-white">
+              <h4 class="font-serif text-lg font-bold text-[#0f172a] dark:text-white">
                 Cirrus Logic Inc. <span class="font-sans font-normal text-sm text-slate-500 dark:text-slate-400">— Austin, TX</span>
-              </h3>
+              </h4>
               <p class="text-sm font-semibold text-[#1e3a8a] dark:text-sky-400">
                 Audio Design Verification Engineer
               </p>
@@ -563,9 +596,9 @@
         <article class="cv-surface print-break-avoid bg-white dark:bg-slate-900 border border-[#cbd5e1] dark:border-slate-800 rounded-lg p-6 shadow-2xs">
           <div class="flex flex-col md:flex-row md:items-baseline justify-between gap-1 sub-rule pb-3">
             <div>
-              <h3 class="font-serif text-lg font-bold text-[#0f172a] dark:text-white">
+              <h4 class="font-serif text-lg font-bold text-[#0f172a] dark:text-white">
                 Samsung Austin R&amp;D Center (SARC | ACL) <span class="font-sans font-normal text-sm text-slate-500 dark:text-slate-400">— Austin, TX</span>
-              </h3>
+              </h4>
               <p class="text-sm font-semibold text-[#1e3a8a] dark:text-sky-400">
                 CPU Design Verification Engineer
               </p>
@@ -591,9 +624,9 @@
         <article class="cv-surface print-break-avoid bg-white dark:bg-slate-900 border border-[#cbd5e1] dark:border-slate-800 rounded-lg p-6 shadow-2xs">
           <div class="flex flex-col md:flex-row md:items-baseline justify-between gap-1 sub-rule pb-3">
             <div>
-              <h3 class="font-serif text-lg font-bold text-[#0f172a] dark:text-white">
+              <h4 class="font-serif text-lg font-bold text-[#0f172a] dark:text-white">
                 Arm Ltd. (ARM Holdings plc) <span class="font-sans font-normal text-sm text-slate-500 dark:text-slate-400">— Austin, TX</span>
-              </h3>
+              </h4>
               <p class="text-sm font-semibold text-[#1e3a8a] dark:text-sky-400">
                 CPU Design Engineer
               </p>
@@ -622,9 +655,9 @@
         <article class="cv-surface print-break-avoid bg-white dark:bg-slate-900 border border-[#cbd5e1] dark:border-slate-800 rounded-lg p-6 shadow-2xs">
           <div class="flex flex-col md:flex-row md:items-baseline justify-between gap-1 sub-rule pb-3">
             <div>
-              <h3 class="font-serif text-lg font-bold text-[#0f172a] dark:text-white">
+              <h4 class="font-serif text-lg font-bold text-[#0f172a] dark:text-white">
                 Arm Ltd. (ARM Holdings plc) <span class="font-sans font-normal text-sm text-slate-500 dark:text-slate-400">— Austin, TX</span>
-              </h3>
+              </h4>
               <p class="text-sm font-semibold text-[#1e3a8a] dark:text-sky-400">
                 Engineer Intern
               </p>
@@ -639,14 +672,24 @@
             </li>
           </ul>
         </article>
+      </div>
+
+      <!-- SUBSECTION B: UNIVERSITY TEACHING & ACADEMIC INSTRUCTION -->
+      <div class="space-y-5 pt-2">
+        <div class="sub-rule pb-1.5 flex items-baseline justify-between">
+          <h3 class="font-serif text-lg font-bold text-[#1e3a8a] dark:text-sky-400">
+            B. University Teaching &amp; Academic Instruction
+          </h3>
+          <span class="font-mono text-xs text-slate-500 dark:text-slate-400">2012 – 2014</span>
+        </div>
 
         <!-- 7. SJSU — Laboratory Instructor (EE 120) -->
         <article class="cv-surface print-break-avoid bg-white dark:bg-slate-900 border border-[#cbd5e1] dark:border-slate-800 rounded-lg p-6 shadow-2xs">
           <div class="flex flex-col md:flex-row md:items-baseline justify-between gap-1 sub-rule pb-3">
             <div>
-              <h3 class="font-serif text-lg font-bold text-[#0f172a] dark:text-white">
+              <h4 class="font-serif text-lg font-bold text-[#0f172a] dark:text-white">
                 San José State University <span class="font-sans font-normal text-sm text-slate-500 dark:text-slate-400">— San José, CA</span>
-              </h3>
+              </h4>
               <p class="text-sm font-semibold text-[#1e3a8a] dark:text-sky-400">
                 Laboratory Instructor — EE 120: Microprocessor-Based System Design
               </p>
@@ -666,9 +709,9 @@
         <article class="cv-surface print-break-avoid bg-white dark:bg-slate-900 border border-[#cbd5e1] dark:border-slate-800 rounded-lg p-6 shadow-2xs">
           <div class="flex flex-col md:flex-row md:items-baseline justify-between gap-1 sub-rule pb-3">
             <div>
-              <h3 class="font-serif text-lg font-bold text-[#0f172a] dark:text-white">
+              <h4 class="font-serif text-lg font-bold text-[#0f172a] dark:text-white">
                 San José State University <span class="font-sans font-normal text-sm text-slate-500 dark:text-slate-400">— San José, CA</span>
-              </h3>
+              </h4>
               <p class="text-sm font-semibold text-[#1e3a8a] dark:text-sky-400">
                 Instructional Student Assistant — ENGR 100W / 200W: Technical Engineering Writing
               </p>
@@ -688,9 +731,9 @@
         <article class="cv-surface print-break-avoid bg-white dark:bg-slate-900 border border-[#cbd5e1] dark:border-slate-800 rounded-lg p-6 shadow-2xs">
           <div class="flex flex-col md:flex-row md:items-baseline justify-between gap-1 sub-rule pb-3">
             <div>
-              <h3 class="font-serif text-lg font-bold text-[#0f172a] dark:text-white">
+              <h4 class="font-serif text-lg font-bold text-[#0f172a] dark:text-white">
                 San José State University <span class="font-sans font-normal text-sm text-slate-500 dark:text-slate-400">— San José, CA</span>
-              </h3>
+              </h4>
               <p class="text-sm font-semibold text-[#1e3a8a] dark:text-sky-400">
                 Teaching Assistant / ISA — EE 98 / EE 110: Circuits and Systems
               </p>
@@ -710,9 +753,9 @@
         <article class="cv-surface print-break-avoid bg-white dark:bg-slate-900 border border-[#cbd5e1] dark:border-slate-800 rounded-lg p-6 shadow-2xs">
           <div class="flex flex-col md:flex-row md:items-baseline justify-between gap-1 sub-rule pb-3">
             <div>
-              <h3 class="font-serif text-lg font-bold text-[#0f172a] dark:text-white">
+              <h4 class="font-serif text-lg font-bold text-[#0f172a] dark:text-white">
                 Self-Employed <span class="font-sans font-normal text-sm text-slate-500 dark:text-slate-400">— San José, CA</span>
-              </h3>
+              </h4>
               <p class="text-sm font-semibold text-[#1e3a8a] dark:text-sky-400">
                 Private English &amp; Technical Writing Tutor
               </p>
@@ -731,13 +774,112 @@
     </section>
 
     <!-- ===================================================================
-         SECTION IV: SELECTED TECHNICAL RESEARCH, ARCHITECTURAL MODELING & VERIFICATION PROJECTS
-         (All 30 Projects Across Georgia Tech, UCSC, UT Austin, SJSU & UCLA)
+         SECTION IV: TECHNICAL EXPERTISE & ENGINEERING TOOLS
+         (Placed Directly Below Experience for Immediate Hiring Manager Visibility)
          =================================================================== -->
     <section id="section-iv" class="scroll-mt-20 space-y-6">
+      <div class="academic-rule pb-2">
+        <h2 class="font-serif text-xl sm:text-2xl font-bold text-[#0f172a] dark:text-white">
+          IV. Technical Expertise &amp; Engineering Tools
+        </h2>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5">
+        <!-- Column 1: EDA Simulators, Formal & Synthesis Tools -->
+        <div class="cv-surface print-break-avoid bg-white dark:bg-slate-900 border border-[#cbd5e1] dark:border-slate-800 rounded-lg p-5 shadow-2xs space-y-3">
+          <div class="sub-rule pb-2">
+            <h3 class="font-serif font-bold text-base text-[#0f172a] dark:text-white">
+              EDA Simulators, Formal &amp; Synthesis
+            </h3>
+          </div>
+          <ul class="space-y-1.5 text-sm text-slate-800 dark:text-slate-200 leading-snug list-disc pl-4">
+            <li><strong>Synopsys VCS &amp; SIMV</strong></li>
+            <li><strong>Synopsys Verdi</strong></li>
+            <li><strong>Mentor / Siemens MTI Questa</strong></li>
+            <li><strong>Cadence Xcelium &amp; SimVision</strong></li>
+            <li><strong>Verilator &amp; Icarus Verilog</strong></li>
+            <li><strong>Synopsys VC-Formal</strong></li>
+            <li><strong>Synopsys Design Compiler &amp; Design Vision (Toshiba TC240C)</strong></li>
+            <li><strong>Cadence Virtuoso</strong></li>
+            <li><strong>SESC Cycle-Accurate Simulator</strong></li>
+            <li><strong>Internal x86 Instruction Stepper</strong></li>
+            <li><strong>Hardware Emulation &amp; SLT</strong></li>
+            <li><strong>Jenkins CI/CD, Git &amp; Perforce (P4)</strong></li>
+          </ul>
+        </div>
+
+        <!-- Column 2: Hardware Description, Verification & Modeling -->
+        <div class="cv-surface print-break-avoid bg-white dark:bg-slate-900 border border-[#cbd5e1] dark:border-slate-800 rounded-lg p-5 shadow-2xs space-y-3">
+          <div class="sub-rule pb-2">
+            <h3 class="font-serif font-bold text-base text-[#0f172a] dark:text-white">
+              Hardware Description, Verification &amp; Modeling
+            </h3>
+          </div>
+          <ul class="space-y-1.5 text-sm text-slate-800 dark:text-slate-200 leading-snug list-disc pl-4">
+            <li><strong>SystemVerilog (IEEE 1800)</strong></li>
+            <li><strong>Verilog-2001 &amp; Verilog-A</strong></li>
+            <li><strong>Universal Verification Methodology (UVM)</strong></li>
+            <li><strong>SystemVerilog OOP Testbenches</strong></li>
+            <li><strong>SystemVerilog Assertions (SVA)</strong></li>
+            <li><strong>Formal Verification (Constraints, Assumes, Dead-Code, Exhaustive Proofs)</strong></li>
+            <li><strong>SystemVerilog DPI-C &amp; Cycle-Accurate C++ Glue Logic</strong></li>
+            <li><strong>Functional, Code &amp; Toggle Coverage</strong></li>
+            <li><strong>X-Propagation &amp; Reset Flop Minimization</strong></li>
+            <li><strong>Post-Silicon Bring-Up, Emulation &amp; SLT</strong></li>
+          </ul>
+        </div>
+
+        <!-- Column 3: CPU & GPU Microarchitecture -->
+        <div class="cv-surface print-break-avoid bg-white dark:bg-slate-900 border border-[#cbd5e1] dark:border-slate-800 rounded-lg p-5 shadow-2xs space-y-3">
+          <div class="sub-rule pb-2">
+            <h3 class="font-serif font-bold text-base text-[#0f172a] dark:text-white">
+              CPU &amp; GPU Microarchitecture
+            </h3>
+          </div>
+          <ul class="space-y-1.5 text-sm text-slate-800 dark:text-slate-200 leading-snug list-disc pl-4">
+            <li><strong>GPU Ray Tracing (RTU, TTU, RTTU / Multi-Hop Raytracer)</strong></li>
+            <li><strong>BVH Tree Traversal &amp; Ray Intersection</strong></li>
+            <li><strong>GPU Matrix ALU (MALU / AI-ML Accelerator)</strong></li>
+            <li><strong>CPU Core Complex — CCX (CPU Core + Memory Hierarchy)</strong></li>
+            <li><strong>CPU Frontend (Fetch, Decode, Rename, ALU, Commit)</strong></li>
+            <li><strong>Dynamic Out-of-Order Execution (Tomasulo, Reservation Stations, 8-Entry ROB, CDB)</strong></li>
+            <li><strong>Branch Prediction (2-Bit Saturating Moore FSM, BHT)</strong></li>
+            <li><strong>L0/L1/L2 Cache, NXLRU Policy &amp; Coherency (MESI, Dragon)</strong></li>
+            <li><strong>Load/Store Unit, Page Table-Walker &amp; TLB MMU</strong></li>
+            <li><strong>AMBA AXI/AHB &amp; 10G Ethernet MAC</strong></li>
+          </ul>
+        </div>
+
+        <!-- Column 4: Programming, Systems & AI/ML Stack -->
+        <div class="cv-surface print-break-avoid bg-white dark:bg-slate-900 border border-[#cbd5e1] dark:border-slate-800 rounded-lg p-5 shadow-2xs space-y-3">
+          <div class="sub-rule pb-2">
+            <h3 class="font-serif font-bold text-base text-[#0f172a] dark:text-white">
+              Programming, Systems &amp; AI/ML Stack
+            </h3>
+          </div>
+          <ul class="space-y-1.5 text-sm text-slate-800 dark:text-slate-200 leading-snug list-disc pl-4">
+            <li><strong>C &amp; C++ (C++17, STL, Pointers, Cycle-Accurate Simulators)</strong></li>
+            <li><strong>Assembly (x86/x64, MMX/SSE/AVX, ARMv8, ARM Thumb, MIPS, RISC-V)</strong></li>
+            <li><strong>Python, Perl, Ruby, Bash/Zsh/Fish &amp; TCL</strong></li>
+            <li><strong>Linux/Unix Kernel, POSIX Pthreads &amp; Shared-Memory IPC</strong></li>
+            <li><strong>gRPC &amp; Protocol Buffers</strong></li>
+            <li><strong>PyTorch, TensorFlow/Keras, Scikit-Learn &amp; XGBoost</strong></li>
+            <li><strong>Large Language Models (LLMs) &amp; RAG</strong></li>
+            <li><strong>MATLAB &amp; SPICE</strong></li>
+            <li><strong>Docker, Kubernetes &amp; SQL</strong></li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================================================================
+         SECTION V: SELECTED TECHNICAL RESEARCH, ARCHITECTURAL MODELING & VERIFICATION PROJECTS
+         (All 30 Projects Across Georgia Tech, UCSC, UT Austin, SJSU & UCLA)
+         =================================================================== -->
+    <section id="section-v" class="scroll-mt-20 space-y-6">
       <div class="academic-rule pb-2 flex flex-col lg:flex-row lg:items-baseline justify-between gap-2">
         <h2 class="font-serif text-xl sm:text-2xl font-bold text-[#0f172a] dark:text-white">
-          IV. Selected Technical Research, Architectural Modeling &amp; Verification Projects
+          V. Selected Technical Research, Architectural Modeling &amp; Verification Projects
         </h2>
         <span class="font-mono text-xs text-slate-500 dark:text-slate-400">
           30 Verified Graduate &amp; Undergraduate Engineering Deliverables
@@ -773,103 +915,6 @@
     </section>
 
     <!-- ===================================================================
-         SECTION V: TECHNICAL EXPERTISE & ENGINEERING TOOLS
-         =================================================================== -->
-    <section id="section-v" class="scroll-mt-20 space-y-6">
-      <div class="academic-rule pb-2">
-        <h2 class="font-serif text-xl sm:text-2xl font-bold text-[#0f172a] dark:text-white">
-          V. Technical Expertise &amp; Engineering Tools
-        </h2>
-      </div>
-
-      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5">
-        <!-- Column 1: EDA Simulators, Formal & Synthesis Tools -->
-        <div class="cv-surface print-break-avoid bg-white dark:bg-slate-900 border border-[#cbd5e1] dark:border-slate-800 rounded-lg p-5 shadow-2xs space-y-3">
-          <div class="sub-rule pb-2">
-            <h3 class="font-serif font-bold text-base text-[#0f172a] dark:text-white">
-              EDA Simulators, Formal &amp; Synthesis Tools
-            </h3>
-          </div>
-          <ul class="space-y-1.5 text-sm text-slate-800 dark:text-slate-200 leading-snug list-disc pl-4">
-            <li><strong>Synopsys VCS &amp; SIMV</strong></li>
-            <li><strong>Synopsys Verdi</strong></li>
-            <li><strong>Mentor / Siemens MTI Questa</strong></li>
-            <li><strong>Cadence Xcelium &amp; Incisive</strong></li>
-            <li><strong>Cadence SimVision</strong></li>
-            <li><strong>Synopsys VC-Formal</strong></li>
-            <li><strong>Synopsys Design Compiler &amp; Design Vision (Toshiba TC240C)</strong></li>
-            <li><strong>Cadence Virtuoso</strong></li>
-            <li><strong>SESC Cycle-Accurate Simulator</strong></li>
-            <li><strong>Internal x86 Instruction Stepper</strong></li>
-            <li><strong>Jenkins CI/CD Automation</strong></li>
-            <li><strong>Git &amp; Perforce (P4)</strong></li>
-          </ul>
-        </div>
-
-        <!-- Column 2: Hardware Description, Verification & Modeling -->
-        <div class="cv-surface print-break-avoid bg-white dark:bg-slate-900 border border-[#cbd5e1] dark:border-slate-800 rounded-lg p-5 shadow-2xs space-y-3">
-          <div class="sub-rule pb-2">
-            <h3 class="font-serif font-bold text-base text-[#0f172a] dark:text-white">
-              Hardware Description, Verification &amp; Modeling
-            </h3>
-          </div>
-          <ul class="space-y-1.5 text-sm text-slate-800 dark:text-slate-200 leading-snug list-disc pl-4">
-            <li><strong>SystemVerilog (IEEE 1800)</strong></li>
-            <li><strong>Verilog-2001 &amp; Verilog-A</strong></li>
-            <li><strong>Universal Verification Methodology (UVM)</strong></li>
-            <li><strong>SystemVerilog OOP Testbenches</strong></li>
-            <li><strong>SystemVerilog Assertions (SVA)</strong></li>
-            <li><strong>Formal Verification (Constraints, Assumes, Dead-Code, Exhaustive Proofs)</strong></li>
-            <li><strong>SystemVerilog DPI-C &amp; Cycle-Accurate C++ Glue Logic</strong></li>
-            <li><strong>Functional, Code &amp; Toggle Coverage</strong></li>
-            <li><strong>X-Propagation &amp; Reset Flop Minimization</strong></li>
-            <li><strong>Post-Silicon SLT &amp; Emulation</strong></li>
-          </ul>
-        </div>
-
-        <!-- Column 3: CPU & GPU Microarchitecture -->
-        <div class="cv-surface print-break-avoid bg-white dark:bg-slate-900 border border-[#cbd5e1] dark:border-slate-800 rounded-lg p-5 shadow-2xs space-y-3">
-          <div class="sub-rule pb-2">
-            <h3 class="font-serif font-bold text-base text-[#0f172a] dark:text-white">
-              CPU &amp; GPU Microarchitecture
-            </h3>
-          </div>
-          <ul class="space-y-1.5 text-sm text-slate-800 dark:text-slate-200 leading-snug list-disc pl-4">
-            <li><strong>GPU Ray Tracing (RTU, TTU, RTTU / Multi-Hop Raytracer)</strong></li>
-            <li><strong>GPU Matrix ALU (MALU / AI-ML Accelerator)</strong></li>
-            <li><strong>CPU Frontend (Fetch, Decode, Rename, ALU, Commit)</strong></li>
-            <li><strong>Dynamic Out-of-Order Execution (Tomasulo, Reservation Stations, 8-Entry ROB, CDB)</strong></li>
-            <li><strong>Branch Prediction (2-Bit Saturating Moore FSM, BHT)</strong></li>
-            <li><strong>L0/L1/L2 Cache &amp; NXLRU Policy</strong></li>
-            <li><strong>Cache Coherency (MESI, Dragon)</strong></li>
-            <li><strong>Load/Store Unit, Page Table-Walker &amp; TLB MMU</strong></li>
-            <li><strong>AMBA AXI/AHB &amp; 10G Ethernet MAC</strong></li>
-          </ul>
-        </div>
-
-        <!-- Column 4: Programming, Systems & AI/ML Stack -->
-        <div class="cv-surface print-break-avoid bg-white dark:bg-slate-900 border border-[#cbd5e1] dark:border-slate-800 rounded-lg p-5 shadow-2xs space-y-3">
-          <div class="sub-rule pb-2">
-            <h3 class="font-serif font-bold text-base text-[#0f172a] dark:text-white">
-              Programming, Systems &amp; AI/ML Stack
-            </h3>
-          </div>
-          <ul class="space-y-1.5 text-sm text-slate-800 dark:text-slate-200 leading-snug list-disc pl-4">
-            <li><strong>C &amp; C++ (C++17, STL, Pointers, Cycle-Accurate Simulators)</strong></li>
-            <li><strong>Assembly (x86/x64, MMX/SSE/AVX, ARMv8, ARM Thumb, MIPS, RISC-V)</strong></li>
-            <li><strong>Python, Perl, Ruby, Bash/Zsh/Fish &amp; TCL</strong></li>
-            <li><strong>Linux/Unix Kernel, POSIX Pthreads &amp; Shared-Memory IPC</strong></li>
-            <li><strong>gRPC &amp; Protocol Buffers</strong></li>
-            <li><strong>PyTorch, TensorFlow/Keras, Scikit-Learn &amp; XGBoost</strong></li>
-            <li><strong>Large Language Models (LLMs) &amp; RAG</strong></li>
-            <li><strong>MATLAB &amp; SPICE</strong></li>
-            <li><strong>Docker, Kubernetes &amp; SQL</strong></li>
-          </ul>
-        </div>
-      </div>
-    </section>
-
-    <!-- ===================================================================
          SECTION VI: HONOR SOCIETIES, PROFESSIONAL AFFILIATIONS & LINGUISTIC STUDIES
          =================================================================== -->
     <section id="section-vi" class="scroll-mt-20 space-y-6">
@@ -880,34 +925,34 @@
       </div>
 
       <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
-        <!-- Left Panel: Academic Honor Societies, Engineering Affiliations & Leadership -->
-        <div class="cv-surface print-break-avoid bg-white dark:bg-slate-900 border border-[#cbd5e1] dark:border-slate-800 rounded-lg p-6 shadow-2xs space-y-4">
+        <!-- Column 1: Honor Societies, Professional Memberships & Leadership -->
+        <div class="cv-surface print-break-avoid bg-white dark:bg-[#111827] border border-[#cbd5e1] dark:border-slate-800 rounded-lg p-6 shadow-2xs space-y-4">
           <div class="sub-rule pb-2">
             <h3 class="font-serif text-lg font-bold text-[#0f172a] dark:text-white">
-              Academic Honor Societies, Engineering Affiliations &amp; Leadership
+              Honor Societies, Professional Memberships &amp; Leadership
             </h3>
           </div>
           <ul class="space-y-3 text-sm sm:text-base text-slate-800 dark:text-slate-200 leading-relaxed list-disc pl-5">
             <li>
-              <strong>The Honor Society of Phi Kappa Phi</strong> — Inducted Member
+              <strong>The Honor Society of Phi Kappa Phi</strong> — Inducted Academic Honor Society Member
             </li>
             <li>
-              <strong>Institute of Electrical and Electronics Engineers (IEEE)</strong> — Member
+              <strong>Institute of Electrical and Electronics Engineers (IEEE)</strong> — Professional Member
             </li>
             <li>
-              <strong>Association for Computing Machinery (ACM)</strong> — Member
+              <strong>Association for Computing Machinery (ACM)</strong> — Professional Member
             </li>
             <li>
-              <strong>Computer Science Forum</strong> — Owner &amp; Founder (Interdisciplinary technical society advancing knowledge across computer science, computer architecture, digital/analog IC design, mathematics, and software engineering)
+              <strong>Computer Science Forum</strong> — Owner &amp; Founder (Interdisciplinary society advancing knowledge exchange across computer architecture, digital/analog IC design, software engineering, and applied mathematics)
             </li>
           </ul>
         </div>
 
-        <!-- Right Panel: Classical & Modern Languages & University Philological Coursework -->
-        <div class="cv-surface print-break-avoid bg-white dark:bg-slate-900 border border-[#cbd5e1] dark:border-slate-800 rounded-lg p-6 shadow-2xs space-y-4">
+        <!-- Column 2: Classical & Modern Philological & Linguistic Studies -->
+        <div class="cv-surface print-break-avoid bg-white dark:bg-[#111827] border border-[#cbd5e1] dark:border-slate-800 rounded-lg p-6 shadow-2xs space-y-4">
           <div class="sub-rule pb-2">
             <h3 class="font-serif text-lg font-bold text-[#0f172a] dark:text-white">
-              Classical &amp; Modern Languages &amp; University Philological Coursework
+              Classical &amp; Modern Philological &amp; Linguistic Studies
             </h3>
           </div>
           <ul class="space-y-2.5 text-sm sm:text-base text-slate-800 dark:text-slate-200 leading-relaxed list-disc pl-5">
@@ -915,19 +960,19 @@
               <strong>English:</strong> Native / Bilingual Proficiency
             </li>
             <li>
-              <strong>Hebrew (Modern &amp; Biblical):</strong> Limited Working Proficiency — <span class="text-slate-600 dark:text-slate-400 text-sm italic">Formal university coursework via The University of Texas at Austin (Hebrew Summer Intensive) and The Hebrew University of Jerusalem / Rosen School of Hebrew</span>
+              <strong>Hebrew (Modern &amp; Biblical):</strong> Limited Working Proficiency — <span class="text-slate-600 dark:text-slate-400 text-sm italic">Formal academic coursework via The University of Texas at Austin (Summer Intensive) and The Hebrew University of Jerusalem</span>
             </li>
             <li>
               <strong>Yiddish:</strong> Limited Working Proficiency — <span class="text-slate-600 dark:text-slate-400 text-sm italic">Formal academic coursework via The University of Texas at Austin, the Yiddish Book Center, and the YIVO Institute for Jewish Research</span>
             </li>
             <li>
-              <strong>Aramaic:</strong> Elementary Proficiency — <span class="text-slate-600 dark:text-slate-400 text-sm italic">Formal coursework in Biblical &amp; Talmudic Aramaic via The Hebrew University of Jerusalem</span>
+              <strong>Aramaic:</strong> Elementary Proficiency — <span class="text-slate-600 dark:text-slate-400 text-sm italic">Classical and Biblical philological study via The Hebrew University of Jerusalem</span>
             </li>
             <li>
-              <strong>Latin:</strong> Elementary Proficiency
+              <strong>Latin:</strong> Elementary Proficiency — <span class="text-slate-600 dark:text-slate-400 text-sm italic">Classical morphological and syntactic study</span>
             </li>
             <li>
-              <strong>Japanese:</strong> Elementary Proficiency
+              <strong>Japanese:</strong> Elementary Proficiency — <span class="text-slate-600 dark:text-slate-400 text-sm italic">Foundational language study</span>
             </li>
           </ul>
         </div>
@@ -939,21 +984,21 @@
   <!-- =====================================================================
        SCHOLARLY FOOTER
        ===================================================================== -->
-  <footer class="no-print border-t border-[#cbd5e1] dark:border-slate-800 bg-white dark:bg-slate-900 py-6 mt-12">
+  <footer class="no-print border-t border-[#cbd5e1] dark:border-slate-800 bg-white dark:bg-[#111827] py-6 mt-12">
     <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-slate-600 dark:text-slate-400 font-mono">
       <div>
         David Terrence Giberti, M.S. &bull; Curriculum Vitae &amp; Engineering Portfolio &bull; Austin, Texas
       </div>
       <div class="flex flex-wrap items-center gap-x-4 gap-y-1">
-        <a href="mailto:davidgiberti@gmail.com" class="hover:text-[#1e3a8a] dark:hover:text-sky-400 hover:underline">davidgiberti@gmail.com</a>
+        <a href="mailto:davidgiberti@gmail.com" class="hover:text-[#1e3a8a] dark:hover:text-[#60a5fa] hover:underline">davidgiberti@gmail.com</a>
         <span>&bull;</span>
-        <a href="https://www.linkedin.com/in/davidgiberti" target="_blank" rel="noopener noreferrer" class="hover:text-[#1e3a8a] dark:hover:text-sky-400 hover:underline">LinkedIn</a>
+        <a href="https://www.linkedin.com/in/davidgiberti" target="_blank" rel="noopener noreferrer" class="hover:text-[#1e3a8a] dark:hover:text-[#60a5fa] hover:underline">LinkedIn</a>
         <span>&bull;</span>
-        <a href="https://davveeeeeee.github.io/" target="_blank" rel="noopener noreferrer" class="hover:text-[#1e3a8a] dark:hover:text-sky-400 hover:underline">davveeeeeee.github.io</a>
+        <a href="https://davveeeeeee.github.io/" target="_blank" rel="noopener noreferrer" class="hover:text-[#1e3a8a] dark:hover:text-[#60a5fa] hover:underline">davveeeeeee.github.io</a>
         <span>&bull;</span>
-        <a href="https://github.com/davveeeeeee" target="_blank" rel="noopener noreferrer" class="hover:text-[#1e3a8a] dark:hover:text-sky-400 hover:underline">GitHub Portfolio</a>
+        <a href="https://github.com/davveeeeeee" target="_blank" rel="noopener noreferrer" class="hover:text-[#1e3a8a] dark:hover:text-[#60a5fa] hover:underline">GitHub Portfolio</a>
         <span>&bull;</span>
-        <button onclick="exportCV()" class="hover:text-[#1e3a8a] dark:hover:text-sky-400 hover:underline cursor-pointer">Print / Save PDF</button>
+        <button onclick="exportCV()" class="hover:text-[#1e3a8a] dark:hover:text-[#60a5fa] hover:underline cursor-pointer">Print / Save PDF</button>
       </div>
     </div>
   </footer>
@@ -966,7 +1011,7 @@
       // 1–6: Georgia Institute of Technology (CS 6290 & CS 6200)
       {
         num: 1,
-        group: 'Computer Architecture & Simulators',
+        group: 'Computer Architecture & RTL',
         institution: 'Georgia Institute of Technology',
         course: 'CS 6290: High-Performance Computer Architecture',
         title: 'SESC Cycle-Accurate Architectural Simulator Setup & SPLASH-2 Benchmark Characterization',
@@ -975,7 +1020,7 @@
       },
       {
         num: 2,
-        group: 'Computer Architecture & Simulators',
+        group: 'Computer Architecture & RTL',
         institution: 'Georgia Institute of Technology',
         course: 'CS 6290: High-Performance Computer Architecture',
         title: 'C++ Branch Predictor Configuration & Pipeline Depth Trade-Off Analysis',
@@ -984,7 +1029,7 @@
       },
       {
         num: 3,
-        group: 'Computer Architecture & Simulators',
+        group: 'Computer Architecture & RTL',
         institution: 'Georgia Institute of Technology',
         course: 'CS 6290: High-Performance Computer Architecture',
         title: 'Out-of-Order Processor Cache Hierarchy Analysis & NXLRU Replacement Policy',
@@ -993,7 +1038,7 @@
       },
       {
         num: 4,
-        group: 'Systems & Operating Systems',
+        group: 'Systems & OS',
         institution: 'Georgia Institute of Technology',
         course: 'CS 6200: Graduate Introduction to Operating Systems',
         title: 'Multi-Threaded Client/Server File Transfer Protocol (Getfile) via POSIX Threads',
@@ -1002,7 +1047,7 @@
       },
       {
         num: 5,
-        group: 'Systems & Operating Systems',
+        group: 'Systems & OS',
         institution: 'Georgia Institute of Technology',
         course: 'CS 6200: Graduate Introduction to Operating Systems',
         title: 'High-Concurrency Web Proxy & POSIX Shared-Memory IPC Cache Daemon',
@@ -1011,7 +1056,7 @@
       },
       {
         num: 6,
-        group: 'Systems & Operating Systems',
+        group: 'Systems & OS',
         institution: 'Georgia Institute of Technology',
         course: 'CS 6200: Graduate Introduction to Operating Systems',
         title: 'Asynchronous Distributed File Storage System via gRPC & Protocol Buffers',
@@ -1022,7 +1067,7 @@
       // 7–12: UC Santa Cruz Silicon Valley Extension
       {
         num: 7,
-        group: 'Computer Architecture & Simulators',
+        group: 'Computer Architecture & RTL',
         institution: 'UC Santa Cruz Extension',
         course: 'VLSI.X415: High-Performance Computer Architecture',
         title: 'Dynamic Out-of-Order Mini-Tomasulo Processor RTL Design (8-Entry ROB & Priority CDB)',
@@ -1031,7 +1076,7 @@
       },
       {
         num: 8,
-        group: 'Computer Architecture & Simulators',
+        group: 'Computer Architecture & RTL',
         institution: 'UC Santa Cruz Extension',
         course: 'VLSI.X415: High-Performance Computer Architecture',
         title: '2-Bit Saturating Counter Moore FSM Dynamic Branch Predictor in SystemVerilog',
@@ -1067,7 +1112,7 @@
       },
       {
         num: 12,
-        group: 'RTL, Synthesis & IC Design',
+        group: 'Computer Architecture & RTL',
         institution: 'UC Santa Cruz Extension',
         course: 'VLSI.X404: Digital Logic Design Using Verilog',
         title: 'Traffic Light Controller FSM Synthesis (Synopsys Design Compiler) & Parameterized Synchronous FIFO',
@@ -1078,7 +1123,7 @@
       // 13–18: The University of Texas at Austin (AI/ML Graduate Certificate)
       {
         num: 13,
-        group: 'Artificial Intelligence & ML',
+        group: 'AI & Machine Learning',
         institution: 'The University of Texas at Austin',
         course: 'Graduate Certificate in AI & Machine Learning',
         title: 'Financial Stock News Sentiment Analysis via LLMs & Retrieval-Augmented Generation (RAG)',
@@ -1087,7 +1132,7 @@
       },
       {
         num: 14,
-        group: 'Artificial Intelligence & ML',
+        group: 'AI & Machine Learning',
         institution: 'The University of Texas at Austin',
         course: 'Graduate Certificate in AI & Machine Learning',
         title: 'Deep Convolutional Neural Network (CNN) Computer Vision Image Classifier',
@@ -1096,7 +1141,7 @@
       },
       {
         num: 15,
-        group: 'Artificial Intelligence & ML',
+        group: 'AI & Machine Learning',
         institution: 'The University of Texas at Austin',
         course: 'Graduate Certificate in AI & Machine Learning',
         title: 'Industrial Predictive Maintenance Deep Neural Network',
@@ -1105,7 +1150,7 @@
       },
       {
         num: 16,
-        group: 'Artificial Intelligence & ML',
+        group: 'AI & Machine Learning',
         institution: 'The University of Texas at Austin',
         course: 'Graduate Certificate in AI & Machine Learning',
         title: 'Customer Churn Ensemble Machine Learning Pipeline (Random Forest, XGBoost, AdaBoost)',
@@ -1114,7 +1159,7 @@
       },
       {
         num: 17,
-        group: 'Artificial Intelligence & ML',
+        group: 'AI & Machine Learning',
         institution: 'The University of Texas at Austin',
         course: 'Graduate Certificate in AI & Machine Learning',
         title: 'Containerized ML Model Deployment via Docker & Kubernetes',
@@ -1123,7 +1168,7 @@
       },
       {
         num: 18,
-        group: 'Artificial Intelligence & ML',
+        group: 'AI & Machine Learning',
         institution: 'The University of Texas at Austin',
         course: 'Graduate Certificate in AI & Machine Learning',
         title: 'Statistical Hypothesis Testing (A/B Testing) & Collaborative Filtering Recommendation Engine',
@@ -1131,10 +1176,10 @@
         tags: ['Python', 'Statistical Inference', 'SVD', 'A/B Testing']
       },
 
-      // 19–24: San José State University (M.S. EE Graduate Projects)
+      // 19–25: San José State University (M.S. EE Graduate Projects)
       {
         num: 19,
-        group: 'RTL, Synthesis & IC Design',
+        group: 'Computer Architecture & RTL',
         institution: 'San José State University',
         course: 'M.S. in Electrical Engineering',
         title: 'SHA-256 Cryptographic Processing Unit in C++, Verilog & Cadence Virtuoso',
@@ -1143,7 +1188,7 @@
       },
       {
         num: 20,
-        group: 'Computer Architecture & Simulators',
+        group: 'Computer Architecture & RTL',
         institution: 'San José State University',
         course: 'M.S. in Electrical Engineering',
         title: 'High-Level Structures in Quantum Computing & Quantum Gate MIPS CPU',
@@ -1161,7 +1206,7 @@
       },
       {
         num: 22,
-        group: 'Computer Architecture & Simulators',
+        group: 'Computer Architecture & RTL',
         institution: 'San José State University',
         course: 'M.S. in Electrical Engineering',
         title: 'Verilog HDL Implementation of an ARM Thumb Processor with 256KB Memory',
@@ -1170,7 +1215,7 @@
       },
       {
         num: 23,
-        group: 'RTL, Synthesis & IC Design',
+        group: 'Computer Architecture & RTL',
         institution: 'San José State University',
         course: 'M.S. in Electrical Engineering',
         title: 'Sequential Shift-Add vs. Array Multiplication Circuit PPA Characterization',
@@ -1179,36 +1224,36 @@
       },
       {
         num: 24,
-        group: 'RTL, Synthesis & IC Design',
+        group: 'Computer Architecture & RTL',
         institution: 'San José State University',
         course: 'M.S. in Electrical Engineering',
         title: '200MHz Pipelined Low-Level Wireless MAC Protocol Engine',
         description: 'Implemented a low-level wireless communication Media Access Control (MAC) engine for input nibble streams featuring deserialization and filtering, dual CRC units, a decryption logic unit, and an asymmetric FIFO; pipelined and synthesized the design to meet a 200 MHz timing constraint in Synopsys Design Vision with the Toshiba TC240C library.',
         tags: ['Verilog RTL', 'Wireless MAC', 'Synopsys Design Vision']
       },
-
-      // 25–30: University of California, Los Angeles (UCLA B.S. EE Projects)
       {
         num: 25,
-        group: 'RTL, Synthesis & IC Design',
-        institution: 'San José State University / UCLA',
-        course: 'Digital & Computer Arithmetic Design',
-        title: 'Pipelined 300MHz Double-Precision Floating-Point Multiplier & Adder Unit',
+        group: 'Computer Architecture & RTL',
+        institution: 'San José State University',
+        course: 'M.S. in Electrical Engineering',
+        title: '300MHz Pipelined Double-Precision Floating-Point Multiplier & Adder Unit',
         description: 'Re-architected and pipelined legacy double-precision IEEE-754 floating-point multiplier and adder RTL to achieve timing closure at 300 MHz, performing both RTL and gate-level simulation and synthesis using Synopsys VCS.',
         tags: ['Verilog RTL', 'Floating-Point Arithmetic', 'Synopsys VCS']
       },
+
+      // 26–30: University of California, Los Angeles (UCLA B.S. EE Projects)
       {
         num: 26,
-        group: 'RTL, Synthesis & IC Design',
+        group: 'Mixed-Signal, DSP & VLSI',
         institution: 'UCLA',
         course: 'B.S. in Electrical Engineering (IC Design)',
-        title: 'Full-Custom 6-Bit Transistor-Level Adder Schematic, Sizing, Layout & Extraction',
+        title: '6-Bit CMOS Adder Schematic, Transistor Sizing, Physical Layout & Extraction',
         description: 'Designed a transistor-level 6-bit digital adder from scratch using analytical CMOS transistor sizing techniques, followed by full-custom physical IC layout and parasitic extraction.',
         tags: ['CMOS IC Design', 'Transistor Sizing', 'Physical Layout & Extraction']
       },
       {
         num: 27,
-        group: 'RTL, Synthesis & IC Design',
+        group: 'Mixed-Signal, DSP & VLSI',
         institution: 'UCLA',
         course: 'B.S. in Electrical Engineering',
         title: '3.5–5V to 12V DC-to-DC Boost Converter in SPICE (1% Ripple & PWM Control)',
@@ -1217,16 +1262,16 @@
       },
       {
         num: 28,
-        group: 'RTL, Synthesis & IC Design',
+        group: 'Mixed-Signal, DSP & VLSI',
         institution: 'UCLA',
         course: 'B.S. in Electrical Engineering',
-        title: 'Continuous & Discrete-Time Feedback Control of a Nonlinear RLC Circuit',
+        title: 'Feedback Control of a Nonlinear RLC Circuit (Continuous & Discrete-Time)',
         description: 'Designed continuous-time and discrete-time feedback controllers using passive and active RLC networks to regulate current into an unknown nonlinear load, characterizing sampling period effects on settling time and transient overshoot.',
         tags: ['Control Systems', 'Nonlinear Circuits', 'Discrete-Time Control']
       },
       {
         num: 29,
-        group: 'Systems & Operating Systems',
+        group: 'Mixed-Signal, DSP & VLSI',
         institution: 'UCLA',
         course: 'B.S. in Electrical Engineering',
         title: '2D Discrete Fourier Transform (DFT) Image Restoration & Noise Filtering in MATLAB',
@@ -1235,11 +1280,11 @@
       },
       {
         num: 30,
-        group: 'RTL, Synthesis & IC Design',
+        group: 'Mixed-Signal, DSP & VLSI',
         institution: 'UCLA',
         course: 'B.S. in Electrical Engineering',
-        title: 'LTI Vocal Tract Speech Synthesis Model & Speaker Amplifier with Wireless RF Transmitter',
-        description: 'Modeled human speech production in MATLAB as a Linear Time-Invariant (LTI) system excited by a periodic glottal pulse train, and designed/tested a hardware audio speaker amplifier integrated with a wireless RF transmitter and receiver circuit.',
+        title: 'LTI Vocal Tract Speech Synthesis & Speaker Amplifier with Wireless Transceiver',
+        description: 'Modeled human speech production in MATLAB as a Linear Time-Invariant (LTI) system excited by a periodic glottal pulse train, and designed and tested a hardware audio speaker amplifier integrated with a wireless RF transmitter and receiver circuit.',
         tags: ['MATLAB LTI Modeling', 'Analog & RF Circuit Design', 'Hardware Lab']
       }
     ];
@@ -1254,10 +1299,10 @@
       });
 
       container.innerHTML = filtered.map(p => `
-        <article class="cv-surface print-break-avoid bg-white dark:bg-slate-900 border border-[#cbd5e1] dark:border-slate-800 rounded-lg p-5 shadow-2xs flex flex-col justify-between">
+        <article class="cv-surface print-break-avoid bg-white dark:bg-[#111827] border border-[#cbd5e1] dark:border-slate-800 rounded-lg p-5 shadow-2xs flex flex-col justify-between">
           <div class="space-y-2.5">
             <div class="flex items-baseline justify-between gap-2 sub-rule pb-2">
-              <span class="font-mono text-xs font-semibold text-[#1e3a8a] dark:text-sky-400">
+              <span class="font-mono text-xs font-semibold text-[#1e3a8a] dark:text-[#60a5fa]">
                 ${p.institution} &bull; ${p.course}
               </span>
               <span class="font-mono text-[11px] text-slate-400 dark:text-slate-500 shrink-0">
@@ -1288,7 +1333,7 @@
         const isCurrent = btn.getAttribute('data-filter') === group;
         btn.className = isCurrent
           ? 'proj-tab px-3 py-1.5 rounded text-xs font-mono font-semibold bg-[#1e3a8a] text-white transition cursor-pointer'
-          : 'proj-tab px-3 py-1.5 rounded text-xs font-mono font-medium bg-white dark:bg-slate-900 text-slate-700 dark:text-slate-300 border border-[#cbd5e1] dark:border-slate-700 hover:border-[#1e3a8a] transition cursor-pointer';
+          : 'proj-tab px-3 py-1.5 rounded text-xs font-mono font-medium bg-white dark:bg-[#111827] text-slate-700 dark:text-slate-300 border border-[#cbd5e1] dark:border-slate-700 hover:border-[#1e3a8a] transition cursor-pointer';
       });
       renderProjects();
     }
@@ -1297,7 +1342,7 @@
       const htmlEl = document.documentElement;
       const isDark = htmlEl.classList.toggle('dark');
       const label = document.getElementById('themeToggleLabel');
-      label.textContent = isDark ? 'Switch to Light Mode' : 'Switch to Dark Mode';
+      label.textContent = isDark ? 'Light Mode' : 'Dark Mode';
     }
 
     function exportCV() {
