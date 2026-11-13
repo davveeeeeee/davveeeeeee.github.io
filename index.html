@@ -201,7 +201,7 @@
             Processor Architecture, Performance Modeling &amp; Coherent Memory Systems
           </div>
           <p class="text-sm sm:text-base text-slate-800 dark:text-slate-200 mt-1 leading-relaxed">
-            <strong>12+ years of pre- and post-silicon CPU, GPU, and AI-accelerator execution</strong> uniting <strong>C++ cycle-accurate architectural simulation</strong>, <strong>standalone DPI-C++ co-simulation &amp; performance-counter modeling</strong>, <strong>multi-level cache &amp; coherent interconnect protocols (ARM CHI, MESI)</strong>, and <strong>pre-RTL through silicon correlation</strong> across flagship compute platforms.
+            <strong>12+ years of pre- and post-silicon CPU, GPU, and AI-accelerator execution</strong> uniting <strong>C++ cycle-accurate architectural simulation</strong>, <strong>standalone DPI-C++ co-simulation &amp; hardware telemetry modeling (ARM SPE, Performance Counters)</strong>, <strong>multi-level cache &amp; coherent interconnect protocols (ARM CHI, MESI)</strong>, and <strong>pre-RTL through silicon correlation</strong> across flagship compute platforms.
           </p>
         </div>
 
@@ -210,7 +210,7 @@
             Staff Design Verification Engineer and Technical Lead at <strong>Qualcomm Incorporated</strong> in Austin, Texas, with <strong>12+ years of semiconductor industry experience</strong> spanning processor microarchitecture, C++ functional and performance reference modeling, pre-silicon co-simulation infrastructure, and post-silicon microprocessor bring-up. Directs, guides, and mentors verification engineers across four Snapdragon GPU generations covering <strong>Multi-Hop Ray-Tracing &amp; BVH Tree-Traversal Subsystems</strong>, <strong>Hardware Ray-Intersection Engines</strong>, <strong>Shader L0 &amp; Unified Cache Hierarchies</strong>, and <strong>GPU-Integrated AI/ML Matrix Compute Accelerators</strong>—architecting standalone vector-driven <strong>C++ Direct Programming Interface (DPI-C)</strong> replay harnesses, cycle-accurate C++ co-simulation models, and hardware performance-counter correlation frameworks bridging architectural reference models with live Shader Processor RTL.
           </p>
           <p>
-            Prior industrial engineering experience includes service as Member of Technical Staff at <strong>Advanced Micro Devices (AMD)</strong> leading x86-64 post-silicon validation, hardware emulation, and C++/assembly diagnostic profiling for flagship EPYC server and Ryzen client Core Complex (CCX) microprocessors; Audio Design Verification Engineer at <strong>Cirrus Logic</strong> serving as primary verification architect across 11 mixed-signal and digital IC blocks; CPU Design Verification Engineer at the <strong>Samsung Austin R&amp;D Center (SARC | ACL)</strong> focusing on custom Exynos CPU Load-Store Units (LSU), Page Table-Walkers, and multi-threaded L1/TLB Memory Management Units (MMU); and CPU Design Engineer at <strong>Arm Ltd.</strong> working across Cortex-A57, A72, A76, Ares, Zeus, Hera, and Hercules CPU frontend pipelines, <strong>ARM AMBA CHI coherent interconnects</strong>, and automated synthesis/place-and-route timing closure flows. Industrial practice is reinforced by graduate research in cycle-accurate C++ processor simulation (SESC), dynamic out-of-order hardware design (Tomasulo RTL), formal verification (Synopsys VC-Formal), operating systems, and AI/ML workloads across <strong>Georgia Tech</strong>, <strong>San José State University</strong>, <strong>UCLA</strong>, <strong>UC Santa Cruz</strong>, and <strong>UT Austin</strong>.
+            Prior industrial engineering experience includes service as Member of Technical Staff at <strong>Advanced Micro Devices (AMD)</strong> leading x86-64 post-silicon validation, hardware emulation, and C++/assembly diagnostic profiling for flagship EPYC server and Ryzen client Core Complex (CCX) microprocessors; Audio Design Verification Engineer at <strong>Cirrus Logic</strong> serving as primary verification architect across 11 mixed-signal and digital IC blocks; CPU Design Verification Engineer at the <strong>Samsung Austin R&amp;D Center (SARC | ACL)</strong> focusing on custom Exynos CPU Load-Store Units (LSU), Page Table-Walkers, and multi-threaded L1/TLB Memory Management Units (MMU); and CPU Design Engineer at <strong>Arm Ltd.</strong> working across Cortex-A57, A72, A76, Ares, Zeus, Hera, and Hercules CPU frontend pipelines, <strong>ARM AMBA CHI coherent interconnects</strong>, <strong>Statistical Profiling Extension (SPE) hardware telemetry</strong>, <strong>Pointer Authentication (PAC)</strong>, and automated synthesis/place-and-route timing closure flows. Industrial practice is reinforced by graduate research in cycle-accurate C++ processor simulation (SESC), dynamic out-of-order hardware design (Tomasulo RTL), formal verification (Synopsys VC-Formal), operating systems, and AI/ML workloads across <strong>Georgia Tech</strong>, <strong>San José State University</strong>, <strong>UCLA</strong>, <strong>UC Santa Cruz</strong>, and <strong>UT Austin</strong>.
           </p>
         </div>
 
@@ -643,7 +643,7 @@
               <strong>Graduate Rotation — ARM AMBA CHI Coherent Interconnect &amp; Automated Synthesis/PnR Timing Pipeline:</strong> Completed a multi-disciplinary rotation across Coherent Interconnect Verification, RTL Design, and Physical Implementation—validating <strong>ARM AMBA CHI (Coherent Hub Interface)</strong> protocol transactions, snoop flows, and link-layer credit exchanges, and engineering a Jenkins CI/CD pipeline scanning Git RTL check-ins across Core units (Decode, Rename, ALU) to automate synthesis, floorplanning, place-and-route, and power/timing PPA analysis.
             </li>
             <li>
-              <strong>Reference Modeling &amp; ARMv8 ISA Sign-Off:</strong> Authored SystemVerilog/UVM functional reference models, instruction scoreboards, stimulus generators, and assembly workloads verifying ARMv8.0–v8.4 ISA extensions through production core release sign-off.
+              <strong>Reference Modeling, SPE Telemetry &amp; ARMv8 ISA Sign-Off:</strong> Authored SystemVerilog/UVM functional reference models, instruction scoreboards, stimulus generators, and assembly workloads verifying ARMv8.0–v8.4 ISA extensions—including the <strong>Statistical Profiling Extension (SPE)</strong> for hardware latency/event sampling and <strong>Pointer Authentication (PAC)</strong>—through production core release sign-off.
             </li>
             <li>
               <strong>Resettable Flop Minimization &amp; Memory Subsystem Validation:</strong> Determined minimal resettable flip-flop subsets to prevent pipeline X-propagation while minimizing sequential area/power overhead, and contributed to Memory Subsystem validation.
@@ -795,7 +795,7 @@
           <ul class="space-y-1.5 text-sm text-slate-800 dark:text-slate-200 leading-snug list-disc pl-4">
             <li><strong>C++ Cycle-Accurate Simulators (SESC)</strong></li>
             <li><strong>Standalone C++/DPI-C Vector Replay Harnesses</strong></li>
-            <li><strong>Hardware Performance-Counter &amp; PPA Correlation</strong></li>
+            <li><strong>Hardware Performance-Counter, ARM SPE &amp; PPA Correlation</strong></li>
             <li><strong>Hardware Emulation, Post-Silicon Profiling &amp; SLT</strong></li>
             <li><strong>Internal x86 Microarchitectural Instruction Stepper</strong></li>
             <li><strong>Synopsys VCS, Verdi &amp; Cadence Xcelium</strong></li>
@@ -815,7 +815,7 @@
           <ul class="space-y-1.5 text-sm text-slate-800 dark:text-slate-200 leading-snug list-disc pl-4">
             <li><strong>Cache Coherency &amp; Interconnects (ARM CHI, MESI, AMBA AXI/AHB)</strong></li>
             <li><strong>L0/L1/L2 Cache Hierarchies &amp; Replacement Policies (NXLRU)</strong></li>
-            <li><strong>Load/Store Units (LSU), Page Table-Walkers &amp; TLB MMU</strong></li>
+            <li><strong>Load/Store Units (LSU), Page Table-Walkers, TLB MMU &amp; ARMv8 PAC</strong></li>
             <li><strong>CPU Core Complex — CCX &amp; Quad-Core SMP Clusters</strong></li>
             <li><strong>Superscalar Frontend (Fetch, Decode, Rename, ROB, CDB)</strong></li>
             <li><strong>Branch Prediction &amp; Speculative Execution</strong></li>
