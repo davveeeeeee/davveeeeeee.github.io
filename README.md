@@ -1,6 +1,6 @@
 # David Terrence Giberti, M.S. — Curriculum Vitae & Engineering Portfolio
 
-**Live Curriculum Vitae Website:** [https://davveeeeeee.github.io/](https://davveeeeeee.github.io/)
+**Live Curriculum Vitae Website:** [https://davveeeeeee.github.io/](https://www.davidgiberti.com)
 
 * **Current Role:** Staff Design Verification Engineer & Team Lead — Qualcomm Incorporated (Austin, TX)
 * **Career Focus:** SoC Performance Architect • SoC Architect • CPU / Core Performance Architect • Processor Microarchitect
