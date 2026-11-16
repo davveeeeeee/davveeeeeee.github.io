@@ -5,10 +5,17 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>David Terrence Giberti, M.S. — Curriculum Vitae &amp; Engineering Portfolio</title>
   <meta name="description" content="Curriculum Vitae and Engineering Portfolio of David Terrence Giberti, M.S. — 12+ years of semiconductor industry experience across Qualcomm, AMD, Cirrus Logic, Samsung SARC, and Arm spanning GPU/CPU/Audio DSP microarchitecture verification, standalone DPI-C++ vector replay harnesses, AMBA CHI/AXI &amp; cache/MMU subsystems, and post-silicon microprocessor bring-up." />
+  <link rel="canonical" href="https://www.davidgiberti.com/" />
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='12' fill='%231e3a8a'/%3E%3Ctext x='50%25' y='54%25' dominant-baseline='middle' text-anchor='middle' fill='%23ffffff' font-family='Georgia,serif' font-weight='bold' font-size='28'%3EDG%3C/text%3E%3C/svg%3E" />
+
+  <!-- Open Graph & Twitter Card Metadata -->
   <meta property="og:title" content="David Terrence Giberti, M.S. — Curriculum Vitae &amp; Engineering Portfolio" />
   <meta property="og:description" content="Staff Design Verification Engineer &amp; Technical Lead (12+ Years Semiconductor Experience) • M.S. EE (SJSU, 3.91 GPA) • M.S. CS Candidate (Georgia Tech) • GPU/CPU/DSP Microarchitecture, Standalone DPI-C++ Reference Validation &amp; Memory Subsystems." />
   <meta property="og:type" content="website" />
   <meta property="og:url" content="https://www.davidgiberti.com/" />
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="David Terrence Giberti, M.S. — Curriculum Vitae &amp; Engineering Portfolio" />
+  <meta name="twitter:description" content="Staff Design Verification Engineer &amp; Technical Lead (12+ Years Semiconductor Experience) • M.S. EE (SJSU, 3.91 GPA) • M.S. CS Candidate (Georgia Tech) • GPU/CPU/DSP Microarchitecture, Standalone DPI-C++ Reference Validation &amp; Memory Subsystems." />
 
   <!-- Tailwind CSS -->
   <script src="https://cdn.tailwindcss.com"></script>
@@ -16,8 +23,7 @@
   <!-- Google Fonts: Merriweather (Scholarly Serif), Source Sans 3 (Clean Academic Sans), JetBrains Mono (Course & Technical Codes) -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600&family=Merriweather:ital,wght@0,400;0,700;0,900;1,400&display=swap" rel="stylesheet">
-  <link href="https://fonts.googleapis.com/css2?family=Source+Sans+3:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600&family=Merriweather:ital,wght@0,400;0,700;0,900;1,400&family=Source+Sans+3:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
 
   <script>
     tailwind.config = {
@@ -101,7 +107,7 @@
 <body class="bg-[#fafaf9] text-[#0f172a] dark:bg-[#0b0f19] dark:text-[#f8fafc] font-sans antialiased transition-colors duration-200 min-h-screen flex flex-col">
 
   <!-- =====================================================================
-       STICKY ACADEMIC NAVIGATION BAR (ALL 6 SECTIONS, UNCROWDED FOR 14" SCREENS)
+       STICKY ACADEMIC NAVIGATION BAR (DESKTOP + MOBILE JUMP BAR)
        ===================================================================== -->
   <header class="no-print sticky top-0 z-40 bg-white/95 dark:bg-[#111827]/95 backdrop-blur-sm border-b border-[#cbd5e1] dark:border-slate-800">
     <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 h-14 flex items-center justify-between gap-2">
@@ -110,8 +116,8 @@
         David Terrence Giberti, M.S. <span class="hidden xl:inline font-sans font-normal text-xs text-slate-500 dark:text-slate-400 ml-1">— Curriculum Vitae</span>
       </a>
 
-      <!-- Center: Roman Numeral Section Links -->
-      <nav class="hidden lg:flex items-center space-x-1 text-xs font-semibold tracking-wide text-slate-700 dark:text-slate-300">
+      <!-- Center: Roman Numeral Section Links (Desktop) -->
+      <nav aria-label="Primary section navigation" class="hidden lg:flex items-center space-x-1 text-xs font-semibold tracking-wide text-slate-700 dark:text-slate-300">
         <a href="#section-i" class="px-2 py-1.5 rounded hover:bg-slate-100 dark:hover:bg-slate-800 hover:text-[#1e3a8a] dark:hover:text-sky-400 transition">I. Overview</a>
         <a href="#section-ii" class="px-2 py-1.5 rounded hover:bg-slate-100 dark:hover:bg-slate-800 hover:text-[#1e3a8a] dark:hover:text-sky-400 transition">II. Education</a>
         <a href="#section-iii" class="px-2 py-1.5 rounded hover:bg-slate-100 dark:hover:bg-slate-800 hover:text-[#1e3a8a] dark:hover:text-sky-400 transition">III. Experience</a>
@@ -130,6 +136,18 @@
         </button>
       </div>
     </div>
+
+    <!-- Compact Horizontal-Scroll Section Jump Bar (Mobile & Tablet) -->
+    <nav aria-label="Mobile section navigation" class="lg:hidden border-t border-slate-200/80 dark:border-slate-800/80 overflow-x-auto">
+      <div class="max-w-6xl mx-auto px-4 sm:px-6 py-1.5 flex items-center space-x-1 text-[11px] font-semibold tracking-wide text-slate-700 dark:text-slate-300 whitespace-nowrap">
+        <a href="#section-i" class="px-2 py-1 rounded hover:bg-slate-100 dark:hover:bg-slate-800 hover:text-[#1e3a8a] dark:hover:text-sky-400 transition">I. Overview</a>
+        <a href="#section-ii" class="px-2 py-1 rounded hover:bg-slate-100 dark:hover:bg-slate-800 hover:text-[#1e3a8a] dark:hover:text-sky-400 transition">II. Education</a>
+        <a href="#section-iii" class="px-2 py-1 rounded hover:bg-slate-100 dark:hover:bg-slate-800 hover:text-[#1e3a8a] dark:hover:text-sky-400 transition">III. Experience</a>
+        <a href="#section-iv" class="px-2 py-1 rounded hover:bg-slate-100 dark:hover:bg-slate-800 hover:text-[#1e3a8a] dark:hover:text-sky-400 transition">IV. Expertise</a>
+        <a href="#section-v" class="px-2 py-1 rounded hover:bg-slate-100 dark:hover:bg-slate-800 hover:text-[#1e3a8a] dark:hover:text-sky-400 transition">V. Projects</a>
+        <a href="#section-vi" class="px-2 py-1 rounded hover:bg-slate-100 dark:hover:bg-slate-800 hover:text-[#1e3a8a] dark:hover:text-sky-400 transition">VI. Affiliations</a>
+      </div>
+    </nav>
   </header>
 
   <!-- =====================================================================
@@ -185,7 +203,7 @@
       <!-- ===================================================================
            SECTION I: ACADEMIC & PROFESSIONAL OVERVIEW
            =================================================================== -->
-      <div id="section-i" class="scroll-mt-20 pt-8 space-y-6">
+      <div id="section-i" class="scroll-mt-24 lg:scroll-mt-20 pt-8 space-y-6">
         <div class="academic-rule pb-2 flex flex-col sm:flex-row sm:items-baseline justify-between gap-2">
           <h2 class="font-serif text-xl sm:text-2xl font-bold text-[#0f172a] dark:text-white">
             I. Academic &amp; Professional Overview
@@ -201,16 +219,16 @@
             Processor Microarchitecture, C++/DPI-C Reference Validation &amp; Memory Subsystems
           </div>
           <p class="text-sm sm:text-base text-slate-800 dark:text-slate-200 mt-1 leading-relaxed">
-            <strong>12+ years across flagship GPU, CPU, AI-accelerator, and Audio DSP silicon</strong> combining <strong>standalone vector-driven DPI-C++ replay harnesses &amp; C++ reference co-simulation</strong>, <strong>hardware telemetry &amp; performance-counter verification (ARMv8 SPE, GPU RTU Counters)</strong>, <strong>multi-level cache/MMU &amp; coherent interconnect validation (AMBA CHI/AXI, LSU, TLB)</strong>, <strong>automated RTL-to-Physical-Design PPA flows</strong>, and <strong>graduate C++ cycle-accurate architectural simulation (SESC)</strong>.
+            <strong>12+ years across flagship GPU (Ray Tracing &amp; AI Matrix), CPU, and Audio DSP silicon</strong> combining <strong>standalone vector-driven DPI-C++ replay harnesses &amp; C++ reference co-simulation</strong>, <strong>hardware telemetry &amp; performance-counter verification (ARMv8 SPE, GPU RTU Counters)</strong>, <strong>multi-level cache/MMU &amp; coherent interconnect validation (AMBA CHI/AXI, LSU, TLB)</strong>, <strong>automated RTL-to-Physical-Design PPA flows</strong>, and <strong>graduate C++ cycle-accurate architectural simulation (SESC)</strong>.
           </p>
         </div>
 
         <div class="space-y-4 text-base text-slate-800 dark:text-slate-200 leading-relaxed text-justify">
           <p>
-            Staff Design Verification Engineer and Technical Lead at <strong>Qualcomm Incorporated</strong> in Austin, Texas, with <strong>12+ years of semiconductor industry experience</strong> spanning processor microarchitecture verification, C++/DPI-C reference model co-simulation, and post-silicon microprocessor bring-up. Directs, manages, guides, and mentors a team of verification engineers across four Adreno GPU Shader Processor products in the Snapdragon lineup—architecting ground-up SystemVerilog/UVM environments and DPI-C++ reference co-simulation for the <strong>Multi-Hop Raytracer / Ray Tracing Tree Traversal Unit (RTTU)</strong> and <strong>Tree Traversal Unit (TTU)</strong>, maintaining end-to-end ownership of the inherited <strong>Ray Tracing Unit (RTU)</strong> testbench/DPI-C++ layer and <strong>Shader L0 Cache</strong> testbench, and completing a 4-month interim verification rotation on the <strong>Matrix Arithmetic Logic Unit (MALU — GPU AI/ML matrix compute processor)</strong>. Built a standalone vector-driven <strong>DPI-C++ replay harness</strong> verifying 100% bit-exact equivalence against functional modeling input/output vectors, refactored SystemVerilog/DPI-C++ glue logic linking untimed C++ ray-tracing reference models to cycle-accurate RTL, and engineered mid-simulation reset UVM architectures alongside RTU performance-counter scoreboard updates.
+            Staff Design Verification Engineer and Technical Lead at <strong>Qualcomm Incorporated</strong> in Austin, Texas, with <strong>12+ years of semiconductor industry experience</strong> spanning processor microarchitecture verification, C++/DPI-C reference model co-simulation, and post-silicon microprocessor bring-up. Directs, manages, guides, and mentors a team of verification engineers across four Adreno GPU Shader Processor products in the Snapdragon lineup—architecting ground-up SystemVerilog/UVM environments and DPI-C++ reference co-simulation for the <strong>Multi-Hop Raytracer / Ray Tracing Tree Traversal Unit (RTTU)</strong> and <strong>Tree Traversal Unit (TTU)</strong>, maintaining end-to-end ownership of the inherited <strong>Ray Tracing Unit (RTU)</strong> testbench/DPI-C++ layer and <strong>Shader L0 Cache</strong> testbench, and completing a 4-month interim verification rotation on the <strong>Matrix Arithmetic Logic Unit (MALU — GPU AI/ML matrix compute processor)</strong>. Built a standalone vector-driven <strong>DPI-C++ replay harness</strong> verifying 100% bit-exact equivalence against functional modeling input/output vectors, architected and maintained SystemVerilog/DPI-C++ glue logic linking untimed C++ ray-tracing reference models to cycle-accurate RTL, and engineered mid-simulation reset UVM architectures alongside RTU performance-counter scoreboard updates.
           </p>
           <p>
-            Prior industrial appointments include service as Member of Technical Staff at <strong>Advanced Micro Devices (AMD)</strong> executing x86-64 post-silicon verification for EPYC and Ryzen <strong>Core Complex (CCX)</strong> processors—authoring a custom x86 random assembly generator injected into C++ post-silicon tests and debugging post-silicon FAILs and internal pipeline states via an assembly instruction stepper; Audio Design Verification Engineer at <strong>Cirrus Logic</strong> verifying custom <strong>Audio Digital Signal Processors (DSPs)</strong> and mixed-signal codecs for flagship consumer mobile and wearable audio devices; CPU Design Verification Engineer at the <strong>Samsung Austin R&amp;D Center (SARC | ACL)</strong> verifying custom Exynos CPU <strong>Load-Store Units (LSU)</strong>, Page Table-Walkers, and multi-threaded <strong>L1 Cache / TLB MMU</strong> subsystems; and <strong>CPU Design Engineer at Arm Ltd.</strong> verifying Cortex-A57, Cortex-A72, Cortex-A76, Cortex-A78, Cortex-X1, Neoverse N1, and Neoverse V1 out-of-order CPU frontends (including minimal resettable flip-flop X-propagation analysis), <strong>Statistical Profiling Extension (SPE)</strong> hardware telemetry, <strong>Pointer Authentication (PAC)</strong>, <strong>AMBA CHI/AXI</strong> functional coverage, and an automated Jenkins CI/CD RTL-to-Physical-Design synthesis, floorplanning, and place-and-route HTML timing pipeline. Industrial practice is reinforced by graduate coursework in cycle-accurate C++ processor simulation (<strong>SESC</strong>), out-of-order SystemVerilog hardware design (Mini-Tomasulo RTL), formal deadlock/liveness verification (<strong>Synopsys VC-Formal</strong>), operating systems concurrency, and AI/ML workloads across <strong>Georgia Tech</strong>, <strong>San José State University</strong>, <strong>UCLA</strong>, <strong>UC Santa Cruz</strong>, and <strong>UT Austin</strong>.
+            Prior industrial appointments include service as Member of Technical Staff at <strong>Advanced Micro Devices (AMD)</strong> executing x86-64 post-silicon verification for EPYC and Ryzen <strong>Core Complex (CCX)</strong> processors—authoring a custom x86 random assembly generator injected into C++ post-silicon tests and debugging post-silicon FAILs and internal pipeline states via an assembly instruction stepper; Audio Design Verification Engineer at <strong>Cirrus Logic</strong> verifying custom <strong>Audio Digital Signal Processors (DSPs)</strong> and mixed-signal codecs for flagship consumer mobile and wearable audio devices; CPU Design Verification Engineer at the <strong>Samsung Austin R&amp;D Center (SARC | ACL)</strong> verifying custom Exynos CPU <strong>Load-Store Units (LSU)</strong>, Page Table-Walkers, and multi-threaded <strong>L1 Cache / TLB MMU</strong> subsystems; and <strong>CPU Design Engineer at Arm Ltd.</strong> executing early-to-late microarchitecture bring-up, pre-silicon verification, and IP release sign-off across Cortex-A57, Cortex-A72, Cortex-A76, Cortex-A78, Cortex-X1, Neoverse N1, and Neoverse V1 out-of-order CPU frontends (including minimal resettable flip-flop X-propagation analysis), <strong>Statistical Profiling Extension (SPE)</strong> hardware telemetry, <strong>Pointer Authentication (PAC)</strong>, <strong>AMBA CHI/AXI</strong> functional coverage, and an automated Jenkins CI/CD RTL-to-Physical-Design synthesis, floorplanning, and place-and-route HTML timing pipeline. Industrial practice is reinforced by graduate coursework in cycle-accurate C++ processor simulation (<strong>SESC</strong>), out-of-order SystemVerilog hardware design (Mini-Tomasulo RTL), formal deadlock/liveness verification (<strong>Synopsys VC-Formal</strong>), operating systems concurrency, and AI/ML workloads across <strong>Georgia Tech</strong>, <strong>San José State University</strong>, <strong>UCLA</strong>, <strong>UC Santa Cruz</strong>, and <strong>UT Austin</strong>.
           </p>
         </div>
 
@@ -293,7 +311,7 @@
          SECTION II: EDUCATION & ACADEMIC CREDENTIALS
          (Ordered by Degree Hierarchy: MS CS -> MS EE -> BS EE -> UCSC -> UT Austin)
          =================================================================== -->
-    <section id="section-ii" class="scroll-mt-20 space-y-6">
+    <section id="section-ii" class="scroll-mt-24 lg:scroll-mt-20 space-y-6">
       <div class="academic-rule pb-2 flex flex-col sm:flex-row sm:items-baseline justify-between gap-2">
         <h2 class="font-serif text-xl sm:text-2xl font-bold text-[#0f172a] dark:text-white">
           II. Education &amp; Academic Credentials
@@ -334,7 +352,7 @@
               </li>
               <li>
                 <span class="font-mono text-xs font-semibold text-[#1e3a8a] dark:text-sky-400">CS 8001:</span>
-                <span>Optimization Algorithms in Hardware (OAH)</span>
+                <span>Optimization Algorithms in Hardware (OAH — Graduate Seminar)</span>
               </li>
             </ul>
           </div>
@@ -485,7 +503,7 @@
          SECTION III: PROFESSIONAL INDUSTRY & ACADEMIC EXPERIENCE
          (Split into A. Semiconductor Industry & B. University Teaching)
          =================================================================== -->
-    <section id="section-iii" class="scroll-mt-20 space-y-8">
+    <section id="section-iii" class="scroll-mt-24 lg:scroll-mt-20 space-y-8">
       <div class="academic-rule pb-2 flex flex-col sm:flex-row sm:items-baseline justify-between gap-2">
         <h2 class="font-serif text-xl sm:text-2xl font-bold text-[#0f172a] dark:text-white">
           III. Professional Industry &amp; Academic Experience
@@ -512,7 +530,7 @@
                 Qualcomm Incorporated <span class="font-sans font-normal text-sm text-slate-500 dark:text-slate-400">— Austin, TX</span>
               </h4>
               <p class="text-sm font-semibold text-[#1e3a8a] dark:text-sky-400">
-                Staff Design Verification Engineer &amp; Team Lead
+                Staff Design Verification Engineer &amp; Technical Lead
               </p>
             </div>
             <div class="font-mono text-xs font-semibold text-slate-700 dark:text-slate-300 shrink-0">
@@ -639,7 +657,7 @@
           </div>
           <ul class="mt-4 space-y-2.5 text-sm sm:text-base text-slate-800 dark:text-slate-200 leading-relaxed list-disc pl-5">
             <li>
-              <strong>High-Performance Cortex-A, Cortex-X &amp; Neoverse CPU Frontend Verification &amp; Reset Flop Minimization (A57, A72, A76, A78, X1, N1, V1):</strong> Executed core-level pre-silicon verification, microarchitecture bring-up, and release sign-off across Arm Cortex-A57, Cortex-A72, Cortex-A76, Cortex-A78, Cortex-X1, Neoverse N1, and Neoverse V1 out-of-order processors—focusing on Instruction Fetch, Decode, Register Rename, and ALU execution through Commit interfaced with a Load/Store Model, and identifying minimal resettable flip-flop subsets to prevent pipeline X-propagation.
+              <strong>High-Performance Cortex-A, Cortex-X &amp; Neoverse CPU Frontend Verification &amp; Reset Flop Minimization (A57, A72, A76, A78, X1, N1, V1):</strong> Executed core-level pre-silicon verification, early-to-late microarchitecture bring-up, and IP release sign-off across Arm Cortex-A57, Cortex-A72, Cortex-A76, Cortex-A78, Cortex-X1, Neoverse N1, and Neoverse V1 out-of-order processors—focusing on Instruction Fetch, Decode, Register Rename, and ALU execution through Commit interfaced with a Load/Store Model, and identifying minimal resettable flip-flop subsets to prevent pipeline X-propagation.
             </li>
             <li>
               <strong>ARMv8.0–v8.4 ISA, Statistical Profiling Extension (SPE) &amp; Pointer Authentication (PAC):</strong> Personally owned testbench updates, UVM checkers, instruction scoreboards, SystemVerilog reference checkers, and assembly test patterns verifying ARMv8.0, v8.2, v8.3, and v8.4 architectural features—including the <strong>Statistical Profiling Extension (SPE)</strong> for hardware latency/event profiling and <strong>Pointer Authentication (PAC)</strong>.
@@ -778,7 +796,7 @@
     <!-- ===================================================================
          SECTION IV: TECHNICAL EXPERTISE & ENGINEERING TOOLS
          =================================================================== -->
-    <section id="section-iv" class="scroll-mt-20 space-y-6">
+    <section id="section-iv" class="scroll-mt-24 lg:scroll-mt-20 space-y-6">
       <div class="academic-rule pb-2">
         <h2 class="font-serif text-xl sm:text-2xl font-bold text-[#0f172a] dark:text-white">
           IV. Technical Expertise &amp; Engineering Tools
@@ -866,7 +884,7 @@
          SECTION V: SELECTED TECHNICAL RESEARCH, ARCHITECTURAL MODELING & VERIFICATION PROJECTS
          (All 32 Verified Projects Across Georgia Tech, UCSC, UT Austin, SJSU & UCLA)
          =================================================================== -->
-    <section id="section-v" class="scroll-mt-20 space-y-6">
+    <section id="section-v" class="scroll-mt-24 lg:scroll-mt-20 space-y-6">
       <div class="academic-rule pb-2 flex flex-col lg:flex-row lg:items-baseline justify-between gap-2">
         <h2 class="font-serif text-xl sm:text-2xl font-bold text-[#0f172a] dark:text-white">
           V. Selected Technical Research, Architectural Modeling &amp; Verification Projects
@@ -907,7 +925,7 @@
     <!-- ===================================================================
          SECTION VI: HONOR SOCIETIES, PROFESSIONAL AFFILIATIONS & LANGUAGES
          =================================================================== -->
-    <section id="section-vi" class="scroll-mt-20 space-y-6">
+    <section id="section-vi" class="scroll-mt-24 lg:scroll-mt-20 space-y-6">
       <div class="academic-rule pb-2">
         <h2 class="font-serif text-xl sm:text-2xl font-bold text-[#0f172a] dark:text-white">
           VI. Honor Societies, Professional Affiliations &amp; Languages
@@ -984,7 +1002,7 @@
         <span>&bull;</span>
         <a href="https://www.linkedin.com/in/davidgiberti" target="_blank" rel="noopener noreferrer" class="hover:text-[#1e3a8a] dark:hover:text-[#60a5fa] hover:underline">LinkedIn</a>
         <span>&bull;</span>
-        <a href="https://www.davidgiberti.com/" target="_blank" rel="noopener noreferrer" class="hover:text-[#1e3a8a] dark:hover:text-[#60a5fa] hover:underline">davidgiberti.com</a>
+        <a href="https://www.davidgiberti.com/" target="_blank" rel="noopener noreferrer" class="hover:text-[#1e3a8a] dark:hover:text-[#60a5fa] hover:underline">www.davidgiberti.com</a>
         <span>&bull;</span>
         <a href="https://github.com/davveeeeeee" target="_blank" rel="noopener noreferrer" class="hover:text-[#1e3a8a] dark:hover:text-[#60a5fa] hover:underline">GitHub Portfolio</a>
         <span>&bull;</span>
@@ -1078,17 +1096,17 @@
         group: 'Formal & UVM Verification',
         institution: 'UC Santa Cruz Extension',
         course: 'VLSI.X411: SystemVerilog Assertions & Formal Verification',
-        title: 'Host-to-Accelerator (H2A) Protocol Assertion IP & Deadlock Proof in Synopsys VC-Formal',
-        description: 'Developed a SystemVerilog Assertions (SVA) Assertion IP suite and formal verification plan for a point-to-point Host-to-Accelerator (H2A) protocol spanning a ready/valid Command Channel (64-bit operands; RST, INIT, HLT, and arithmetic OP commands) and an in-order/out-of-order Response Channel; formally proved handshake stability, post-reset/halt command ordering, non-duplicate outstanding command rules, bounded ready latency, and eventual completion liveness (deadlock freedom) in Synopsys VC-Formal.',
-        tags: ['SystemVerilog Assertions', 'Synopsys VC-Formal', 'Assertion IP', 'Deadlock & Liveness']
+        title: 'Host-to-Accelerator (H2A) SVA Assertion IP, RTL Bug Resolution & VC-Formal FPV Liveness Proof',
+        description: 'Developed a concurrent SystemVerilog Assertions (SVA) Assertion IP bound to a Host-to-Accelerator (H2A) slave controller and timer RTL in Synopsys VC-Formal (FPV); falsified and resolved three hardware RTL defects—tying ready backpressure to an in-flight command tracker to prevent timer overwrites, adding a sequential dead-time register to enforce single-cycle done pulses, and replacing a starving fixed-priority output loop with a Round-Robin Arbiter—and eliminated a bit-sliced Wolper scoreboard constraint paradox via a statically unrolled 8-command SVA liveness array to prove all 20 non-vacuous safety and 30-cycle bounded liveness properties.',
+        tags: ['SystemVerilog Assertions', 'Synopsys VC-Formal (FPV)', 'Round-Robin Arbiter RTL', 'Deadlock & Liveness']
       },
       {
         num: 10,
         group: 'Formal & UVM Verification',
         institution: 'UC Santa Cruz Extension',
         course: 'VLSI.X410: System & Functional Verification Using UVM',
-        title: '10G Ethernet MAC Core UVM Verification Environment, RAL & DPI-C Co-Simulation',
-        description: 'Architected a Universal Verification Methodology (UVM) environment from scratch for an OpenCores 10-Gigabit Ethernet MAC core featuring active TX, RX, Wishbone CSR (uvm_reg_predictor), and multi-domain Reset agents orchestrated via a Virtual Sequencer, an isolated C CRC-32 reference model over DPI-C, concurrent SVA checks, and 26 constrained-random test scenarios.',
+        title: '10G Ethernet MAC Core UVM Architecture Migration, RAL & 26-Test Sign-Off Suite',
+        description: 'Evolved the OpenCores 10-Gigabit Ethernet MAC verification suite into a standardized Universal Verification Methodology (UVM) component architecture featuring active TX, RX, Wishbone CSR (uvm_reg_predictor RAL), and multi-domain asynchronous Reset agents orchestrated via a Virtual Sequencer, an isolated C CRC-32 reference model over DPI-C, UVM watchdog overrides for 66,000+ frame counter-rollover stress, concurrent SVA checks, and a state-aware Makefile/Bash regression pipeline across 26 test scenarios (135 seeds, 0 failures).',
         tags: ['SystemVerilog', 'UVM & RAL', 'DPI-C', '10G Ethernet MAC']
       },
       {
@@ -1097,7 +1115,7 @@
         institution: 'UC Santa Cruz Extension',
         course: 'VLSI.X400: Advanced Verification with SystemVerilog OOP Testbench',
         title: '10G Ethernet MAC Core Class-Based SystemVerilog OOP Testbench & DPI-C Golden Model',
-        description: 'Engineered a layered, non-UVM SystemVerilog object-oriented verification environment from scratch for a 10GbE MAC core utilizing a mailbox-synchronized Generator, polymorphic Driver subclasses (0x9C fault injection and zero-IPG stress), a tri-monitor packet reconstruction FSM, a 5-mailbox Scoreboard linked to a C CRC-32 golden reference model via DPI-C, SVA protocol checks, and a 1,300-seed VCS regression suite.',
+        description: 'Engineered a layered, non-UVM SystemVerilog object-oriented verification environment from scratch for an OpenCores 10GbE MAC core utilizing a mailbox-synchronized Generator, polymorphic Driver subclasses (0x9C fault injection and zero-IPG stress), a tri-monitor packet reconstruction FSM, a 5-mailbox Scoreboard linked to a C CRC-32 golden reference model via DPI-C, SVA protocol checks, and a 1,300-seed VCS regression suite achieving 100% functional group coverage.',
         tags: ['SystemVerilog OOP', 'Polymorphic Drivers', 'DPI-C', '10G Ethernet MAC']
       },
       {
@@ -1300,6 +1318,7 @@
     let activeProjectFilter = 'All';
     let savedProjectFilterBeforePrint = 'All';
     let wasDarkBeforePrint = false;
+    let isPrintPrepared = false;
 
     function renderProjects() {
       const container = document.getElementById('projectsContainer');
@@ -1355,7 +1374,9 @@
       label.textContent = isDark ? 'Light Mode' : 'Dark Mode';
     }
 
-    window.addEventListener('beforeprint', () => {
+    function prepareForPrint() {
+      if (isPrintPrepared) return;
+      isPrintPrepared = true;
       savedProjectFilterBeforePrint = activeProjectFilter;
       if (activeProjectFilter !== 'All') {
         filterProjects('All');
@@ -1364,9 +1385,11 @@
       if (wasDarkBeforePrint) {
         document.documentElement.classList.remove('dark');
       }
-    });
+    }
 
-    window.addEventListener('afterprint', () => {
+    function restoreAfterPrint() {
+      if (!isPrintPrepared) return;
+      isPrintPrepared = false;
       if (wasDarkBeforePrint) {
         document.documentElement.classList.add('dark');
         wasDarkBeforePrint = false;
@@ -1374,17 +1397,23 @@
       if (savedProjectFilterBeforePrint !== 'All') {
         filterProjects(savedProjectFilterBeforePrint);
       }
-    });
+    }
+
+    window.addEventListener('beforeprint', prepareForPrint);
+    window.addEventListener('afterprint', restoreAfterPrint);
+
+    if (window.matchMedia) {
+      const printMediaQuery = window.matchMedia('print');
+      if (printMediaQuery.addEventListener) {
+        printMediaQuery.addEventListener('change', e => {
+          if (!e.matches) restoreAfterPrint();
+        });
+      }
+    }
 
     function exportCV() {
-      const prevFilter = activeProjectFilter;
-      if (prevFilter !== 'All') filterProjects('All');
-      const htmlEl = document.documentElement;
-      const isDark = htmlEl.classList.contains('dark');
-      if (isDark) htmlEl.classList.remove('dark');
+      prepareForPrint();
       window.print();
-      if (isDark) htmlEl.classList.add('dark');
-      if (prevFilter !== 'All') filterProjects(prevFilter);
     }
 
     window.onload = function () {
