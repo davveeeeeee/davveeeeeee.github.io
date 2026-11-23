@@ -813,7 +813,7 @@
           </div>
           <ul class="space-y-1.5 text-sm text-slate-800 dark:text-slate-200 leading-snug list-disc pl-4">
             <li><strong>Standalone DPI-C++ Vector Replay Harnesses</strong></li>
-            <li><strong>C++ Cycle-Accurate Simulators (SESC — Graduate)</strong></li>
+            <li><strong>C++ Cycle-Accurate Simulators (SESC &amp; BookSim 2D Mesh NoC — Graduate)</strong></li>
             <li><strong>Hardware Telemetry &amp; Counters (ARMv8 SPE, GPU RTU Counters)</strong></li>
             <li><strong>Automated RTL-to-PD Synthesis &amp; PnR Timing Flows (Jenkins CI)</strong></li>
             <li><strong>Post-Silicon Microprocessor Bring-Up &amp; C++/x86 Diagnostics</strong></li>
@@ -838,7 +838,7 @@
             <li><strong>Branch Prediction (2-Bit Moore FSM, BHT, SESC Predictors)</strong></li>
             <li><strong>L0/L1/L2 Cache Hierarchies &amp; NXLRU Replacement Policy</strong></li>
             <li><strong>Load/Store Units (LSU), Page Table-Walkers, TLB MMU &amp; ARMv8 PAC</strong></li>
-            <li><strong>Interconnect Protocols &amp; Coherency (AMBA CHI, AXI, AHB, MESI)</strong></li>
+            <li><strong>Interconnects, 2D Mesh NoC &amp; Coherency (AMBA CHI/AXI/AHB, DMESI Directory, MESI)</strong></li>
           </ul>
         </div>
 
@@ -882,7 +882,7 @@
 
     <!-- ===================================================================
          SECTION V: SELECTED TECHNICAL RESEARCH, ARCHITECTURAL MODELING & VERIFICATION PROJECTS
-         (All 32 Verified Projects Across Georgia Tech, UCSC, UT Austin, SJSU & UCLA)
+         (All 33 Verified Projects Across Georgia Tech, UCSC, UT Austin, SJSU & UCLA)
          =================================================================== -->
     <section id="section-v" class="scroll-mt-24 lg:scroll-mt-20 space-y-6">
       <div class="academic-rule pb-2 flex flex-col lg:flex-row lg:items-baseline justify-between gap-2">
@@ -890,17 +890,17 @@
           V. Selected Technical Research, Architectural Modeling &amp; Verification Projects
         </h2>
         <span class="font-mono text-xs text-slate-500 dark:text-slate-400">
-          32 Verified Graduate &amp; Undergraduate Engineering Deliverables
+          33 Verified Graduate &amp; Undergraduate Engineering Deliverables
         </span>
       </div>
 
       <!-- Technical Domain Filter Bar -->
       <div class="no-print flex flex-wrap gap-2 pt-1">
         <button onclick="filterProjects('All')" data-filter="All" class="proj-tab px-3 py-1.5 rounded text-xs font-mono font-semibold bg-[#1e3a8a] dark:bg-[#60a5fa] text-white dark:text-slate-950 transition cursor-pointer">
-          All Projects (32)
+          All Projects (33)
         </button>
         <button onclick="filterProjects('Computer Architecture & RTL')" data-filter="Computer Architecture & RTL" class="proj-tab px-3 py-1.5 rounded text-xs font-mono font-medium bg-white dark:bg-[#111827] text-slate-700 dark:text-slate-300 border border-[#cbd5e1] dark:border-slate-700 hover:border-[#1e3a8a] dark:hover:border-[#60a5fa] transition cursor-pointer">
-          Computer Architecture &amp; RTL (13)
+          Computer Architecture &amp; RTL (14)
         </button>
         <button onclick="filterProjects('Formal & UVM Verification')" data-filter="Formal & UVM Verification" class="proj-tab px-3 py-1.5 rounded text-xs font-mono font-medium bg-white dark:bg-[#111827] text-slate-700 dark:text-slate-300 border border-[#cbd5e1] dark:border-slate-700 hover:border-[#1e3a8a] dark:hover:border-[#60a5fa] transition cursor-pointer">
           Formal &amp; UVM Verification (4)
@@ -1012,11 +1012,11 @@
   </footer>
 
   <!-- =====================================================================
-       DATA STORE & INTERACTIVE FILTERING (ALL 32 VERIFIED PROJECTS)
+       DATA STORE & INTERACTIVE FILTERING (ALL 33 VERIFIED PROJECTS)
        ===================================================================== -->
   <script>
     const projectsData = [
-      // 1–6: Georgia Institute of Technology (CS 6290 & CS 6200)
+      // 1–7: Georgia Institute of Technology (CS 6290 & CS 6200)
       {
         num: 1,
         group: 'Computer Architecture & RTL',
@@ -1046,6 +1046,15 @@
       },
       {
         num: 4,
+        group: 'Computer Architecture & RTL',
+        institution: 'Georgia Institute of Technology',
+        course: 'CS 6290: High-Performance Computer Architecture',
+        title: '16-Core CMP DMESI Cache Coherence, Shadow Tag Directory & Parallel SPLASH-2 Scaling',
+        description: 'Engineered a per-core coherence shadow tag directory in C++ within SESC\'s SMPCache subsystem—preserving invalidated block tags across DMESI invalidations, way reclamations, and evictions despite tag-clearing state resets—to classify DL1 read, write, and shared-upgrade misses into compulsory, replacement, and coherence categories across 1-, 4-, and 16-thread SPLASH-2 LU workloads on a 16-core 4x4 mesh NoC CMP.',
+        tags: ['C++', 'SESC Simulator', 'DMESI Cache Coherence', '4x4 Mesh NoC CMP']
+      },
+      {
+        num: 5,
         group: 'Systems & OS',
         institution: 'Georgia Institute of Technology',
         course: 'CS 6200: Graduate Introduction to Operating Systems',
@@ -1054,7 +1063,7 @@
         tags: ['C++', 'Distributed File System', 'Read/Write Locking', 'gRPC & Protobuf']
       },
       {
-        num: 5,
+        num: 6,
         group: 'Systems & OS',
         institution: 'Georgia Institute of Technology',
         course: 'CS 6200: Graduate Introduction to Operating Systems',
@@ -1063,7 +1072,7 @@
         tags: ['C', 'POSIX Shared Memory', 'Semaphores', 'Zero-Copy IPC']
       },
       {
-        num: 6,
+        num: 7,
         group: 'Systems & OS',
         institution: 'Georgia Institute of Technology',
         course: 'CS 6200: Graduate Introduction to Operating Systems',
@@ -1072,9 +1081,9 @@
         tags: ['C', 'POSIX Threads (pthreads)', 'Mutex Sync', 'Concurrency']
       },
 
-      // 7–13: UC Santa Cruz Silicon Valley Extension
+      // 8–14: UC Santa Cruz Silicon Valley Extension
       {
-        num: 7,
+        num: 8,
         group: 'Computer Architecture & RTL',
         institution: 'UC Santa Cruz Extension',
         course: 'VLSI.X415: High-Performance Computer Architecture',
@@ -1083,7 +1092,7 @@
         tags: ['SystemVerilog RTL', 'Tomasulo OoO', 'ROB & CDB']
       },
       {
-        num: 8,
+        num: 9,
         group: 'Computer Architecture & RTL',
         institution: 'UC Santa Cruz Extension',
         course: 'VLSI.X415: High-Performance Computer Architecture',
@@ -1092,7 +1101,7 @@
         tags: ['SystemVerilog RTL', 'Moore FSM', 'Branch Prediction']
       },
       {
-        num: 9,
+        num: 10,
         group: 'Formal & UVM Verification',
         institution: 'UC Santa Cruz Extension',
         course: 'VLSI.X411: SystemVerilog Assertions & Formal Verification',
@@ -1101,7 +1110,7 @@
         tags: ['SystemVerilog Assertions', 'Synopsys VC-Formal (FPV)', 'Round-Robin Arbiter RTL', 'Deadlock & Liveness']
       },
       {
-        num: 10,
+        num: 11,
         group: 'Formal & UVM Verification',
         institution: 'UC Santa Cruz Extension',
         course: 'VLSI.X410: System & Functional Verification Using UVM',
@@ -1110,7 +1119,7 @@
         tags: ['SystemVerilog', 'UVM & RAL', 'DPI-C', '10G Ethernet MAC']
       },
       {
-        num: 11,
+        num: 12,
         group: 'Formal & UVM Verification',
         institution: 'UC Santa Cruz Extension',
         course: 'VLSI.X400: Advanced Verification with SystemVerilog OOP Testbench',
@@ -1119,7 +1128,7 @@
         tags: ['SystemVerilog OOP', 'Polymorphic Drivers', 'DPI-C', '10G Ethernet MAC']
       },
       {
-        num: 12,
+        num: 13,
         group: 'Computer Architecture & RTL',
         institution: 'UC Santa Cruz Extension',
         course: 'VLSI.X404: Digital Logic Design Using Verilog',
@@ -1128,7 +1137,7 @@
         tags: ['Verilog RTL', 'Synopsys Design Compiler', 'Synchronous FIFO']
       },
       {
-        num: 13,
+        num: 14,
         group: 'Computer Architecture & RTL',
         institution: 'UC Santa Cruz Extension',
         course: 'VLSI.X404: Digital Logic Design Using Verilog',
@@ -1137,9 +1146,9 @@
         tags: ['Verilog RTL', 'Dual-Port SRAM (2R2W)', 'Dual-Clock Memory', 'Synopsys VCS']
       },
 
-      // 14–20: The University of Texas at Austin (All 7 Verified Graded Assignments)
+      // 15–21: The University of Texas at Austin (All 7 Verified Graded Assignments)
       {
-        num: 14,
+        num: 15,
         group: 'AI & Machine Learning',
         institution: 'The University of Texas at Austin',
         course: 'Natural Language Processing with Generative AI',
@@ -1148,7 +1157,7 @@
         tags: ['Python', 'LLMs', 'RAG', 'Vector Embeddings']
       },
       {
-        num: 15,
+        num: 16,
         group: 'AI & Machine Learning',
         institution: 'The University of Texas at Austin',
         course: 'Introduction to Computer Vision',
@@ -1157,7 +1166,7 @@
         tags: ['Python', 'Deep Learning', 'Computer Vision', 'CNNs']
       },
       {
-        num: 16,
+        num: 17,
         group: 'AI & Machine Learning',
         institution: 'The University of Texas at Austin',
         course: 'Model Deployment',
@@ -1166,7 +1175,7 @@
         tags: ['Python', 'Docker', 'Model Serialization', 'ML Deployment']
       },
       {
-        num: 17,
+        num: 18,
         group: 'AI & Machine Learning',
         institution: 'The University of Texas at Austin',
         course: 'Introduction to Neural Networks',
@@ -1175,7 +1184,7 @@
         tags: ['Python', 'Deep Neural Networks', 'Sensor Telemetry', 'Predictive Maintenance']
       },
       {
-        num: 18,
+        num: 19,
         group: 'AI & Machine Learning',
         institution: 'The University of Texas at Austin',
         course: 'Advanced Machine Learning',
@@ -1184,7 +1193,7 @@
         tags: ['Python', 'XGBoost', 'Random Forest', 'Ensemble ML']
       },
       {
-        num: 19,
+        num: 20,
         group: 'AI & Machine Learning',
         institution: 'The University of Texas at Austin',
         course: 'Machine Learning',
@@ -1193,7 +1202,7 @@
         tags: ['Python', 'Scikit-Learn', 'Decision Trees', 'Classification']
       },
       {
-        num: 20,
+        num: 21,
         group: 'AI & Machine Learning',
         institution: 'The University of Texas at Austin',
         course: 'Python Foundations',
@@ -1202,9 +1211,9 @@
         tags: ['Python', 'NumPy & Pandas', 'Statistical EDA', 'Data Visualization']
       },
 
-      // 21–27: San José State University (M.S. EE Graduate Projects)
+      // 22–28: San José State University (M.S. EE Graduate Projects)
       {
-        num: 21,
+        num: 22,
         group: 'Computer Architecture & RTL',
         institution: 'San José State University',
         course: 'M.S. in Electrical Engineering',
@@ -1213,7 +1222,7 @@
         tags: ['C++', 'Verilog', 'Cadence Virtuoso', 'Verilog-A']
       },
       {
-        num: 22,
+        num: 23,
         group: 'Computer Architecture & RTL',
         institution: 'San José State University',
         course: 'M.S. in Electrical Engineering',
@@ -1222,7 +1231,7 @@
         tags: ['Quantum Computing', 'MIPS Architecture', 'Quantum Logic Gates']
       },
       {
-        num: 23,
+        num: 24,
         group: 'Formal & UVM Verification',
         institution: 'San José State University',
         course: 'M.S. in Electrical Engineering',
@@ -1231,7 +1240,7 @@
         tags: ['SystemVerilog Assertions', 'AMBA AHB', 'Synopsys Design Vision']
       },
       {
-        num: 24,
+        num: 25,
         group: 'Computer Architecture & RTL',
         institution: 'San José State University',
         course: 'M.S. in Electrical Engineering',
@@ -1240,7 +1249,7 @@
         tags: ['Verilog HDL', 'ARM Thumb ISA', 'Assembly Verification']
       },
       {
-        num: 25,
+        num: 26,
         group: 'Computer Architecture & RTL',
         institution: 'San José State University',
         course: 'M.S. in Electrical Engineering',
@@ -1249,7 +1258,7 @@
         tags: ['Verilog HDL', 'Computer Arithmetic', 'PPA Analysis']
       },
       {
-        num: 26,
+        num: 27,
         group: 'Computer Architecture & RTL',
         institution: 'San José State University',
         course: 'M.S. in Electrical Engineering',
@@ -1258,7 +1267,7 @@
         tags: ['Verilog RTL', 'Wireless MAC', 'Synopsys Design Vision']
       },
       {
-        num: 27,
+        num: 28,
         group: 'Computer Architecture & RTL',
         institution: 'San José State University',
         course: 'M.S. in Electrical Engineering',
@@ -1267,9 +1276,9 @@
         tags: ['Verilog RTL', 'Floating-Point Arithmetic', 'Synopsys VCS']
       },
 
-      // 28–32: University of California, Los Angeles (UCLA B.S. EE Projects)
+      // 29–33: University of California, Los Angeles (UCLA B.S. EE Projects)
       {
-        num: 28,
+        num: 29,
         group: 'Mixed-Signal, DSP & VLSI',
         institution: 'UCLA',
         course: 'B.S. in Electrical Engineering (IC Design)',
@@ -1278,7 +1287,7 @@
         tags: ['CMOS IC Design', 'Transistor Sizing', 'Physical Layout & Extraction']
       },
       {
-        num: 29,
+        num: 30,
         group: 'Mixed-Signal, DSP & VLSI',
         institution: 'UCLA',
         course: 'B.S. in Electrical Engineering',
@@ -1287,7 +1296,7 @@
         tags: ['Power Electronics', 'SPICE Modeling', 'PWM Control']
       },
       {
-        num: 30,
+        num: 31,
         group: 'Mixed-Signal, DSP & VLSI',
         institution: 'UCLA',
         course: 'B.S. in Electrical Engineering',
@@ -1296,7 +1305,7 @@
         tags: ['Control Systems', 'Nonlinear Circuits', 'Discrete-Time Control']
       },
       {
-        num: 31,
+        num: 32,
         group: 'Mixed-Signal, DSP & VLSI',
         institution: 'UCLA',
         course: 'B.S. in Electrical Engineering',
@@ -1305,7 +1314,7 @@
         tags: ['MATLAB', 'Digital Signal Processing', '2D Fourier Transform']
       },
       {
-        num: 32,
+        num: 33,
         group: 'Mixed-Signal, DSP & VLSI',
         institution: 'UCLA',
         course: 'B.S. in Electrical Engineering',
@@ -1377,39 +1386,68 @@
     function prepareForPrint() {
       if (isPrintPrepared) return;
       isPrintPrepared = true;
+
       savedProjectFilterBeforePrint = activeProjectFilter;
       if (activeProjectFilter !== 'All') {
         filterProjects('All');
       }
+
       wasDarkBeforePrint = document.documentElement.classList.contains('dark');
       if (wasDarkBeforePrint) {
         document.documentElement.classList.remove('dark');
+        const label = document.getElementById('themeToggleLabel');
+        if (label) label.textContent = 'Dark Mode';
       }
+
+      // Force synchronous layout reflow so all 33 cards and light-mode rules settle before snapshot
+      void document.documentElement.offsetHeight;
     }
 
     function restoreAfterPrint() {
       if (!isPrintPrepared) return;
       isPrintPrepared = false;
+
       if (wasDarkBeforePrint) {
         document.documentElement.classList.add('dark');
+        const label = document.getElementById('themeToggleLabel');
+        if (label) label.textContent = 'Light Mode';
         wasDarkBeforePrint = false;
       }
+
       if (savedProjectFilterBeforePrint !== 'All') {
         filterProjects(savedProjectFilterBeforePrint);
       }
     }
 
+    // 1. Standard print lifecycle events
     window.addEventListener('beforeprint', prepareForPrint);
     window.addEventListener('afterprint', restoreAfterPrint);
 
+    // 2. Bidirectional media-query listener (catches File -> Print & Safari/Chromium transitions)
     if (window.matchMedia) {
       const printMediaQuery = window.matchMedia('print');
+      const handlePrintMediaChange = e => {
+        if (e.matches) {
+          prepareForPrint();
+        } else {
+          restoreAfterPrint();
+        }
+      };
+
       if (printMediaQuery.addEventListener) {
-        printMediaQuery.addEventListener('change', e => {
-          if (!e.matches) restoreAfterPrint();
-        });
+        printMediaQuery.addEventListener('change', handlePrintMediaChange);
+      } else if (printMediaQuery.addListener) {
+        printMediaQuery.addListener(handlePrintMediaChange);
       }
     }
+
+    // 3. Native keyboard shortcut interception (Cmd+P on macOS / Ctrl+P on Linux & Windows)
+    window.addEventListener('keydown', e => {
+      if ((e.metaKey || e.ctrlKey) && !e.shiftKey && !e.altKey && e.key.toLowerCase() === 'p') {
+        e.preventDefault();
+        exportCV();
+      }
+    });
 
     function exportCV() {
       prepareForPrint();
